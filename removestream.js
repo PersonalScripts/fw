@@ -6,9 +6,9 @@
 // @author       CastleFw/FloridaStream
 // @match        https://filewarez.tv/portal.php
 // @grant        none
-// @require http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js
-// @updateURL   
-// @downloadURL 
+// @require      http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js
+// @updateURL    https://raw.githubusercontent.com/PersonalScripts/fw/master/removestream.js
+// @downloadURL  https://raw.githubusercontent.com/PersonalScripts/fw/master/removestream.js
 // ==/UserScript==
 (function() {
 $( ".collapse" ).remove( ":contains('FURiOUS está ao vivo agora')" );
