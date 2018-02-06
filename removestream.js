@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Fw Portal Block Stream
+// @name         Portal Block Stream [FW]
 // @namespace    Bloqueio de stream no Portal Fw
 // @version      1.0
 // @description  Bloqueia streaming no portal da Fw. (module23)
