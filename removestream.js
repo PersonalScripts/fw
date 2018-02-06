@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Portal Block Stream [FW]
 // @namespace    Bloqueio de stream no Portal Fw
-// @version      1.0
+// @version      1.0.1
 // @description  Bloqueia streaming no portal da Fw. (module23)
 // @author       CastleFw/FloridaStream
 // @match        https://filewarez.tv/portal.php
