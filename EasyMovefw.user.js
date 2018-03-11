@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Easy Move-Topic [FW]
 // @namespace    https://filewarez.tv/showthread.php?t=844905
-// @version      1.5
+// @version      1.6
 // @encoding     utf-8
 // @copyright    2018, FloridaStream (CastleFw)
 // @author       Castle
@@ -25,7 +25,7 @@ $(document).ready(function(){
       name: ""
    });
 
-   $("#primeiroselect option[class!='d0']").hide(); // escondo tudo que não tiver a classe 'd0'
+   $("#primeiroselect option[class!='d0']").hide();
 
    $("<select>", {
       id: "destforumid",
@@ -38,12 +38,11 @@ $(document).ready(function(){
    var cats = $("#primeiroselect option");
 
    $("#primeiroselect").on("change", function(){
-
       var opt = $(this)
                 .find("option:selected")
                 .nextUntil(".d0"),
           htm = '';
-
+      
       if(opt.length == 0){
          htm = $(this)
                .find("option:selected")
@@ -61,13 +60,9 @@ $(document).ready(function(){
       .show();
 
    }).trigger("change");
-
-   //var newOption = $('<option selected disabled>Selecione uma área</option>');
-   //newOption.insertAfter('#elementsID option[value="value1"]');
    $('#primeiroselect').css({"margin-right": "5px"}).append('<option class="d0" selected disabled>Selecione uma Categoria</option>');
    $("#destforumid option[class!='d0']").hide();
    $('#destforumid').append('<option selected disabled>Selecione uma área</option>');
-   //$('label').append('<div>');
    $('#primeiroselect').before('<div style="font-weight: bold; float: left;">Categorias:</div>');
    $('#primeiroselect').before('<div style="font-weight: bold; margin-left: 51.10%;">Destino:</div>');
 });
