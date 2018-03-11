@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Easy Move-Topic [FW]
-// @namespace    https://filewarez.tv
-// @version      1.4
+// @namespace    https://filewarez.tv/showthread.php?t=844905
+// @version      1.5
 // @encoding     utf-8
 // @copyright    2018, FloridaStream (CastleFw)
 // @author       Castle
@@ -17,7 +17,6 @@
 // @run-at       document-start
 // @require      https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js
 // ==/UserScript==
-
 $(document).ready(function(){
 
    $(".blockrow select")
