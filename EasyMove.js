@@ -1,5 +1,7 @@
 // ==UserScript==
 // @name         Easy Move-Topic [FW]
+// @downloadURL  https://raw.githubusercontent.com/PersonalScripts/fw/master/EasyMove.js
+// @updateURL    https://raw.githubusercontent.com/PersonalScripts/fw/master/EasyMove.js
 // @namespace    https://github.com/FloridaStream
 // @homepage     https://filewarez.tv/member.php?u=74646
 // @contactURL   https://filewarez.tv/private.php?do=newpm&u=74646
@@ -12,8 +14,7 @@
 // @copyright    2018, FloridaStream (CastleFw)
 // @author       Castle
 // @license      https://creativecommons.org/licenses/by-nd/3.0/br/
-// @downloadURL  https://raw.githubusercontent.com/PersonalScripts/fw/master/EasyMove.js
-// @updateURL    https://raw.githubusercontent.com/PersonalScripts/fw/master/EasyMove.js
+
 // @run-at       document-start
 // @require      https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js
 // ==/UserScript==
