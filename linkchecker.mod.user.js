@@ -4,7 +4,7 @@
 // @include     /^http(s)?:\/\/(www\.)?filewarez\.tv/.*$/
 // @copyright   2016, XOR
 // @author      XOR [MOD by Castle]
-// @version     0.3.3.0.2
+// @version     0.3.3.0.3
 // @license     MIT License
 // @grant       unsafeWindow
 // @grant       GM_xmlhttpRequest
@@ -76,6 +76,7 @@
     return B("POST", a, e, c, d);
   }
   function R(a) {
+    bypasswindowclose();
     return C("/postador.php", {Referer:a.referer || window.location.href}, {linkid:a.id, status:a.online, securitytoken:a.token || unsafeWindow.SECURITYTOKEN, automatic:!1, "do":"updatestatus"});
   }
   function n(a) {
@@ -591,6 +592,21 @@
     link.href = 'https://raw.githubusercontent.com/PersonalScripts/fw/master/'+i+'.ico';
     document.getElementsByTagName('head')[0].appendChild(link);
   }
+    var on_  = "0";
+    var off_ = "0";
+    function bypasswindowclose(){
+        if(off_ != "0") return;
+        if(off_ == "0"){
+              function closeWindow() {
+                  setTimeout(function() {
+                      window.close();
+                      console.log('%c CLOSE', "background: grey; color: black; padding-left:10px;");
+                  }, 3000);
+              }
+              window.onload = closeWindow();
+        }
+    }
+
 
   function q(a, b) {
     var c = a.statusE;
@@ -605,41 +621,47 @@
           var status = b.status;
 
           if(status == "online" && upstatus == "offline"){
-          document.title = "On/OFF";
               changeico("red_green");
+              document.title = "On/OFF";
+              off_ = "offline";
               console.log('%c UP On & OFF', "background: pink; color: black; padding-left:10px;");
           }
           else
           if(status == "online" && upstatus != "offline"){
               changeico("green");
               document.title = "On";
+              on_ = "online";
               console.log('%c UP Online', "background: green; color: black; padding-left:10px;");
 
-              function closeWindow() {
+              /*function closeWindow() {
                   setTimeout(function() {
-                  window.close();
+                  //window.close();
+                       console.log('%c CLOSE', "background: grey; color: black; padding-left:10px;");
                   }, 3000);
-              }
-              window.onload = closeWindow();
+              }*/
+              //window.onload = closeWindow();
           }
 
           if(upstatusUNK && off){}else
 
           if(off && status != upstatus){
               changeico("red");
-              console.log('%c UP Off-line', "background: red; color: black; padding-left:10px;");
               document.title = "OFF";
+              off_ = "offline";
+              console.log('%c UP Off-line', "background: red; color: black; padding-left:10px;");
               upstatus = status;
           }
 
           if(unk){
               changeico("yellow");
-              console.log('%c UP Status Indefinido', "background: yellow; color: black; padding-left:10px;");
               document.title = "?UKN?";
+              off_ = "offline";
+              console.log('%c UP Status Indefinido', "background: yellow; color: black; padding-left:10px;");
               upstatusUNK = status;
           }
       }
       avancada(b);
+
 
 
 
