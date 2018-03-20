@@ -4,7 +4,7 @@
 // @include     /^http(s)?:\/\/(www\.)?filewarez\.tv/.*$/
 // @copyright   2016, XOR
 // @author      XOR [MOD by Castle]
-// @version     0.3.3
+// @version     0.3.3.0.1
 // @license     MIT License
 // @grant       unsafeWindow
 // @grant       GM_xmlhttpRequest
