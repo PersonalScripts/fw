@@ -4,7 +4,7 @@
 // @include     /^http(s)?:\/\/(www\.)?filewarez\.tv/.*$/
 // @copyright   2016, XOR
 // @author      XOR [MOD by Castle]
-// @version     0.3.3.0.5
+// @version     0.3.3.0.6
 // @license     MIT License
 // @grant       unsafeWindow
 // @grant       GM_xmlhttpRequest
@@ -531,14 +531,17 @@
     return a.rest.startsWith("/f/") ? !0 : !1;
   }
   function M(a) {
-    return (a = sb.exec(a)) ? {href:a[0], host:a[2], rest:a[3] || "/"} : null;
+    //console.log(a[3]);
+    return (a = sb.exec(a)) ? {href:a[0], host:a[2], rest:a[3].replace(new RegExp("^/a(.*)/file", "mg"), "/file") || "/"} : null;
   }
   function x(a) {
     var b = M(a), c;
+
     if (b) {
       if (b = N.test(b.href) ? M(b.rest.substring(2)) : b, b) {
         if (c = y[b.host.replace(tb, "")]) {
           if ("function" === typeof c.checkUrl) {
+            console.log(b.rest.substring(2));
             var d = c.checkUrl(b);
             if (d) {
               return c.checkStatus(b, d);
@@ -570,6 +573,7 @@
       var h = d[f], g = h.lastElementChild.firstElementChild, h = {linkE:h, statusE:g, url:h.firstElementChild.firstChild.href, status:g.classList.contains("online") ? "online" : "offline"};
       b(h);
       h = x(h.url).then(c.bind(this, h));
+
       a.push(h);
     }
     return Promise.all(a);
