@@ -4,7 +4,7 @@
 // @include     /^http(s)?:\/\/(www\.)?filewarez\.tv/.*$/
 // @copyright   2016, XOR
 // @author      XOR [MOD by Castle]
-// @version     0.3.3.0.6
+// @version     0.3.3.0.7
 // @license     MIT License
 // @grant       unsafeWindow
 // @grant       GM_xmlhttpRequest
@@ -603,6 +603,8 @@
         if(off_ == "0"){
               function closeWindow() {
                   setTimeout(function() {
+                      window.opener = null;
+                      window.open('', '_self', '');
                       window.close();
                       console.log('%c CLOSE', "background: grey; color: black; padding-left:10px;");
                   }, 3000);
