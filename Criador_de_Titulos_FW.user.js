@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name        Criador de Títulos 0.4 [FW]
+// @name        Criador de Títulos 0.5 [FW]
 // @namespace   PvP
-// @version     0.4
+// @version     0.5
 // @description Busca as informações e preenche o postador.
 // @author      PvP
 // @include     /BZ.php
@@ -11,6 +11,7 @@
 // @include     /XE.php
 // @include     /TMDB.php
 // @include     /ST.php
+// @include     /EP.php
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=xxx
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=game
@@ -29,7 +30,7 @@ var bb = "/BB.php";
 var xe = "/XE.php";
 var tmdb = "/TMDB.php";
 var st = "/ST.php"
-
+var ep = "/EP.php"
 
 ////////////////////////////////////////////////////////////////////////////////////////GET DE XXX
 if (window.location.href.indexOf(bz) != -1 || window.location.href.indexOf(rk) != -1 || window.location.href.indexOf(mf) != -1 || window.location.href.indexOf(bb) != -1 || window.location.href.indexOf(xe) != -1) {// on Google URL
@@ -137,7 +138,7 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
     document.getElementById('cfield_trailer').value = yt;
     document.getElementById('cfield_curiosity').value = exinfo;
 } ///////////////////////////////////////////////////////////////////////////////GET DE JOGOS
-else if (window.location.href.indexOf(st) != -1){
+else if (window.location.href.indexOf(st) != -1 || window.location.href.indexOf(ep) != -1){
     document.addEventListener('keydown', function(e) {
         // pressed alt+p
         if (e.keyCode == 80 && !e.shiftKey && !e.ctrlKey && e.altKey && !e.metaKey) {
