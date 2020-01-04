@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name        Criador de Títulos 0.5 [FW]
+// @name        Criador de Títulos 0.4 [FW]
 // @namespace   PvP
-// @version     0.5
-// @description Busca as informações e preenche o postador.
+// @version      0.4
+// @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     /BZ.php
 // @include     /RK.php
@@ -12,11 +12,11 @@
 // @include     /TMDB.php
 // @include     /ST.php
 // @include     /EP.php
+// @include     /series.php
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=xxx
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=game
-// @updateURL   https://github.com/PersonalScripts/fw/raw/master/Criador_de_Titulos_FW.user.js
-// @downloadURL https://github.com/PersonalScripts/fw/raw/master/Criador_de_Titulos_FW.user.js
+// @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=tvshow
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_notification
@@ -31,6 +31,8 @@ var xe = "/XE.php";
 var tmdb = "/TMDB.php";
 var st = "/ST.php"
 var ep = "/EP.php"
+var series = "/series.php";
+
 
 ////////////////////////////////////////////////////////////////////////////////////////GET DE XXX
 if (window.location.href.indexOf(bz) != -1 || window.location.href.indexOf(rk) != -1 || window.location.href.indexOf(mf) != -1 || window.location.href.indexOf(bb) != -1 || window.location.href.indexOf(xe) != -1) {// on Google URL
@@ -123,6 +125,7 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
     //Genre utiliza JQuery para selecionar mais de um, utilizando array
     genre = genre.replace(/comedy/g, "commedy");
     genre = genre.replace(/mystery/g, "mistery");
+    genre = genre.replace(/horror/g, "terror");
     genre = genre.replace(/ /g, ",");
     var genre_array = genre.split(',');
     console.log(genre_array);
@@ -189,6 +192,7 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
     console.log(genregames_array);
     $('#cfield_genre').val(genregames_array);
 
+
     document.getElementById('cfield_manufactor').value = fabricantegames;
     document.getElementById('cfield_year').value = anogames;
     document.getElementById('cfield_os').value = plataformagames;
@@ -197,4 +201,70 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
     document.getElementById('cfield_requirements').value = minimo+"\n\n";
     //document.getElementById('cfield_requirements').value += recomendado;
 
+}///////////////////////////////////////////////////////////////////////////////GET DE SERIES
+else if (window.location.href.indexOf(series) != -1){
+    document.addEventListener('keydown', function(e) {
+        // pressed alt+p
+        if (e.keyCode == 80 && !e.shiftKey && !e.ctrlKey && e.altKey && !e.metaKey) {
+            GM_notification ( {
+                title: 'PvP diz:', timeout: '9000', text: 'Criando Título em Séries!'
+            } );
+
+            GM_setValue('o_titulo', document.getElementById("o_titulo").innerText);
+            GM_setValue('titulo', document.getElementById("titulo").innerText);
+            GM_setValue('genero', document.getElementById("genero").innerText);
+            GM_setValue('minutos', document.getElementById("minutos").innerText);
+            GM_setValue('ano', document.getElementById("ano").innerText);
+            GM_setValue('criador', document.getElementById("criador").innerText);
+            GM_setValue('temp', document.getElementById("temp").innerText);
+            GM_setValue('episodios', document.getElementById("episodios").innerText);
+            GM_setValue('imdb', document.getElementById("imdb").innerText);
+            GM_setValue('site', document.getElementById("site").innerText);
+            GM_setValue('actor', document.getElementById("actor").innerText);
+            GM_setValue('sinopse', document.getElementById("sinopse").innerText);
+            GM_setValue('yt', document.getElementById("yt").innerText);
+
+            console.log(titulo);
+            window.open("https://filewarez.tv/postador.php?do=addtitle&step=2&type=tvshow");
+
+        }})
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////SET DE SERIES
+else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addtitle&step=2&type=tvshow") != -1){
+    var o_titulo_series = GM_getValue('o_titulo');
+    var titulo_series = GM_getValue('titulo');
+    var genre_series = GM_getValue('genero');
+    var minutos_series = GM_getValue('minutos');
+    var year_series = GM_getValue('ano');
+    var criador_series = GM_getValue('criador');
+    var imdb_series = GM_getValue('imdb');
+    var site_series = GM_getValue('site');
+    var actor_series = GM_getValue('actor');
+    var sumario_series = GM_getValue('sinopse');
+    var yt_series = GM_getValue('yt');
+    var temporada = GM_getValue('temp');
+    var episodios_series = GM_getValue('episodios');
+
+    document.getElementById('cfield_title').value = o_titulo_series;
+    document.getElementById('cfield_title_translated').value = titulo_series;
+
+    //Genre utiliza JQuery para selecionar mais de um, utilizando array
+    genre_series = genre_series.replace(/comedy/g, "commedy");
+    genre_series = genre_series.replace(/mystery/g, "mistery");
+    genre_series = genre_series.replace(/horror/g, "terror");
+    genre_series = genre_series.replace(/ /g, ",");
+    var genre_array_series = genre_series.split(',');
+    console.log(genre_array_series);
+    $('#cfield_genre').val(genre_array_series);
+
+    document.getElementById('cfield_duration').value = minutos_series;
+    document.getElementById('cfield_year').value = year_series;
+    document.getElementById('cfield_creator').value = criador_series;
+    document.getElementById('cfield_imdb').value = imdb_series;
+    document.getElementById('cfield_site').value = site_series;
+    document.getElementById('cfield_cast').value = actor_series;
+    document.getElementById('cfield_summary').value = sumario_series;
+    document.getElementById('cfield_trailer').value = yt_series;
+    document.getElementById('cfield_season').value = temporada;
+    document.getElementById('cfield_episodes').value = episodios_series;
 }
