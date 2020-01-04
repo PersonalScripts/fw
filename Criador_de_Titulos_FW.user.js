@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name        Criador de Títulos 0.4 [FW]
+// @name        Criador de Títulos 0.6 [FW]
 // @namespace   PvP
-// @version      0.4
+// @version      0.6
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     /BZ.php
