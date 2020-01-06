@@ -17,6 +17,8 @@
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=game
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=tvshow
+// @updateURL   https://github.com/PersonalScripts/fw/raw/master/Criador_de_Titulos_FW.user.js
+// @downloadURL https://github.com/PersonalScripts/fw/raw/master/Criador_de_Titulos_FW.user.js
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_notification
