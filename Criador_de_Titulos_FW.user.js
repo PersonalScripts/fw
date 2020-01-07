@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name        Criador de Títulos 0.6 [FW]
+// @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      0.6
+// @version      0.7
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     /BZ.php
@@ -17,6 +17,7 @@
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=game
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=tvshow
+// @include     https://filewarez.tv/postador.php
 // @updateURL   https://github.com/PersonalScripts/fw/raw/master/Criador_de_Titulos_FW.user.js
 // @downloadURL https://github.com/PersonalScripts/fw/raw/master/Criador_de_Titulos_FW.user.js
 // @grant       GM_setValue
@@ -101,6 +102,7 @@ else if (window.location.href.indexOf(tmdb) != -1){
             GM_setValue('sinopse', document.getElementById("sinopse").innerText);
             GM_setValue('yt', document.getElementById("yt").innerText);
             GM_setValue('exinfo', document.getElementById("exinfo").innerText);
+            GM_setValue('img', document.getElementById("img").innerText);
             console.log(yt);
             window.open("https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie");
 
@@ -161,6 +163,8 @@ else if (window.location.href.indexOf(st) != -1 || window.location.href.indexOf(
             GM_setValue('sinopse', document.getElementById("sinopse").innerText);
             GM_setValue('minimo', document.getElementById("req").innerText);
             GM_setValue('video', document.getElementById("video").innerText);
+            GM_setValue('img', document.getElementById("img").innerText);
+
             /*if (document.getElementById("req2") == null){
     GM_setValue('recomendado', document.getElementById("req3").innerText);
 }else{
@@ -202,8 +206,8 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
     document.getElementById('cfield_site').value = steam;
     document.getElementById('cfield_summary').value = sinopsegames;
     document.getElementById('cfield_requirements').value = minimo+"\n\n";
-    document.getElementById('cfield_trailer').value = video;
     //document.getElementById('cfield_requirements').value += recomendado;
+    document.getElementById('cfield_trailer').value = video;
 
 }///////////////////////////////////////////////////////////////////////////////GET DE SERIES
 else if (window.location.href.indexOf(series) != -1){
@@ -227,6 +231,7 @@ else if (window.location.href.indexOf(series) != -1){
             GM_setValue('actor', document.getElementById("actor").innerText);
             GM_setValue('sinopse', document.getElementById("sinopse").innerText);
             GM_setValue('yt', document.getElementById("yt").innerText);
+            GM_setValue('img', document.getElementById("img").innerText);
 
             console.log(titulo);
             window.open("https://filewarez.tv/postador.php?do=addtitle&step=2&type=tvshow");
@@ -271,4 +276,96 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
     document.getElementById('cfield_trailer').value = yt_series;
     document.getElementById('cfield_season').value = temporada;
     document.getElementById('cfield_episodes').value = episodios_series;
+}
+
+if (window.location.href.indexOf("https://filewarez.tv/postador.php") != -1 ) {
+    document.addEventListener('keydown', function(e) {
+  // pressed alt+P
+  if (e.keyCode == 80 && !e.shiftKey && !e.ctrlKey && e.altKey && !e.metaKey) {
+
+      var img = GM_getValue('img');
+      img = img.replace(/ /g, ",");
+      var img_array = img.split(',');
+
+     for (var i=0;i<=50;i++){
+postador_upload_image(img_array[i], 'url');
+
+
+}
+
+                              }})
+
+}
+
+function postador_upload_image(data, type){
+	var formdata = new FormData();
+	if(requests < 1){
+		progress = {files: 0, finished: 0, size_uploaded: 0, size_total: 0};
+		postador_upload_totalprogress();
+	}
+	progress.files++;
+	var progressbar = $("#file_progressbase").clone();
+	if(type == 'url'){
+		formdata.append('url', data);
+		file = /\/([^\/]+)$/.exec(data);
+		progressbar.data('filename', "URL => " + file[1]);
+	} else if(type == 'file'){
+		formdata.append('file', data);
+		progressbar.data('filename', data.name);
+		progressbar.data('filesize', data.size);
+		progress.size_total += data.size;
+	} else return false;
+	progressbar.data('type', type);
+	progressbar.insertBefore('.postador_progress .progress');
+
+	requests++;
+	postador_editid = $("input[name='editid']").val();
+	formdata.append('editid', postador_editid);
+	formdata.append('securitytoken', SECURITYTOKEN);
+	postador_upload_totalprogress();
+	var request = $.ajax({
+		xhr: function(){
+			xhr2 = $.ajaxSettings.xhr();
+			if(xhr2.upload){
+				xhr2.upload.addEventListener('progress', function(event, ui){ postador_upload_progress(event, progressbar); }, false);
+			} else {
+				alert('Browser not supported!\nCheck: http://caniuse.com/xhr2');
+			}
+			return xhr2;
+		},
+		url: 'postador.php?do=uploadimage',
+		type: 'POST',
+		dataType: 'json',
+		contentType: false,
+		processData: false,
+		cache: false,
+		data: formdata
+	}).done(function(image){
+		if(image.error){
+			alert(image.error_message);
+			progress.files--;
+			progress.size_uploaded -= progressbar.data('fileuploaded');
+			progress.size_total -= progressbar.data('filesize');
+		} else {
+			if(type == 'url') progress.size_total += image.filesize;
+			progress.size_uploaded += image.filesize;
+			progress.finished++;
+			postador_image_add(image);
+		}
+	}).always(function(){
+		progressbar.hide('fast').remove();
+		postador_upload_totalprogress();
+		requests--;
+	});
+
+	$(".filename", progressbar).text(progressbar.data('filename'));
+	$(".cancel", progressbar).click(function(){
+		progress.files--;
+		progress.size_uploaded -= progressbar.data('fileuploaded');
+		progress.size_total -= progressbar.data('filesize');
+		request.abort();
+		progressbar.hide('fast').remove();
+		postador_upload_totalprogress();
+	});
+	progressbar.show('fast');
 }
