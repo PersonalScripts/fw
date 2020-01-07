@@ -160,7 +160,7 @@ else if (window.location.href.indexOf(st) != -1 || window.location.href.indexOf(
             GM_setValue('steam', document.getElementById("site").innerText);
             GM_setValue('sinopse', document.getElementById("sinopse").innerText);
             GM_setValue('minimo', document.getElementById("req").innerText);
-
+            GM_setValue('video', document.getElementById("video").innerText);
             /*if (document.getElementById("req2") == null){
     GM_setValue('recomendado', document.getElementById("req3").innerText);
 }else{
@@ -181,6 +181,7 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
     var steam = GM_getValue('steam');
     var sinopsegames = GM_getValue('sinopse');
     var minimo = GM_getValue('minimo');
+    var video = GM_getValue('video');
     //var recomendado = GM_getValue('recomendado');
 
     document.getElementById('cfield_title').value = titulogames;
@@ -201,6 +202,7 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
     document.getElementById('cfield_site').value = steam;
     document.getElementById('cfield_summary').value = sinopsegames;
     document.getElementById('cfield_requirements').value = minimo+"\n\n";
+    document.getElementById('cfield_trailer').value = video;
     //document.getElementById('cfield_requirements').value += recomendado;
 
 }///////////////////////////////////////////////////////////////////////////////GET DE SERIES
