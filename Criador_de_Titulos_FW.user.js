@@ -162,7 +162,9 @@ else if (window.location.href.indexOf(st) != -1 || window.location.href.indexOf(
             GM_setValue('steam', document.getElementById("site").innerText);
             GM_setValue('sinopse', document.getElementById("sinopse").innerText);
             GM_setValue('minimo', document.getElementById("req").innerText);
+            if (document.getElementById("video")){
             GM_setValue('video', document.getElementById("video").innerText);
+            }else{GM_setValue('video',"");}
             GM_setValue('img', document.getElementById("img").innerText);
 
             /*if (document.getElementById("req2") == null){
