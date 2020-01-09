@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      0.7
+// @version      0.8
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     /BZ.php
@@ -18,11 +18,13 @@
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=game
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=tvshow
 // @include     https://filewarez.tv/postador.php
+// @include     https://filewarez.tv/postador.php?do=addupload*
 // @updateURL   https://github.com/PersonalScripts/fw/raw/master/Criador_de_Titulos_FW.user.js
 // @downloadURL https://github.com/PersonalScripts/fw/raw/master/Criador_de_Titulos_FW.user.js
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_notification
+// @grant          GM_addStyle
 // @require http://code.jquery.com/jquery-3.4.1.min.js
 // ==/UserScript==
 
@@ -371,3 +373,238 @@ function postador_upload_image(data, type){
 	});
 	progressbar.show('fast');
 }
+
+//CARREGADOR DE MEDIAINFO
+if (window.location.href.indexOf('https://filewarez.tv/postador.php?do=addupload') != -1){
+var input = document.createElement('input');
+input.type = "file";
+input.id = "carregador";
+input.accept=".txt"
+input.style = "top:0;right:0;position:absolute;z-index:99999;padding:20px;";
+document.body.appendChild(input);
+
+var carregador = document.getElementById('carregador');
+
+carregador.addEventListener('change', function(e) {
+    var file = carregador.files[0];
+    var textType = /text.*/;
+
+    if (file.type.match(textType)) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            var content = reader.result;
+            content = content.replace(/ /g, "");
+            //content = content.replace(/:/g, ": ");
+            content = content.replace(/GiB/g, " GB");
+            //NOME DO RELEASE
+            var release0 = content.split('Completename:');
+            var release = release0[1].split('.mkv');
+            var tipodearquivo = release0[1].split('Format:');
+            release[0] = release[0].replace(/\./g, " ");
+            if (release[0].indexOf('WEB') > -1 && release[0].indexOf('1080p') > -1 || release[0].indexOf('WEB') > -1 && release[0].indexOf('720p') > -1 || release[0].indexOf('BluRay') > -1 || release[0].indexOf('Bluray') > -1){
+                //$('#cfield_forumid').val('623');
+                //$('#cfield_forumid').val('375');
+                $('#cfield_forumid').val('623');
+                var values = $('#cfield_forumid').val();
+                if (values == null){
+                $('#cfield_forumid').val('375');}
+            }
+            if (release[0].indexOf('HDRip') > -1 || release[0].indexOf('DVDScr') > -1){
+                $('#cfield_forumid').val('310');
+            }
+            if (release[0].indexOf('CAM') > -1 ){
+                $('#cfield_forumid').val('338');
+            }
+            if (release[0].indexOf('2160p') > -1){
+                $('#cfield_forumid').val('1403');
+            }if (release[0].indexOf('WEB') > -1 ){
+                $('#cfield_sourcetype').val('webdl');
+            }if (release[0].indexOf('BluRay') > -1 ){
+                $('#cfield_sourcetype').val('bluray');
+            }if (release[0].indexOf('Bluray') > -1 ){
+                $('#cfield_sourcetype').val('bluray');
+            }if (tipodearquivo[0].indexOf('.mkv') > -1 ){
+                $('#cfield_format').val('mkv');
+            }if (tipodearquivo[0].indexOf('.ts') > -1 || tipodearquivo[0].indexOf('.TS') > -1){
+                $('#cfield_format').val('ts');
+            }if (tipodearquivo[0].indexOf('.mp4') > -1 || tipodearquivo[0].indexOf('.MP4') > -1){
+                $('#cfield_format').val('mp4');
+            }
+            //TAMANHO DO UPLOAD
+            var tam0 = content.split('Filesize:');
+            var tam = tam0[1].split('Duration');
+            //RESOLUÇÃO
+            var width0 = content.split('Width:');
+            var width = width0[1].split('pixels');
+            var height0 = content.split('Height:');
+            var height = height0[1].split('pixels');
+            //FPS
+            var fps0 = content.split('Framerate:');
+            var fps = fps0[1].split('.');
+            //library
+            var library0 = content.split('Writinglibrary:');
+            var library = library0[2];
+            if (library){
+                if (library.indexOf('264') > -1 ){
+                $('#cfield_videocodec').val('h264');
+            }if (library.indexOf('265') > -1 ){
+                $('#cfield_videocodec').val('h265');
+            }
+            }else{
+            if (release[0].indexOf('264') > -1 ){
+                $('#cfield_videocodec').val('h264');
+            }if (release[0].indexOf('265') > -1 ){
+                $('#cfield_videocodec').val('h265');
+            }}
+            //audios
+            var audio0 = content.split('CodecID:');
+            var audio = audio0[2].split('Duration');
+
+            audio[0] = audio[0].toLowerCase();
+            var canais0 = content.split('Channel(s):');
+            var canais = canais0[1].split('Channel');
+            var canais2 = canais0[2];
+            var array_audio;
+            var linguagem0 = content.split('Language:');
+            var linguagem = linguagem0[1].split(/\n/);
+            linguagem[0] = linguagem[0].toLowerCase();
+            var language_array;
+            if (linguagem[0].indexOf('english') > -1){
+                language_array = ('english');
+            $('#cfield_language').val(language_array);}
+            if (linguagem[0].indexOf('portuguese') > -1){
+                language_array = ('portuguese');
+            $('#cfield_language').val(language_array);}
+            if (linguagem[0].indexOf('spanish') > -1){
+                language_array = ('spanish');
+            $('#cfield_language').val(language_array);}
+            if (linguagem[0].indexOf('japanese') > -1){
+                language_array = ('japanese');
+            $('#cfield_language').val(language_array);}
+            if (linguagem[0].indexOf('french') > -1){
+                language_array = ('french');
+            $('#cfield_language').val(language_array);}
+            console.log(linguagem[0]);
+
+            if (canais2){
+                canais2 = canais0[2].split('Channel');
+                var audio2 = audio0[3].split('Duration');
+                audio2[0] = audio2[0].toLowerCase();
+                var linguagem2 = linguagem0[2].split(/\n/);
+                linguagem2[0] = linguagem2[0].toLowerCase();
+                if (linguagem2[0].indexOf('english') > -1){
+                language_array += (',english');
+                language_array = language_array.split(',');
+                $('#cfield_language').val(language_array);}
+                    if (linguagem2[0].indexOf('portuguese') > -1){
+                language_array += (',portuguese');
+                    language_array = language_array.split(',');
+                    $('#cfield_language').val(language_array);}
+                if (linguagem2[0].indexOf('spanish') > -1){
+                language_array += (',spanish');
+                language_array = language_array.split(',');
+                $('#cfield_language').val(language_array);}
+                if (linguagem2[0].indexOf('japanese') > -1){
+                language_array += (',japanese');
+                language_array = language_array.split(',');
+                $('#cfield_language').val(language_array);}
+                if (linguagem2[0].indexOf('french') > -1){
+                language_array += (',french');
+                language_array = language_array.split(',');
+                $('#cfield_language').val(language_array);}
+
+
+                if (audio2[0].indexOf('truehd') > -1 && canais2[0].indexOf('8') > -1){
+                array_audio = ('dolbytruehd71');}
+
+                if (audio2[0].indexOf('aac') > -1 && canais2[0].indexOf('2') > -1){
+                array_audio = ('aac');}
+                if (audio2[0].indexOf('aac') > -1 && canais2[0].indexOf('6') > -1){
+                array_audio = ('aac51');}
+                if (audio2[0].indexOf('aac') > -1 && canais2[0].indexOf('8') > -1){
+                array_audio = ('aac71');}
+
+                if (audio2[0].indexOf('ac3') > -1 && canais2[0].indexOf('6') > -1){
+                array_audio = ('ac351');}
+
+                if (audio2[0].indexOf('truehd') > -1 && canais2[0].indexOf('6') > -1){
+                array_audio = ('dolbytruehd51');}
+
+                if (release[0].indexOf('DTS-HD') > -1 && tipodearquivo[0].indexOf('5.1') > -1){
+                    array_audio = ('dtshdma51');}
+                else if (release[0].indexOf('DTS-HD') > -1 && tipodearquivo[0].indexOf('6.1') > -1){
+                    array_audio = ('dtshdma61');}
+                else if (release[0].indexOf('DTS-HD') > -1 && tipodearquivo[0].indexOf('7.1') > -1){
+                    array_audio = ('dtshdma71');}
+                else if (audio2[0].indexOf('dts') > -1 && canais2[0].indexOf('6') > -1){
+                array_audio = ('dts51');}
+
+                if (audio2[0].indexOf('dts') > -1 && canais2[0].indexOf('2') > -1){
+                array_audio = ('dts');}
+            }
+            else{
+                }
+
+            if (audio[0].indexOf('aac') > -1 && canais[0].indexOf('2') > -1){
+                array_audio += (',aac');
+                array_audio = array_audio.split(',');
+                console.log(array_audio);
+            $('#cfield_audiocodec').val(array_audio);}
+            if (audio[0].indexOf('aac') > -1 && canais[0].indexOf('6') > -1){
+                array_audio += (',aac51');
+                array_audio = array_audio.split(',');
+                console.log(array_audio);
+            $('#cfield_audiocodec').val(array_audio);}
+            if (audio[0].indexOf('aac') > -1 && canais[0].indexOf('8') > -1){
+                array_audio += (',aac71');
+                array_audio = array_audio.split(',');
+                console.log(array_audio);
+            $('#cfield_audiocodec').val(array_audio);}
+
+            if (audio[0].indexOf('ac3') > -1 && canais[0].indexOf('6') > -1){
+                array_audio += (',ac351');
+                array_audio = array_audio.split(',');
+                console.log(array_audio);
+            $('#cfield_audiocodec').val(array_audio);}
+
+            if (audio[0].indexOf('truehd') > -1 && canais[0].indexOf('8') > -1){
+                array_audio += (',dolbytruehd71');
+                array_audio = array_audio.split(',');
+                console.log(array_audio);
+            $('#cfield_audiocodec').val(array_audio);}
+
+            if (audio[0].indexOf('truehd') > -1 && canais[0].indexOf('6') > -1){
+                array_audio += (',dolbytruehd51');
+                array_audio = array_audio.split(',');
+                console.log(array_audio);
+            $('#cfield_audiocodec').val(array_audio);}
+
+            if (audio[0].indexOf('dts') > -1 && canais[0].indexOf('6') > -1){
+                array_audio += (',dts51');
+                array_audio = array_audio.split(',');
+                console.log(array_audio);
+            $('#cfield_audiocodec').val(array_audio);}
+
+
+            if (release[0].indexOf(' HDR ') > -1){
+                $('#cfield_hdr').val('yes');}
+            $('#cfield_title').val(release[0]);
+            $('#cfield_size').val(tam[0]);
+            $('#cfield_resolution').val(width[0]+'x'+height[0]);
+            $('#cfield_framerate').val(fps[0]+" fps");
+            $('#cfield_compression').val('rar');
+$('#cfield_description').val('[mediainfo]'+content+'[/mediainfo]');
+            $('#cfield_subtitles_included').val('no');
+
+            alert(release[0]);
+            //alert(content);
+
+}
+
+
+        reader.readAsText(file);
+    } else {
+        //fileDisplayArea.innerText = "File not supported!"
+    }
+});}
