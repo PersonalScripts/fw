@@ -375,6 +375,7 @@ function postador_upload_image(data, type){
 }
 
 //CARREGADOR DE MEDIAINFO
+
 if (window.location.href.indexOf('https://filewarez.tv/postador.php?do=addupload') != -1){
 var input = document.createElement('input');
 input.type = "file";
@@ -399,8 +400,10 @@ carregador.addEventListener('change', function(e) {
             content = content.replace(/GiB/g, " GB");
             //NOME DO RELEASE
             var release0 = content.split('Completename:');
-            var release = release0[1].split('.mkv');
+            var release = release0[1].split(/\n/);
             var tipodearquivo = release0[1].split('Format:');
+            release[0] = release[0].replace(/mp4/g, "");
+            release[0] = release[0].replace(/mkv/g, "");
             release[0] = release[0].replace(/\./g, " ");
             if (release[0].indexOf('WEB') > -1 && release[0].indexOf('1080p') > -1 || release[0].indexOf('WEB') > -1 && release[0].indexOf('720p') > -1 || release[0].indexOf('BluRay') > -1 || release[0].indexOf('Bluray') > -1){
                 //$('#cfield_forumid').val('623');
@@ -458,8 +461,9 @@ carregador.addEventListener('change', function(e) {
                 $('#cfield_videocodec').val('h265');
             }}
             //audios
-            var audio0 = content.split('CodecID:');
-            var audio = audio0[2].split('Duration');
+            var som = content.split('Format/Info:');
+            var audio0 = som[2].split('CodecID:');
+            var audio = audio0[1].split('Duration');
 
             audio[0] = audio[0].toLowerCase();
             var canais0 = content.split('Channel(s):');
@@ -489,8 +493,10 @@ carregador.addEventListener('change', function(e) {
 
             if (canais2){
                 canais2 = canais0[2].split('Channel');
-                var audio2 = audio0[3].split('Duration');
+                var audio3 = som[3].split('CodecID:');
+                var audio2 = audio3[1].split('Duration');
                 audio2[0] = audio2[0].toLowerCase();
+
                 var linguagem2 = linguagem0[2].split(/\n/);
                 linguagem2[0] = linguagem2[0].toLowerCase();
                 if (linguagem2[0].indexOf('english') > -1){
@@ -514,7 +520,6 @@ carregador.addEventListener('change', function(e) {
                 language_array = language_array.split(',');
                 $('#cfield_language').val(language_array);}
 
-
                 if (audio2[0].indexOf('truehd') > -1 && canais2[0].indexOf('8') > -1){
                 array_audio = ('dolbytruehd71');}
 
@@ -523,6 +528,12 @@ carregador.addEventListener('change', function(e) {
                 if (audio2[0].indexOf('aac') > -1 && canais2[0].indexOf('6') > -1){
                 array_audio = ('aac51');}
                 if (audio2[0].indexOf('aac') > -1 && canais2[0].indexOf('8') > -1){
+                array_audio = ('aac71');}
+                if (audio2[0].indexOf('mp4a-40-2') > -1 && canais2[0].indexOf('2') > -1){
+                array_audio = ('aac');}
+                if (audio2[0].indexOf('mp4a-40-2') > -1 && canais2[0].indexOf('6') > -1){
+                array_audio = ('aac51');}
+                if (audio2[0].indexOf('mp4a-40-2') > -1 && canais2[0].indexOf('8') > -1){
                 array_audio = ('aac71');}
 
                 if (audio2[0].indexOf('ac3') > -1 && canais2[0].indexOf('6') > -1){
@@ -557,6 +568,22 @@ carregador.addEventListener('change', function(e) {
                 console.log(array_audio);
             $('#cfield_audiocodec').val(array_audio);}
             if (audio[0].indexOf('aac') > -1 && canais[0].indexOf('8') > -1){
+                array_audio += (',aac71');
+                array_audio = array_audio.split(',');
+                console.log(array_audio);
+            $('#cfield_audiocodec').val(array_audio);}
+
+            if (audio[0].indexOf('mp4a-40-2') > -1 && canais[0].indexOf('2') > -1){
+                array_audio += (',aac');
+                array_audio = array_audio.split(',');
+                console.log(array_audio);
+            $('#cfield_audiocodec').val(array_audio);}
+            if (audio[0].indexOf('mp4a-40-2') > -1 && canais[0].indexOf('6') > -1){
+                array_audio += (',aac51');
+                array_audio = array_audio.split(',');
+                console.log(array_audio);
+            $('#cfield_audiocodec').val(array_audio);}
+            if (audio[0].indexOf('mp4a-40-2') > -1 && canais[0].indexOf('8') > -1){
                 array_audio += (',aac71');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
