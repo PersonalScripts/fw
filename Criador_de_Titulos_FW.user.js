@@ -379,8 +379,8 @@ if (window.location.href.indexOf('https://filewarez.tv/postador.php?do=addupload
 var input = document.createElement('input');
 input.type = "file";
 input.id = "carregador";
-input.accept=".txt"
-input.style = "top:0;right:0;position:absolute;z-index:99999;padding:20px;";
+input.accept=".txt";
+input.style = "top:0;right:0;position:fixed;z-index:99999;padding:17.5px;background:rgba(0,0,0,0.5) none;cursor:pointer;";
 document.body.appendChild(input);
 
 var carregador = document.getElementById('carregador');
