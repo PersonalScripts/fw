@@ -470,7 +470,7 @@ carregador.addEventListener('change', function(e) {
             var canais = canais0[1].split('Channel');
             var canais2 = canais0[2];
             var array_audio;
-            var linguagem0 = content.split('Language:');
+            var linguagem0 = canais0[1].split('Language:');
             var linguagem = linguagem0[1].split(/\n/);
             linguagem[0] = linguagem[0].toLowerCase();
             var language_array;
@@ -496,8 +496,8 @@ carregador.addEventListener('change', function(e) {
                 var audio3 = som[3].split('CodecID:');
                 var audio2 = audio3[1].split('Duration');
                 audio2[0] = audio2[0].toLowerCase();
-
-                var linguagem2 = linguagem0[2].split(/\n/);
+                var linguagem02 = canais2[1].split('Language:');
+                var linguagem2 = linguagem02[1].split(/\n/);
                 linguagem2[0] = linguagem2[0].toLowerCase();
                 if (linguagem2[0].indexOf('english') > -1){
                 language_array += (',english');
