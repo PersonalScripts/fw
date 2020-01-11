@@ -519,29 +519,42 @@ carregador.addEventListener('change', function(e) {
                 language_array += (',french');
                 language_array = language_array.split(',');
                 $('#cfield_language').val(language_array);}
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////PRIMEIRO AUDIO/////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+                if (audio2[0].indexOf('truehd') > -1 && canais2[0].indexOf('2') > -1){
+                array_audio = ('dolbytruehd');}
+                if (audio2[0].indexOf('truehd') > -1 && canais2[0].indexOf('6') > -1){
+                array_audio = ('dolbytruehd51');}
                 if (audio2[0].indexOf('truehd') > -1 && canais2[0].indexOf('8') > -1){
                 array_audio = ('dolbytruehd71');}
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
                 if (audio2[0].indexOf('aac') > -1 && canais2[0].indexOf('2') > -1){
                 array_audio = ('aac');}
                 if (audio2[0].indexOf('aac') > -1 && canais2[0].indexOf('6') > -1){
                 array_audio = ('aac51');}
                 if (audio2[0].indexOf('aac') > -1 && canais2[0].indexOf('8') > -1){
                 array_audio = ('aac71');}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
                 if (audio2[0].indexOf('mp4a-40-2') > -1 && canais2[0].indexOf('2') > -1){
                 array_audio = ('aac');}
                 if (audio2[0].indexOf('mp4a-40-2') > -1 && canais2[0].indexOf('6') > -1){
                 array_audio = ('aac51');}
                 if (audio2[0].indexOf('mp4a-40-2') > -1 && canais2[0].indexOf('8') > -1){
                 array_audio = ('aac71');}
-
-                if (audio2[0].indexOf('ac3') > -1 && canais2[0].indexOf('6') > -1){
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+                if (audio2[0].indexOf('a_ac3') > -1 && canais2[0].indexOf('2') > -1){
+                array_audio = ('ac3');}
+                if (audio2[0].indexOf('a_ac3') > -1 && canais2[0].indexOf('6') > -1){
                 array_audio = ('ac351');}
-
-                if (audio2[0].indexOf('truehd') > -1 && canais2[0].indexOf('6') > -1){
-                array_audio = ('dolbytruehd51');}
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+                if (audio2[0].indexOf('a_eac3') > -1 && canais2[0].indexOf('2') > -1){
+                array_audio = ('ddp');}
+                if (audio2[0].indexOf('a_eac3') > -1 && canais2[0].indexOf('6') > -1){
+                array_audio = ('ddp51');}
+                if (audio2[0].indexOf('a_eac3') > -1 && canais2[0].indexOf('8') > -1){
+                array_audio = ('ddp71');}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
                 if (release[0].indexOf('DTS-HD') > -1 && tipodearquivo[0].indexOf('5.1') > -1){
                     array_audio = ('dtshdma51');}
                 else if (release[0].indexOf('DTS-HD') > -1 && tipodearquivo[0].indexOf('6.1') > -1){
@@ -550,13 +563,21 @@ carregador.addEventListener('change', function(e) {
                     array_audio = ('dtshdma71');}
                 else if (audio2[0].indexOf('dts') > -1 && canais2[0].indexOf('6') > -1){
                 array_audio = ('dts51');}
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
                 if (audio2[0].indexOf('dts') > -1 && canais2[0].indexOf('2') > -1){
                 array_audio = ('dts');}
+                if (audio2[0].indexOf('dts') > -1 && canais2[0].indexOf('6') > -1){
+                array_audio = ('dts51');}
+                if (audio2[0].indexOf('dts') > -1 && canais2[0].indexOf('7') > -1){
+                array_audio = ('dts61');}
+                if (audio2[0].indexOf('dts') > -1 && canais2[0].indexOf('8') > -1){
+                array_audio = ('dts71');}
             }
             else{
                 }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////SEGUNDO AUDIO//////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
             if (audio[0].indexOf('aac') > -1 && canais[0].indexOf('2') > -1){
                 array_audio += (',aac');
                 array_audio = array_audio.split(',');
@@ -572,7 +593,7 @@ carregador.addEventListener('change', function(e) {
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
             $('#cfield_audiocodec').val(array_audio);}
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
             if (audio[0].indexOf('mp4a-40-2') > -1 && canais[0].indexOf('2') > -1){
                 array_audio += (',aac');
                 array_audio = array_audio.split(',');
@@ -588,9 +609,41 @@ carregador.addEventListener('change', function(e) {
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
             $('#cfield_audiocodec').val(array_audio);}
-
-            if (audio[0].indexOf('ac3') > -1 && canais[0].indexOf('6') > -1){
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+            if (audio[0].indexOf('a_ac3') > -1 && canais[0].indexOf('2') > -1){
+                array_audio += (',ac3');
+                array_audio = array_audio.split(',');
+                console.log(array_audio);
+            $('#cfield_audiocodec').val(array_audio);}
+            if (audio[0].indexOf('a_ac3') > -1 && canais[0].indexOf('6') > -1){
                 array_audio += (',ac351');
+                array_audio = array_audio.split(',');
+                console.log(array_audio);
+            $('#cfield_audiocodec').val(array_audio);}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+            if (audio[0].indexOf('a_eac3') > -1 && canais[0].indexOf('2') > -1){
+                array_audio += (',ddp');
+                array_audio = array_audio.split(',');
+                console.log(array_audio);
+            $('#cfield_audiocodec').val(array_audio);}
+            if (audio[0].indexOf('a_eac3') > -1 && canais[0].indexOf('6') > -1){
+                array_audio += (',ddp51');
+                array_audio = array_audio.split(',');
+                console.log(array_audio);
+            $('#cfield_audiocodec').val(array_audio);}
+            if (audio[0].indexOf('a_eac3') > -1 && canais[0].indexOf('8') > -1){
+                array_audio += (',ddp71');
+                array_audio = array_audio.split(',');
+                console.log(array_audio);
+            $('#cfield_audiocodec').val(array_audio);}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+            if (audio[0].indexOf('truehd') > -1 && canais[0].indexOf('2') > -1){
+                array_audio += (',dolbytruehd');
+                array_audio = array_audio.split(',');
+                console.log(array_audio);
+            $('#cfield_audiocodec').val(array_audio);}
+            if (audio[0].indexOf('truehd') > -1 && canais[0].indexOf('6') > -1){
+                array_audio += (',dolbytruehd51');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
             $('#cfield_audiocodec').val(array_audio);}
@@ -601,18 +654,28 @@ carregador.addEventListener('change', function(e) {
                 console.log(array_audio);
             $('#cfield_audiocodec').val(array_audio);}
 
-            if (audio[0].indexOf('truehd') > -1 && canais[0].indexOf('6') > -1){
-                array_audio += (',dolbytruehd51');
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+            if (audio[0].indexOf('dts') > -1 && canais[0].indexOf('2') > -1){
+                array_audio += (',dts');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
             $('#cfield_audiocodec').val(array_audio);}
-
             if (audio[0].indexOf('dts') > -1 && canais[0].indexOf('6') > -1){
                 array_audio += (',dts51');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
             $('#cfield_audiocodec').val(array_audio);}
-
+            if (audio[0].indexOf('dts') > -1 && canais[0].indexOf('7') > -1){
+                array_audio += (',dts61');
+                array_audio = array_audio.split(',');
+                console.log(array_audio);
+            $('#cfield_audiocodec').val(array_audio);}
+            if (audio[0].indexOf('dts') > -1 && canais[0].indexOf('8') > -1){
+                array_audio += (',dts71');
+                array_audio = array_audio.split(',');
+                console.log(array_audio);
+            $('#cfield_audiocodec').val(array_audio);}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             if (release[0].indexOf(' HDR ') > -1){
                 $('#cfield_hdr').val('yes');}
