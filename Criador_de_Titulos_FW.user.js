@@ -555,22 +555,22 @@ carregador.addEventListener('change', function(e) {
                 if (audio2[0].indexOf('a_eac3') > -1 && canais2[0].indexOf('8') > -1){
                 array_audio = ('ddp71');}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
-                if (release[0].indexOf('DTS-HD') > -1 && tipodearquivo[0].indexOf('5.1') > -1){
+                if (release[0].indexOf('DTS-HD') > -1 && tipodearquivo[0].indexOf('2.0') > -1){
+                    array_audio = ('dtshdma');}
+                else if (release[0].indexOf('DTS-HD') > -1 && tipodearquivo[0].indexOf('5.1') > -1){
                     array_audio = ('dtshdma51');}
                 else if (release[0].indexOf('DTS-HD') > -1 && tipodearquivo[0].indexOf('6.1') > -1){
                     array_audio = ('dtshdma61');}
                 else if (release[0].indexOf('DTS-HD') > -1 && tipodearquivo[0].indexOf('7.1') > -1){
                     array_audio = ('dtshdma71');}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+                else if (audio2[0].indexOf('dts') > -1 && canais2[0].indexOf('2') > -1){
+                array_audio = ('dts');}
                 else if (audio2[0].indexOf('dts') > -1 && canais2[0].indexOf('6') > -1){
                 array_audio = ('dts51');}
-/////////////////////////////////////////////////////////////////////////////////////////////////////////
-                if (audio2[0].indexOf('dts') > -1 && canais2[0].indexOf('2') > -1){
-                array_audio = ('dts');}
-                if (audio2[0].indexOf('dts') > -1 && canais2[0].indexOf('6') > -1){
-                array_audio = ('dts51');}
-                if (audio2[0].indexOf('dts') > -1 && canais2[0].indexOf('7') > -1){
+                else if (audio2[0].indexOf('dts') > -1 && canais2[0].indexOf('7') > -1){
                 array_audio = ('dts61');}
-                if (audio2[0].indexOf('dts') > -1 && canais2[0].indexOf('8') > -1){
+                else if (audio2[0].indexOf('dts') > -1 && canais2[0].indexOf('8') > -1){
                 array_audio = ('dts71');}
             }
             else{
