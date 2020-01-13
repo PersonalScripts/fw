@@ -405,6 +405,180 @@ carregador.addEventListener('change', function(e) {
             release[0] = release[0].replace(/mp4/g, "");
             release[0] = release[0].replace(/mkv/g, "");
             release[0] = release[0].replace(/\./g, " ");
+//////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////// DVD-R ///////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+            if (tipodearquivo[0].indexOf('VIDEO_TS') > -1){
+                $('#cfield_subtitles_included').val('yes');
+                $('#cfield_description').val('[mediainfo]'+content+'[/mediainfo]');
+                $('#cfield_forumid').val('622');
+                $('#cfield_sourcetype').val('dvdr');
+                $('#cfield_format').val('iso');
+                var width0_dvd = content.split('Width:');
+            var width_dvd = width0_dvd[1].split('pixels');
+            var height0_dvd = content.split('Height:');
+            var height_dvd = height0_dvd[1].split('pixels');
+                $('#cfield_resolution').val(width_dvd[0]+'x'+height_dvd[0]);
+                var fps0_dvd = content.split('Framerate:');
+            var fps_dvd = fps0_dvd[1].split('.');
+                $('#cfield_framerate').val(fps_dvd[0]+" fps");
+                var library_dvd = tipodearquivo[2];
+                var audio_dvd_array;
+                var language_dvd_array;
+                if (library_dvd.indexOf('MPEG') > -1 ){
+                $('#cfield_videocodec').val('mpeg');}
+                if (tipodearquivo[3]){
+                    var canais0_dvd = tipodearquivo[3].split('Channel(s):');
+                    var canais1_dvd = canais0_dvd[1].split('channels');
+
+                    var language0_dvd = tipodearquivo[3].split('Language:');
+                    var language1_dvd = language0_dvd[1].split(/\n/);
+                    language1_dvd[0] = language1_dvd[0].toLowerCase();
+            if (language1_dvd[0].indexOf('english') > -1){
+                language_dvd_array = ('english');
+            $('#cfield_language').val(language_dvd_array);}
+            if (language1_dvd[0].indexOf('portuguese') > -1){
+                language_dvd_array = ('portuguese');
+            $('#cfield_language').val(language_dvd_array);}
+            if (language1_dvd[0].indexOf('spanish') > -1){
+                language_dvd_array = ('spanish');
+            $('#cfield_language').val(language_dvd_array);}
+            if (language1_dvd[0].indexOf('japanese') > -1){
+                language_dvd_array = ('japanese');
+            $('#cfield_language').val(language_dvd_array);}
+            if (language1_dvd[0].indexOf('french') > -1){
+                language_dvd_array = ('french');
+            $('#cfield_language').val(language_dvd_array);}
+
+                    var audio1_dvd = tipodearquivo[3].split(/\n/);
+                    if (audio1_dvd[0].indexOf('AC-3') > -1 && canais1_dvd[0].indexOf('6') > -1){
+                        audio_dvd_array = 'ac351';
+                        $('#cfield_audiocodec').val(audio_dvd_array);
+                    }
+                    if (audio1_dvd[0].indexOf('AC-3') > -1 && canais1_dvd[0].indexOf('2') > -1){
+                        audio_dvd_array = 'ac3';
+                        $('#cfield_audiocodec').val(audio_dvd_array);
+                    }
+
+                }
+                if (tipodearquivo[4]){
+                    var canais00_dvd = tipodearquivo[4].split('Channel(s):');
+                    var canais2_dvd = canais00_dvd[1].split('channels');
+                    var audio2_dvd = tipodearquivo[4].split(/\n/);
+                    var language00_dvd = tipodearquivo[4].split('Language:');
+                    var language2_dvd = language00_dvd[1].split(/\n/);
+                    language2_dvd[0] = language2_dvd[0].toLowerCase();
+            if (language2_dvd[0].indexOf('english') > -1){
+                language_dvd_array += (',english');
+                 language_dvd_array = language_dvd_array.split(',');
+            $('#cfield_language').val(language_dvd_array);}
+            if (language2_dvd[0].indexOf('portuguese') > -1){
+                language_dvd_array += (',portuguese');
+                 language_dvd_array = language_dvd_array.split(',');
+            $('#cfield_language').val(language_dvd_array);}
+            if (language2_dvd[0].indexOf('spanish') > -1){
+                language_dvd_array += (',spanish');
+                 language_dvd_array = language_dvd_array.split(',');
+            $('#cfield_language').val(language_dvd_array);}
+            if (language2_dvd[0].indexOf('japanese') > -1){
+                language_dvd_array += (',japanese');
+                 language_dvd_array = language_dvd_array.split(',');
+            $('#cfield_language').val(language_dvd_array);}
+            if (language2_dvd[0].indexOf('french') > -1){
+                language_dvd_array += (',french');
+                language_dvd_array = language_dvd_array.split(',');
+            $('#cfield_language').val(language_dvd_array);}
+                    if (audio2_dvd[0].indexOf('AC-3') > -1 && canais2_dvd[0].indexOf('2') > -1){
+                        audio_dvd_array += (',ac3');
+                        audio_dvd_array = audio_dvd_array.split(',');
+                        $('#cfield_audiocodec').val(audio_dvd_array);
+                    }
+                    if (audio2_dvd[0].indexOf('AC-3') > -1 && canais2_dvd[0].indexOf('6') > -1){
+                        audio_dvd_array += (',ac351');
+                        audio_dvd_array = audio_dvd_array.split(',');
+                        $('#cfield_audiocodec').val(audio_dvd_array);
+                    }
+                }
+                if (tipodearquivo[5]){
+                    var canais000_dvd = tipodearquivo[5].split('Channel(s):');
+                    var canais3_dvd = canais000_dvd[1].split('channels');
+                    var audio3_dvd = tipodearquivo[5].split(/\n/);
+                    var language000_dvd = tipodearquivo[5].split('Language:');
+                    var language3_dvd = language000_dvd[1].split(/\n/);
+                    language3_dvd[0] = language3_dvd[0].toLowerCase();
+            if (language3_dvd[0].indexOf('english') > -1){
+                language_dvd_array += (',english');
+                 language_dvd_array = language_dvd_array.split(',');
+            $('#cfield_language').val(language_dvd_array);}
+            if (language3_dvd[0].indexOf('portuguese') > -1){
+                language_dvd_array += (',portuguese');
+                 language_dvd_array = language_dvd_array.split(',');
+            $('#cfield_language').val(language_dvd_array);}
+            if (language3_dvd[0].indexOf('spanish') > -1){
+                language_dvd_array += (',spanish');
+                 language_dvd_array = language_dvd_array.split(',');
+            $('#cfield_language').val(language_dvd_array);}
+            if (language3_dvd[0].indexOf('japanese') > -1){
+                language_dvd_array += (',japanese');
+                 language_dvd_array = language_dvd_array.split(',');
+            $('#cfield_language').val(language_dvd_array);}
+            if (language3_dvd[0].indexOf('french') > -1){
+                language_dvd_array += (',french');
+                language_dvd_array = language_dvd_array.split(',');
+            $('#cfield_language').val(language_dvd_array);}
+                    if (audio3_dvd[0].indexOf('AC-3') > -1 && canais3_dvd[0].indexOf('2') > -1){
+                        audio_dvd_array += (',ac3');
+                        audio_dvd_array = audio_dvd_array.split(',');
+                        $('#cfield_audiocodec').val(audio_dvd_array);
+                    }
+                    if (audio3_dvd[0].indexOf('AC-3') > -1 && canais3_dvd[0].indexOf('6') > -1){
+                        audio_dvd_array += (',ac351');
+                        audio_dvd_array = audio_dvd_array.split(',');
+                        $('#cfield_audiocodec').val(audio_dvd_array);
+                    }
+                }
+                if (tipodearquivo[6]){
+                    var canais0000_dvd = tipodearquivo[6].split('Channel(s):');
+                    var canais4_dvd = canais0000_dvd[1].split('channels');
+                    var audio4_dvd = tipodearquivo[6].split(/\n/);
+                    var language0000_dvd = tipodearquivo[6].split('Language:');
+                    var language4_dvd = language0000_dvd[1].split(/\n/);
+                    language4_dvd[0] = language4_dvd[0].toLowerCase();
+            if (language4_dvd[0].indexOf('english') > -1){
+                language_dvd_array += (',english');
+                 language_dvd_array = language_dvd_array.split(',');
+            $('#cfield_language').val(language_dvd_array);}
+            if (language4_dvd[0].indexOf('portuguese') > -1){
+                language_dvd_array += (',portuguese');
+                 language_dvd_array = language_dvd_array.split(',');
+            $('#cfield_language').val(language_dvd_array);}
+            if (language4_dvd[0].indexOf('spanish') > -1){
+                language_dvd_array += (',spanish');
+                 language_dvd_array = language_dvd_array.split(',');
+            $('#cfield_language').val(language_dvd_array);}
+            if (language4_dvd[0].indexOf('japanese') > -1){
+                language_dvd_array += (',japanese');
+                 language_dvd_array = language_dvd_array.split(',');
+            $('#cfield_language').val(language_dvd_array);}
+            if (language4_dvd[0].indexOf('french') > -1){
+                language_dvd_array += (',french');
+                language_dvd_array = language_dvd_array.split(',');
+            $('#cfield_language').val(language_dvd_array);}
+                    if (audio4_dvd[0].indexOf('AC-3') > -1 && canais4_dvd[0].indexOf('2') > -1){
+                        audio_dvd_array += (',ac3');
+                        audio_dvd_array = audio_dvd_array.split(',');
+                        $('#cfield_audiocodec').val(audio_dvd_array);
+                    }
+                    if (audio4_dvd[0].indexOf('AC-3') > -1 && canais4_dvd[0].indexOf('6') > -1){
+                        audio_dvd_array += (',ac351');
+                        audio_dvd_array = audio_dvd_array.split(',');
+                        $('#cfield_audiocodec').val(audio_dvd_array);
+                    }
+                }
+            }else{
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////// SE NÃO FOR DVD-R ////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////
             if (release[0].indexOf('WEB') > -1 && release[0].indexOf('1080p') > -1 || release[0].indexOf('WEB') > -1 && release[0].indexOf('720p') > -1 || release[0].indexOf('BluRay') > -1 || release[0].indexOf('Bluray') > -1){
                 //$('#cfield_forumid').val('623');
                 //$('#cfield_forumid').val('375');
@@ -691,7 +865,7 @@ $('#cfield_description').val('[mediainfo]'+content+'[/mediainfo]');
             //alert(content);
 
 }
-
+	}
 
         reader.readAsText(file);
     } else {
