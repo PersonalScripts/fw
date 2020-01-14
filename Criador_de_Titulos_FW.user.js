@@ -13,6 +13,7 @@
 // @include     /ST.php
 // @include     /EP.php
 // @include     /series.php
+// @include     /XXXBRASIL.php
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=xxx
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=game
@@ -37,10 +38,10 @@ var tmdb = "/TMDB.php";
 var st = "/ST.php"
 var ep = "/EP.php"
 var series = "/series.php";
-
+var brasileirinhas = "/XXXBRASIL.php";
 
 ////////////////////////////////////////////////////////////////////////////////////////GET DE XXX
-if (window.location.href.indexOf(bz) != -1 || window.location.href.indexOf(rk) != -1 || window.location.href.indexOf(mf) != -1 || window.location.href.indexOf(bb) != -1 || window.location.href.indexOf(xe) != -1) {// on Google URL
+if (window.location.href.indexOf(bz) != -1 || window.location.href.indexOf(rk) != -1 || window.location.href.indexOf(mf) != -1 || window.location.href.indexOf(bb) != -1 || window.location.href.indexOf(xe) != -1 || window.location.href.indexOf(brasileirinhas) != -1) {// on Google URL
     document.addEventListener('keydown', function(e) {
         // pressed alt+p
         if (e.keyCode == 80 && !e.shiftKey && !e.ctrlKey && e.altKey && !e.metaKey) {
@@ -57,6 +58,7 @@ if (window.location.href.indexOf(bz) != -1 || window.location.href.indexOf(rk) !
             GM_setValue('min', document.getElementById("min").innerText);
             GM_setValue('url', document.getElementById("url").innerText);
             GM_setValue('sinopse', document.getElementById("sinopse").innerText);
+	    GM_setValue('img', document.getElementById("img").innerText);
             window.open("https://filewarez.tv/postador.php?do=addtitle&step=2&type=xxx");
         }})}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////SET DE XXX
