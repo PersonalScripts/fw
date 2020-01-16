@@ -400,6 +400,7 @@ carregador.addEventListener('change', function(e) {
             content = content.replace(/ /g, "");
             //content = content.replace(/:/g, ": ");
             content = content.replace(/GiB/g, " GB");
+            content = content.replace(/MiB/g, " MB");
             //NOME DO RELEASE
             var release0 = content.split('Completename:');
             var release = release0[1].split(/\n/);
@@ -589,6 +590,9 @@ carregador.addEventListener('change', function(e) {
                 if (values == null){
                 $('#cfield_forumid').val('375');}
             }
+	    if (release[0].indexOf('BDRip') > -1 || release[0].indexOf('BRRip') > -1){
+                $('#cfield_forumid').val('336');
+            }
             if (release[0].indexOf('HDRip') > -1 || release[0].indexOf('DVDScr') > -1){
                 $('#cfield_forumid').val('310');
             }
@@ -603,6 +607,10 @@ carregador.addEventListener('change', function(e) {
                 $('#cfield_sourcetype').val('bluray');
             }if (release[0].indexOf('Bluray') > -1 ){
                 $('#cfield_sourcetype').val('bluray');
+            }if (release[0].indexOf('BRRip') > -1 ){
+                $('#cfield_sourcetype').val('brrip');
+            }if (release[0].indexOf('BDRip') > -1 ){
+                $('#cfield_sourcetype').val('bdrip');
             }if (tipodearquivo[0].indexOf('.mkv') > -1 ){
                 $('#cfield_format').val('mkv');
             }if (tipodearquivo[0].indexOf('.ts') > -1 || tipodearquivo[0].indexOf('.TS') > -1){
