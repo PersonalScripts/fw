@@ -67,7 +67,13 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
     var elenco = GM_getValue('elenco');
     var genero = GM_getValue('genero');
 
-
+    title = title.replace(/Piroca/g,'P*roca');
+    title = title.replace(/Buceta/g,'B*ceta');
+    title = title.replace(/Boceta/g,'B*ceta');
+    title = title.replace(/Cú/g,'C*');
+    title = title.replace(/Cuzinho/g,'C*');
+    title = title.replace(/Fudeu/g,'F*deu');
+    title = title.replace(/Fodeu/g,'F*deu');
     var direcao = GM_getValue('direcao');
     var ano = GM_getValue('ano');
     var min = GM_getValue('min');
