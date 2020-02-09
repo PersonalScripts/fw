@@ -387,17 +387,18 @@ if (window.location.href.indexOf('https://filewarez.tv/postador.php?do=addupload
 document.addEventListener('keydown', function(e) {
     //ctrl + y
 if (e.keyCode == 89 && !e.shiftKey && !e.ctrlKey && e.altKey && !e.metaKey) {
-
     GM_setValue('enviando', $('#cfield_title').val());
 window.open ("https://filewarez.tv/newthread.php?do=newthread&f=14");
 }})}else if (window.location.href.indexOf("https://filewarez.tv/newthread.php?do=newthread&f=14") != -1){
+    document.addEventListener('keydown', function(e) {
+    if (e.keyCode == 89 && !e.shiftKey && !e.ctrlKey && e.altKey && !e.metaKey) {
     var enviando = GM_getValue('enviando');
     enviando = enviando.replace(/\./g, " ");
-
-    document.getElementById('vB_Editor_001_editor').value = enviando;
-    document.getElementById('subject').value = enviando;
+    document.getElementsByClassName('cke_source cke_enable_context_menu')[0].value = enviando;
+    $('#subject').val(enviando);
     document.getElementById("vB_Editor_001_save").click();
-}
+    }
+})}
 
 //CARREGADOR DE MEDIAINFO
 
