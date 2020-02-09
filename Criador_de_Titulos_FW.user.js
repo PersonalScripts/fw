@@ -382,6 +382,23 @@ function postador_upload_image(data, type){
 	progressbar.show('fast');
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////
+if (window.location.href.indexOf('https://filewarez.tv/postador.php?do=addupload') != -1){
+document.addEventListener('keydown', function(e) {
+    //ctrl + y
+if (e.keyCode == 89 && !e.shiftKey && !e.ctrlKey && e.altKey && !e.metaKey) {
+
+    GM_setValue('enviando', $('#cfield_title').val());
+window.open ("https://filewarez.tv/newthread.php?do=newthread&f=14");
+}})}else if (window.location.href.indexOf("https://filewarez.tv/newthread.php?do=newthread&f=14") != -1){
+    var enviando = GM_getValue('enviando');
+    enviando = enviando.replace(/\./g, " ");
+
+    document.getElementById('vB_Editor_001_editor').value = enviando;
+    document.getElementById('subject').value = enviando;
+    document.getElementById("vB_Editor_001_save").click();
+}
+
 //CARREGADOR DE MEDIAINFO
 
 if (window.location.href.indexOf('https://filewarez.tv/postador.php?do=addupload') != -1){
