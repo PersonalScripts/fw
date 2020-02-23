@@ -20,6 +20,7 @@
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=tvshow
 // @include     https://filewarez.tv/postador.php
 // @include     https://filewarez.tv/postador.php?do=addupload*
+// @include     https://www.imdb.com/title*
 // @updateURL   https://github.com/PersonalScripts/fw/raw/master/Criador_de_Titulos_FW.user.js
 // @downloadURL https://github.com/PersonalScripts/fw/raw/master/Criador_de_Titulos_FW.user.js
 // @grant       GM_setValue
@@ -906,3 +907,67 @@ $('#cfield_description').val('[mediainfo]'+content+'[/mediainfo]');
         //fileDisplayArea.innerText = "File not supported!"
     }
 });}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//ADICIONA UM LOGO DA FW NA PÁGINA DO IMDB PARA FAZER BUSCA DE UPLOADS
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+if (window.location.href.indexOf("https://www.imdb.com/title") != -1 ) {
+if(document.getElementById('titleYear')){
+    var img = new Image();
+img.src = 'https://i.imgur.com/jqqCux6.png';
+    img.alt ='Clique no Ícone para Buscar';
+
+
+if(document.getElementsByClassName('originalTitle')[0]){
+var titulo_secundario = document.getElementsByClassName('originalTitle')[0].innerText;
+titulo_secundario = titulo_secundario.split('(');
+titulo_secundario[0] = titulo_secundario[0].substring(0,(titulo_secundario[0].length - 1));
+        console.log(titulo_secundario[0]);
+    var ano_principal = document.getElementById('titleYear').innerText;
+         ano_principal = ano_principal.split('(');
+         ano_principal = ano_principal[1].split(')');
+         console.log(ano_principal[0]);
+img.onclick = function() {
+    window.open('https://filewarez.tv/postador.php?do=searchupload&title_title='+titulo_secundario[0]+'&title='+ano_principal+'&status=1&type=movie');
+};
+}
+    else{var titulo_principal = document.getElementsByTagName('h1')[0].innerText;
+titulo_principal = titulo_principal.split('(');
+titulo_principal[0] = titulo_principal[0].substring(0,(titulo_principal[0].length - 1));
+    console.log(titulo_principal[0]);
+var ano_principal = document.getElementById('titleYear').innerText;
+         ano_principal = ano_principal.split('(');
+         ano_principal = ano_principal[1].split(')');
+         console.log(ano_principal[0]);
+        img.onclick = function() {
+    window.open('https://filewarez.tv/postador.php?do=searchupload&title_title='+titulo_principal[0]+'&title='+ano_principal+'&status=1&type=movie');
+};
+        }
+
+ var local = document.getElementById('titleYear');
+ local.appendChild(img);
+}
+if(document.getElementById('titleYear') == null){
+var img = new Image();
+img.src = 'https://i.imgur.com/jqqCux6.png';
+    img.alt ='Clique no Ícone para Buscar';
+
+
+var titulo_principal = document.getElementsByTagName('h1')[0].innerText;
+titulo_principal = titulo_principal.split('(');
+titulo_principal[0] = titulo_principal[0].substring(0,(titulo_principal[0].length - 1));
+    console.log(titulo_principal[0]);
+img.onclick = function() {
+    window.open('https://filewarez.tv/postador.php?do=searchupload&title_title='+titulo_principal[0]+'&status=1&type=tvshow');
+};
+
+var local = document.getElementsByTagName('h1')[0];
+ local.appendChild(img);
+
+
+}
+}
