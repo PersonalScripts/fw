@@ -20,6 +20,7 @@
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=tvshow
 // @include     https://filewarez.tv/postador.php
 // @include     https://filewarez.tv/postador.php?do=addupload*
+// @include     https://filewarez.tv/newthread.php?do=newthread&f=14
 // @include     https://www.imdb.com/title*
 // @updateURL   https://github.com/PersonalScripts/fw/raw/master/Criador_de_Titulos_FW.user.js
 // @downloadURL https://github.com/PersonalScripts/fw/raw/master/Criador_de_Titulos_FW.user.js
