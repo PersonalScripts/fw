@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.0
+// @version      1.01
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include      https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -380,6 +380,7 @@ carregador.addEventListener('change', function(e) {
 
         reader.onload = function(e) {
             var content = reader.result;
+            var content_mediainfo = content;
             content = content.replace(/ /g, "");
             //content = content.replace(/:/g, ": ");
             content = content.replace(/GiB/g, " GB");
@@ -564,7 +565,7 @@ carregador.addEventListener('change', function(e) {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////// SE NÃO FOR DVD-R ////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
-            if (release[0].indexOf('WEB') > -1 && release[0].indexOf('1080p') > -1 || release[0].indexOf('WEB') > -1 && release[0].indexOf('720p') > -1 || release[0].indexOf('BluRay') > -1 || release[0].indexOf('Bluray') > -1){
+            if (release[0].indexOf(' WEB') > -1 && release[0].indexOf('1080p') > -1 || release[0].indexOf(' WEB') > -1 && release[0].indexOf('720p') > -1 || release[0].indexOf('BluRay ') > -1 || release[0].indexOf('Bluray ') > -1){
                 //$('#cfield_forumid').val('623');
                 //$('#cfield_forumid').val('375');
                 $('#cfield_forumid').val('623');
@@ -575,7 +576,7 @@ carregador.addEventListener('change', function(e) {
             if (release[0].indexOf('HDRip') > -1 || release[0].indexOf('DVDScr') > -1){
                 $('#cfield_forumid').val('310');
             }
-            if (release[0].indexOf('CAM') > -1 ){
+            if (release[0].indexOf('CAM ') > -1 ){
                 $('#cfield_forumid').val('338');
             }
             if (release[0].indexOf('2160p') > -1){
@@ -626,7 +627,8 @@ carregador.addEventListener('change', function(e) {
 
             audio[0] = audio[0].toLowerCase();
             var canais0 = content.split('Channel(s):');
-            var canais = canais0[1].split('Channel');
+            //var canais = canais0[1].split('Channel');
+                var canais = canais0[1].split(/\n/);
             var canais2 = canais0[2];
             var array_audio;
             var linguagem0 = canais0[1].split('Language:');
@@ -652,10 +654,12 @@ carregador.addEventListener('change', function(e) {
 
             if (canais2){
                 canais2 = canais0[2].split('Channel');
+
                 var audio3 = som[3].split('CodecID:');
                 var audio2 = audio3[1].split('Duration');
                 audio2[0] = audio2[0].toLowerCase();
                 var linguagem02 = canais2[1].split('Language:');
+                console.log(canais2[1]);
                 var linguagem2 = linguagem02[1].split(/\n/);
                 linguagem2[0] = linguagem2[0].toLowerCase();
                 if (linguagem2[0].indexOf('english') > -1){
@@ -838,12 +842,16 @@ carregador.addEventListener('change', function(e) {
 
             if (release[0].indexOf(' HDR ') > -1){
                 $('#cfield_hdr').val('yes');}
+            release[0] = release[0].replace(/5 1 /g, "5.1 ");
+            release[0] = release[0].replace(/2 0 /g, "2.0 ");
+                release[0] = release[0].replace(/7 1 /g, "7.1 ");
+            release[0] = release[0].replace(/ H 264/g, " H264");
             $('#cfield_title').val(release[0]);
             $('#cfield_size').val(tam[0]);
             $('#cfield_resolution').val(width[0]+'x'+height[0]);
             $('#cfield_framerate').val(fps[0]+" fps");
             $('#cfield_compression').val('rar');
-$('#cfield_description').val('[mediainfo]'+content+'[/mediainfo]');
+            $('#cfield_description').val('[mediainfo]'+content_mediainfo+'[/mediainfo]');
             $('#cfield_subtitles_included').val('no');
 
             alert(release[0]);
