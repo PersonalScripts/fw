@@ -340,7 +340,8 @@ var curiosidades = document.getElementById('cfield_curiosity').value;
     document.getElementById('cfield_imdb').value = imdb;
     document.getElementById('cfield_site').value = site;
     document.getElementById('cfield_cast').value = actor;
-    document.getElementById('cfield_summary').value = sumario;
+    if (sumario != ""){
+    document.getElementById('cfield_summary').value = sumario;}
     document.getElementById('cfield_trailer').value = yt;
 
 if (curiosidades == "" || curiosidades.indexOf('[b]Produtora') > -1 || curiosidades.indexOf('[b]Orçamento') > -1  || curiosidades.indexOf('[b]Receita') > -1){
