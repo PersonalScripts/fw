@@ -1,16 +1,17 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.01
+// @version      1.02
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
-// @include      https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
-// @include      https://filewarez.tv/postador.php?do=addtitle&step=2&type=tvshow
-// @include      https://filewarez.tv/postador.php?do=addtitle&step=2&type=game
-// @include      https://filewarez.tv/postador.php?do=addtitle&step=2&type=xxx
+// @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
+// @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=tvshow
+// @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=game
+// @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=xxx
 // @include     https://filewarez.tv/postador.php
 // @include     https://filewarez.tv/postador.php?do=addupload*
 // @include     https://filewarez.tv/newthread.php?do=newthread&f=14
+// @include     https://filewarez.tv/postador.php?do=edittitle*
 // @include     https://www.imdb.com/title*
 // @updateURL   https://github.com/PersonalScripts/fw/raw/master/Criador_de_Titulos_FW.user.js
 // @downloadURL https://github.com/PersonalScripts/fw/raw/master/Criador_de_Titulos_FW.user.js
@@ -18,7 +19,7 @@
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_notification
-// @grant          GM_addStyle
+// @grant       GM_addStyle
 // @require http://code.jquery.com/jquery-3.4.1.min.js
 // ==/UserScript==
 
@@ -247,6 +248,135 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
     document.getElementById('cfield_season').value = temporada;
     document.getElementById('cfield_episodes').value = episodios_series;
 }
+
+/////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+////////////////////////EDITOR DE TÍTULOS DE FILMES//////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+
+if (window.location.href.indexOf('https://filewarez.tv/postador.php?do=edittitle') != -1){
+if(document.getElementById('cfield_imdb')){
+    var img = new Image();
+    img.src = 'https://i.imgur.com/jqqCux6.png';
+    img.title ='Atualizar Título (Apenas Filmes)';
+    img.style ="float:left;margin-top:5px;";
+    var local = document.getElementsByClassName('input')[2];
+    local.appendChild(img);
+}
+
+  img.addEventListener('click', function () {
+    // create a new keyboard event
+    var event = new KeyboardEvent('keydown', {
+      keyCode: '79',
+      altKey: true
+
+    });
+      if($('#cfield_imdb').val() != ""){
+      document.dispatchEvent(event);}
+      else{alert('Você não pode fazer uma pesquisa em branco!');}
+
+  });
+}
+
+if (window.location.href.indexOf('https://filewarez.tv/postador.php?do=edittitle') != -1){
+document.addEventListener('keydown', function(e) {
+         //alt+o
+
+    if (e.keyCode == 79 && !e.shiftKey && !e.ctrlKey && e.altKey && !e.metaKey) {
+        var site = $('#cfield_imdb').val();
+        site = site.replace(/imdb/g, "www.imdb");
+        $.ajax({
+          url : "https://pvp2004.000webhostapp.com/filmes.php",
+          type : 'post',
+
+          data : {
+               copia:site
+          },
+          beforeSend : function(){
+               GM_notification ( {
+                title: 'PvP diz:', timeout: '1700', text: 'Buscando Informações!'
+            } );
+          }
+     })
+     .done(function(msg){
+ GM_notification ( {
+                title: 'PvP diz:', timeout: '1700', text: 'Informações Atualizadas!'
+            } );
+            console.log(msg);
+    var doc = new DOMParser().parseFromString(msg, 'text/html');
+    var o_titulo = doc.getElementById("o_titulo").innerText;
+    var titulo = doc.getElementById("titulo").innerText;
+    var genre = doc.getElementById("genero").innerText;
+    var minutos = doc.getElementById("minutos").innerText;
+    var year = doc.getElementById("ano").innerText;
+    var director = doc.getElementById("direcao").innerText;
+    var imdb = doc.getElementById("imdb").innerText;
+    var site = doc.getElementById("site").innerText;
+    var actor = doc.getElementById("actor").outerText;
+    var sumario = doc.getElementById("sinopse").innerText;
+    var yt = doc.getElementById("yt").innerText;
+    var exinfo = doc.getElementById("exinfo").outerText;
+    GM_setValue('img', doc.getElementById("img").innerText);
+var curiosidades = document.getElementById('cfield_curiosity').value;
+
+
+    document.getElementById('cfield_title').value = o_titulo;
+    document.getElementById('cfield_title_translated').value = titulo;
+
+    //Genre utiliza JQuery para selecionar mais de um, utilizando array
+    genre = genre.replace(/comedy/g, "commedy");
+    genre = genre.replace(/mystery/g, "mistery");
+    genre = genre.replace(/horror/g, "terror");
+    genre = genre.replace(/\n/g, ",");
+            console.log(genre);
+    var genre_array = genre.split(',');
+    console.log(genre_array);
+    $('#cfield_genre').val(genre_array);
+
+    document.getElementById('cfield_duration').value = minutos;
+    document.getElementById('cfield_year').value = year;
+    document.getElementById('cfield_direction').value = director;
+    document.getElementById('cfield_imdb').value = imdb;
+    document.getElementById('cfield_site').value = site;
+    document.getElementById('cfield_cast').value = actor;
+    document.getElementById('cfield_summary').value = sumario;
+    document.getElementById('cfield_trailer').value = yt;
+
+if (curiosidades == "" || curiosidades.indexOf('[b]Produtora') > -1 || curiosidades.indexOf('[b]Orçamento') > -1  || curiosidades.indexOf('[b]Receita') > -1){
+        if (curiosidades == "" ){
+        document.getElementById('cfield_curiosity').value = exinfo;
+    }
+    if (curiosidades.indexOf('[b]Produtora') > -1){
+        // break the textblock into an array of lines
+       curiosidades = curiosidades.split('\n');
+        // remove one line, starting at the first position
+       curiosidades.splice(0,1);
+        // join the array back into a single string
+       curiosidades = curiosidades.join('\n');
+       document.getElementById('cfield_curiosity').value = exinfo + '\n' + curiosidades;
+    }if(curiosidades.indexOf('[b]Orçamento') > -1){
+       curiosidades = curiosidades.split('\n');
+       curiosidades.splice(0,1);
+       curiosidades = curiosidades.join('\n');
+       document.getElementById('cfield_curiosity').value = exinfo + '\n' + curiosidades;
+    }if(curiosidades.indexOf('[b]Receita') > -1){
+       curiosidades = curiosidades.split('\n');
+       curiosidades.splice(0,2);
+       curiosidades = curiosidades.join('\n');
+       document.getElementById('cfield_curiosity').value = exinfo + '\n' + curiosidades;
+    }
+}else{
+    document.getElementById('cfield_curiosity').value = exinfo + '\n' + curiosidades;}
+})
+        .fail(function(jqXHR, textStatus, msg){
+ alert(msg);
+   });
+
+    }
+})
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////// ADD IMAGENS NO POSTADOR COM ALT + P
 if (window.location.href.indexOf("https://filewarez.tv/postador.php") != -1 ) {
