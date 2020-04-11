@@ -433,6 +433,20 @@ if (curiosidades == "" || curiosidades.indexOf('[b]Produtora') > -1 || curiosida
 
 ///////////////////////////////////////////////////////////////////////////////// ADD IMAGENS NO POSTADOR COM ALT + P
 if (window.location.href.indexOf("https://filewarez.tv/postador.php") != -1 ) {
+    var up_img = new Image();
+    up_img.src = 'https://i.imgur.com/jqqCux6.png';
+    up_img.title ='Carregar Imagens!';
+    var local_up_img = document.getElementById('upload_url');
+    local_up_img.after(up_img);
+    up_img.addEventListener('click', function () {
+    // create a new keyboard event
+    var event = new KeyboardEvent('keydown', {
+      keyCode: '80',
+      altKey: true
+    });
+        document.dispatchEvent(event);
+  });
+
     document.addEventListener('keydown', function(e) {
   // pressed alt+P
   if (e.keyCode == 80 && !e.shiftKey && !e.ctrlKey && e.altKey && !e.metaKey) {
