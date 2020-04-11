@@ -437,7 +437,8 @@ if (window.location.href.indexOf("https://filewarez.tv/postador.php") != -1 ) {
     up_img.src = 'https://i.imgur.com/jqqCux6.png';
     up_img.title ='Carregar Imagens!';
     var local_up_img = document.getElementById('upload_url');
-    local_up_img.after(up_img);
+    if(local_up_img){
+    (local_up_img).after(up_img);}
     up_img.addEventListener('click', function () {
     // create a new keyboard event
     var event = new KeyboardEvent('keydown', {
