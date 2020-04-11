@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.02
+// @version      1.03
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -322,7 +322,8 @@ var curiosidades = document.getElementById('cfield_curiosity').value;
 
 
     document.getElementById('cfield_title').value = o_titulo;
-    document.getElementById('cfield_title_translated').value = titulo;
+    if (titulo != ""){
+    document.getElementById('cfield_title_translated').value = titulo;}
 
     //Genre utiliza JQuery para selecionar mais de um, utilizando array
     genre = genre.replace(/comedy/g, "commedy");
@@ -336,13 +337,15 @@ var curiosidades = document.getElementById('cfield_curiosity').value;
 
     document.getElementById('cfield_duration').value = minutos;
     document.getElementById('cfield_year').value = year;
-    document.getElementById('cfield_direction').value = director;
+    if (director != ""){
+    document.getElementById('cfield_direction').value = director;}
     document.getElementById('cfield_imdb').value = imdb;
     document.getElementById('cfield_site').value = site;
     document.getElementById('cfield_cast').value = actor;
     if (sumario != ""){
     document.getElementById('cfield_summary').value = sumario;}
-    document.getElementById('cfield_trailer').value = yt;
+    if (yt != ""){
+    document.getElementById('cfield_trailer').value = yt;}
 
 if (curiosidades == "" || curiosidades.indexOf('[b]Produtora') > -1 || curiosidades.indexOf('[b]Orçamento') > -1  || curiosidades.indexOf('[b]Receita') > -1){
         if (curiosidades == "" ){
