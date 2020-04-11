@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.04
+// @version      1.05
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -157,6 +157,19 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
     document.getElementById('cfield_summary').value = sumario;
     document.getElementById('cfield_trailer').value = yt;
     document.getElementById('cfield_curiosity').value = exinfo;
+        GM_setValue('o_titulo', "");
+        GM_setValue('titulo', "");
+        GM_setValue('genero', "");
+        GM_setValue('minutos', "");
+        GM_setValue('ano', "");
+        GM_setValue('direcao', "");
+        GM_setValue('imdb', "");
+        GM_setValue('site', "");
+        GM_setValue('actor', "");
+        GM_setValue('sinopse', "");
+        GM_setValue('yt', "");
+        GM_setValue('exinfo', "");
+
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////SET DE XXX
@@ -186,6 +199,16 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
     document.getElementById('cfield_site').value = url;
     document.getElementById('cfield_cast').value = elenco;
     document.getElementById('cfield_summary').value = sinopse;
+            GM_setValue('titulo', "");
+            GM_setValue('elenco', "");
+            GM_setValue('genero', "");
+            console.log(genero);
+            GM_setValue('direcao', "");
+            GM_setValue('ano', "");
+            GM_setValue('min', "");
+            GM_setValue('url', "");
+            GM_setValue('sinopse', "");
+            $('#fresco').val('');
 
 }
 
@@ -212,6 +235,15 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
     document.getElementById('cfield_summary').value = sinopsegames;
     document.getElementById('cfield_requirements').value = minimo+"\n\n";
     document.getElementById('cfield_trailer').value = video;
+            GM_setValue('titulo', "");
+            GM_setValue('genero', "");
+            GM_setValue('fabricante', "");
+            GM_setValue('ano', "");
+            GM_setValue('plataforma', "");
+            GM_setValue('steam', "");
+            GM_setValue('sinopse', "");
+            GM_setValue('minimo', "");
+            GM_setValue('video', "");
 
 }
 
@@ -250,6 +282,20 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
     document.getElementById('cfield_trailer').value = yt_series;
     document.getElementById('cfield_season').value = temporada;
     document.getElementById('cfield_episodes').value = episodios_series;
+            GM_setValue('o_titulo', "");
+            GM_setValue('titulo', "");
+            GM_setValue('genero', "");
+            GM_setValue('minutos', "");
+            GM_setValue('ano', "");
+            GM_setValue('criador', "");
+            GM_setValue('temp', "");
+            GM_setValue('episodios', "");
+            GM_setValue('imdb', "");
+            GM_setValue('site', "");
+            GM_setValue('actor', "");
+            GM_setValue('sinopse', "");
+            GM_setValue('yt', "");
+
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -392,6 +438,7 @@ if (window.location.href.indexOf("https://filewarez.tv/postador.php") != -1 ) {
   if (e.keyCode == 80 && !e.shiftKey && !e.ctrlKey && e.altKey && !e.metaKey) {
       var img = GM_getValue('img');
       img = img.replace(/ /g, ",");
+      GM_setValue('img', "");
       var img_array = img.split(',');
       for (var i=0;i<=50;i++){
       postador_upload_image(img_array[i], 'url');
@@ -477,18 +524,21 @@ if (window.location.href.indexOf('https://filewarez.tv/postador.php?do=addupload
 document.addEventListener('keydown', function(e) {
     //alt + y
 if (e.keyCode == 89 && !e.shiftKey && !e.ctrlKey && e.altKey && !e.metaKey) {
-    GM_setValue('enviando', $('#cfield_title').val());
+    GM_setValue('enviando_agora', $('#cfield_title').val());
+    console.log($('#cfield_title').val());
 window.open ("https://filewarez.tv/newthread.php?do=newthread&f=14");
 }})}else if (window.location.href.indexOf("https://filewarez.tv/newthread.php?do=newthread&f=14") != -1){
-    document.addEventListener('keydown', function(e) {
-    if (e.keyCode == 89 && !e.shiftKey && !e.ctrlKey && e.altKey && !e.metaKey) {
-    var enviando = GM_getValue('enviando');
-    enviando = enviando.replace(/\./g, " ");
-    document.getElementsByClassName('cke_source cke_enable_context_menu')[0].value = enviando;
-    $('#subject').val(enviando);
+    var envia = GM_getValue('enviando_agora');
+    //GM_setValue('enviando_agora', "");
+    envia = envia.replace(/\./g, " ");
+    GM_setValue('enviando_agora', "");
+    //document.getElementsByClassName("cke_source cke_enable_context_menu")[0].value = envia;
+    document.getElementById('vB_Editor_001_editor').value = envia;
+    $('#subject').val(envia);
+    if(envia){
     document.getElementById("vB_Editor_001_save").click();
     }
-})}
+    }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// CARREGADOR DE MEDIAINFO /////////////////////////////////////
@@ -1076,7 +1126,7 @@ var id = doc1[1].split('/');
  GM_notification ( {
                 title: 'PvP diz:', timeout: '1700', text: 'Informações Inseridas!'
             } );
-            console.log(msg);
+            //console.log(msg);
     var doc = new DOMParser().parseFromString(msg, 'text/html');
             GM_setValue('o_titulo', doc.getElementById("o_titulo").innerText);
             GM_setValue('titulo', doc.getElementById("titulo").innerText);
@@ -1092,6 +1142,7 @@ var id = doc1[1].split('/');
             GM_setValue('sinopse', doc.getElementById("sinopse").innerText);
             GM_setValue('yt', doc.getElementById("yt").innerText);
             GM_setValue('exinfo', doc.getElementById("exinfo").innerText);
+            console.log(doc.getElementById("img").innerText);
             GM_setValue('img', doc.getElementById("img").innerText);
             window.open("https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie");
 
