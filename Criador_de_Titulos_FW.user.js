@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.05
+// @version      1.06
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -362,10 +362,10 @@ document.addEventListener('keydown', function(e) {
     var director = doc.getElementById("direcao").innerText;
     var imdb = doc.getElementById("imdb").innerText;
     var site = doc.getElementById("site").innerText;
-    var actor = doc.getElementById("actor").outerText;
+    var actor = doc.getElementById("actor").innerText;
     var sumario = doc.getElementById("sinopse").innerText;
     var yt = doc.getElementById("yt").innerText;
-    var exinfo = doc.getElementById("exinfo").outerText;
+    var exinfo = doc.getElementById("exinfo").innerText;
     GM_setValue('img', doc.getElementById("img").innerText);
 var curiosidades = document.getElementById('cfield_curiosity').value;
 
@@ -535,13 +535,15 @@ function postador_upload_image(data, type){
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////// COPIA O TITULO DO UPLOAD E ABRE ENVIANDO AGORA
+
 if (window.location.href.indexOf('https://filewarez.tv/postador.php?do=addupload') != -1){
 document.addEventListener('keydown', function(e) {
     //alt + y
 if (e.keyCode == 89 && !e.shiftKey && !e.ctrlKey && e.altKey && !e.metaKey) {
     GM_setValue('enviando_agora', $('#cfield_title').val());
     console.log($('#cfield_title').val());
-window.open ("https://filewarez.tv/newthread.php?do=newthread&f=14");
+var myWindow = window.open ("https://filewarez.tv/newthread.php?do=newthread&f=14");
+    setTimeout(function(){ myWindow.close() }, 7000);
 }})}else if (window.location.href.indexOf("https://filewarez.tv/newthread.php?do=newthread&f=14") != -1){
     var envia = GM_getValue('enviando_agora');
     //GM_setValue('enviando_agora', "");
@@ -552,8 +554,39 @@ window.open ("https://filewarez.tv/newthread.php?do=newthread&f=14");
     $('#subject').val(envia);
     if(envia){
     document.getElementById("vB_Editor_001_save").click();
+
     }
     }
+
+var enviando_titulo = document.getElementById("cfield_title");
+
+
+    var img_title = new Image();
+    img_title.src = 'https://i.imgur.com/jqqCux6.png';
+    img_title.title ='Postar Upload no Enviando Agora!';
+    img_title.style ="margin-top:5px;";
+    img_title.id = "img_title";
+
+   $("#cfield_title").keyup(function () {
+   if ($(this).val()) {
+    $("#img_title").show();
+    var local = document.getElementById('cfield_title');
+    local.after(img_title);
+   }
+   else {
+    $("#img_title").hide();
+   }
+   });
+
+   img_title.addEventListener('click', function () {
+    // create a new keyboard event
+    var event = new KeyboardEvent('keydown', {
+      keyCode: '89',
+      altKey: true
+    });
+        document.dispatchEvent(event);
+   });
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// CARREGADOR DE MEDIAINFO /////////////////////////////////////
@@ -1089,6 +1122,7 @@ if(document.getElementById('titleYear')){
     var criar = new Image();
     criar.src = 'https://i.imgur.com/jqqCux6.png';
     criar.title ='Criar Título';
+
 
 
 if(document.getElementsByClassName('originalTitle')[0]){
