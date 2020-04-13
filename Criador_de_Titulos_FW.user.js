@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.06
+// @version      1.07
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -310,6 +310,8 @@ if(document.getElementById('cfield_imdb')){
     img.src = 'https://i.imgur.com/jqqCux6.png';
     img.title ='Atualizar Título (Apenas Filmes)';
     img.style ="float:left;margin-top:5px;";
+    img.addEventListener("mouseover", function(){img.src = 'https://i.imgur.com/HLfKSIH.png';});
+    img.addEventListener("mouseout", function(){img.src = 'https://i.imgur.com/jqqCux6.png';});
     var local = document.getElementsByClassName('input')[2];
     local.appendChild(img);
 }
@@ -439,6 +441,8 @@ if (window.location.href.indexOf("https://filewarez.tv/postador.php") != -1 ) {
     var local_up_img = document.getElementById('upload_url');
     if(local_up_img){
     (local_up_img).after(up_img);}
+    up_img.addEventListener("mouseover", function(){up_img.src = 'https://i.imgur.com/CzXhVLj.png';});
+    up_img.addEventListener("mouseout", function(){up_img.src = 'https://i.imgur.com/jqqCux6.png';});
     up_img.addEventListener('click', function () {
     // create a new keyboard event
     var event = new KeyboardEvent('keydown', {
@@ -566,6 +570,8 @@ var enviando_titulo = document.getElementById("cfield_title");
     img_title.title ='Postar Upload no Enviando Agora!';
     img_title.style ="margin-top:5px;";
     img_title.id = "img_title";
+    img_title.addEventListener("mouseover", function(){img_title.src = 'https://i.imgur.com/SVEClsJ.png';});
+    img_title.addEventListener("mouseout", function(){img_title.src = 'https://i.imgur.com/jqqCux6.png';});
 
    $("#cfield_title").keyup(function () {
    if ($(this).val()) {
@@ -1118,11 +1124,14 @@ if (window.location.href.indexOf("https://www.imdb.com/title") != -1 ) {
 if(document.getElementById('titleYear')){
     var img = new Image();
     img.src = 'https://i.imgur.com/jqqCux6.png';
-    img.title ='Clique no Ícone para Buscar';
+    img.title ='Buscar Uploads';
     var criar = new Image();
     criar.src = 'https://i.imgur.com/jqqCux6.png';
     criar.title ='Criar Título';
-
+    criar.addEventListener("mouseover", function(){criar.src = 'https://i.imgur.com/EKlG285.png';});
+    criar.addEventListener("mouseout", function(){criar.src = 'https://i.imgur.com/jqqCux6.png';});
+    img.addEventListener("mouseover", function(){img.src = 'https://i.imgur.com/DZ2twAY.png';});
+    img.addEventListener("mouseout", function(){img.src = 'https://i.imgur.com/jqqCux6.png';});
 
 
 if(document.getElementsByClassName('originalTitle')[0]){
