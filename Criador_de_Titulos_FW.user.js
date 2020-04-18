@@ -625,6 +625,7 @@ carregador.addEventListener('change', function(e) {
             content = content.replace(/ /g, "");
             //content = content.replace(/:/g, ": ");
             content = content.replace(/GiB/g, " GB");
+            content = content.replace(/MiB/g, " MB");
             //NOME DO RELEASE
             var release0 = content.split('Completename:');
             var release = release0[1].split(/\n/);
@@ -817,7 +818,7 @@ carregador.addEventListener('change', function(e) {
             if (release[0].indexOf('HDRip') > -1 || release[0].indexOf('DVDScr') > -1){
                 $('#cfield_forumid').val('310');
             }
-            if (release[0].indexOf('BDRip') > -1 || release[0].indexOf('BRRip') > -1){
+            if (release[0].indexOf('BDRip') > -1 || release[0].indexOf('BRRip') > -1 || release[0].indexOf('bdrip') > -1){
                 $('#cfield_forumid').val('336');
             }
             if (release[0].indexOf('CAM ') > -1 ){
@@ -833,7 +834,7 @@ carregador.addEventListener('change', function(e) {
                 $('#cfield_sourcetype').val('bluray');
             }if (release[0].indexOf('BRRip') > -1 ){
                 $('#cfield_sourcetype').val('brrip');
-            }if (release[0].indexOf('BDRip') > -1 ){
+            }if (release[0].indexOf('BDRip') > -1 || release[0].indexOf('bdrip') > -1){
                 $('#cfield_sourcetype').val('bdrip');
             }if (tipodearquivo[0].indexOf('.mkv') > -1 ){
                 $('#cfield_format').val('mkv');
@@ -1092,8 +1093,12 @@ carregador.addEventListener('change', function(e) {
                 $('#cfield_hdr').val('yes');}
             release[0] = release[0].replace(/5 1 /g, "5.1 ");
             release[0] = release[0].replace(/2 0 /g, "2.0 ");
-                release[0] = release[0].replace(/7 1 /g, "7.1 ");
+            release[0] = release[0].replace(/7 1 /g, "7.1 ");
             release[0] = release[0].replace(/ H 264/g, " H264");
+            release[0] = release[0].replace(/bdrip/g, "BDRip");
+            release[0] = release[0].replace(/bluray/g, "Bluray");
+            release[0] = release[0].replace(/yol0w/g, "YOL0W");
+            release[0] = release[0].replace(/wutang/g, "WUTANG");
             $('#cfield_title').val(release[0]);
             $('#cfield_size').val(tam[0]);
             $('#cfield_resolution').val(width[0]+'x'+height[0]);
