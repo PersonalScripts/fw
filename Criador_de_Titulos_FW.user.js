@@ -16,6 +16,7 @@
 // @updateURL   https://github.com/PersonalScripts/fw/raw/master/Criador_de_Titulos_FW.user.js
 // @downloadURL https://github.com/PersonalScripts/fw/raw/master/Criador_de_Titulos_FW.user.js
 // @include     https://pvp2004.000webhostapp.com/*
+// @include     http://www.fw.artvetro.com.br/*
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_notification
@@ -23,7 +24,7 @@
 // @require http://code.jquery.com/jquery-3.4.1.min.js
 // ==/UserScript==
 
-if (window.location.href.indexOf("https://pvp2004.000webhostapp.com/") != -1 ) {
+if (window.location.href.indexOf("https://pvp2004.000webhostapp.com/") != -1 || window.location.href.indexOf("http://www.fw.artvetro.com.br/") != -1) {
 
     document.addEventListener('keydown', function(e) {
         // pressed alt+p
