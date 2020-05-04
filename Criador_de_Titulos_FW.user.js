@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.08
+// @version      1.09
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -808,7 +808,7 @@ carregador.addEventListener('change', function(e) {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////// SE NÃO FOR DVD-R ////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
-            if (release[0].indexOf(' WEB') > -1 && release[0].indexOf('1080p') > -1 || release[0].indexOf(' WEB') > -1 && release[0].indexOf('720p') > -1 || release[0].indexOf('BluRay ') > -1 || release[0].indexOf('Bluray ') > -1){
+            if (release[0].indexOf(' WEB') > -1 && release[0].indexOf('1080p') > -1 || release[0].indexOf(' WEB') > -1 && release[0].indexOf('720p') > -1 || release[0].indexOf('BluRay ') > -1 || release[0].indexOf('Bluray ') > -1 || release[0].indexOf('bluray ') > -1){
                 //$('#cfield_forumid').val('623');
                 //$('#cfield_forumid').val('375');
                 $('#cfield_forumid').val('623');
@@ -819,7 +819,7 @@ carregador.addEventListener('change', function(e) {
             if (release[0].indexOf('HDRip') > -1 || release[0].indexOf('DVDScr') > -1){
                 $('#cfield_forumid').val('310');
             }
-            if (release[0].indexOf('BDRip') > -1 || release[0].indexOf('BRRip') > -1 || release[0].indexOf('bdrip') > -1){
+            if (release[0].indexOf('BDRip') > -1 || release[0].indexOf('BRRip') > -1 || release[0].indexOf('bdrip') > -1 || release[0].indexOf('brrip') > -1){
                 $('#cfield_forumid').val('336');
             }
             if (release[0].indexOf('CAM ') > -1 ){
@@ -829,11 +829,9 @@ carregador.addEventListener('change', function(e) {
                 $('#cfield_forumid').val('1403');
             }if (release[0].indexOf('WEB') > -1 ){
                 $('#cfield_sourcetype').val('webdl');
-            }if (release[0].indexOf('BluRay') > -1 ){
+            }if (release[0].indexOf('BluRay') > -1 || release[0].indexOf('Bluray') > -1 || release[0].indexOf('bluray') > -1){
                 $('#cfield_sourcetype').val('bluray');
-            }if (release[0].indexOf('Bluray') > -1 ){
-                $('#cfield_sourcetype').val('bluray');
-            }if (release[0].indexOf('BRRip') > -1 ){
+            }if (release[0].indexOf('BRRip') > -1 || release[0].indexOf('brrip') > -1){
                 $('#cfield_sourcetype').val('brrip');
             }if (release[0].indexOf('BDRip') > -1 || release[0].indexOf('bdrip') > -1){
                 $('#cfield_sourcetype').val('bdrip');
@@ -1090,16 +1088,33 @@ carregador.addEventListener('change', function(e) {
             $('#cfield_audiocodec').val(array_audio);}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+function capitalize(s){//FUNÇÃO PRIMEIRA LETRA DE CADA PALAVRA EM MAIUSCULO
+    return s.toLowerCase().replace( /\b./g, function(a){ return a.toUpperCase(); } );
+};
+                //////////////////////////////////
+
             if (release[0].indexOf(' HDR ') > -1){
                 $('#cfield_hdr').val('yes');}
+            if (release[0].indexOf('/') > -1){
+            var excl_path = release[0].split('/');
+            excl_path.reverse();
+            release[0] = excl_path[0];
+            }
+            if(release[0] == release[0].toLowerCase()){
+              var release_lowercase = release[0].split('-');
+              release_lowercase[1] = release_lowercase[1].toUpperCase();
+              release_lowercase[0] = capitalize(release_lowercase[0]);
+              release[0] = release_lowercase[0].concat('-',release_lowercase[1]);
+            }
+
             release[0] = release[0].replace(/5 1 /g, "5.1 ");
             release[0] = release[0].replace(/2 0 /g, "2.0 ");
             release[0] = release[0].replace(/7 1 /g, "7.1 ");
             release[0] = release[0].replace(/ H 264/g, " H264");
-            release[0] = release[0].replace(/bdrip/g, "BDRip");
-            release[0] = release[0].replace(/bluray/g, "Bluray");
-            release[0] = release[0].replace(/yol0w/g, "YOL0W");
-            release[0] = release[0].replace(/wutang/g, "WUTANG");
+            release[0] = release[0].replace(/ X264/g, " x264");
+            release[0] = release[0].replace(/Bdrip/g, "BDRip");
+            release[0] = release[0].replace(/Brrip/g, "BRRip");
+            
             $('#cfield_title').val(release[0]);
             $('#cfield_size').val(tam[0]);
             $('#cfield_resolution').val(width[0]+'x'+height[0]);
