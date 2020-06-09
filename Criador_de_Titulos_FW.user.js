@@ -371,17 +371,22 @@ document.addEventListener('keydown', function(e) {
     document.getElementById('cfield_creator').value = criador;
     document.getElementById('cfield_episodes').value = episodios;
     document.getElementById('cfield_season').value = temp;
+    }else{
+    var sumario = doc.getElementById("sinopse").innerText;
+    if (sumario != ""){
+    document.getElementById('cfield_summary').value = sumario;}
+    var yt = doc.getElementById("yt").innerText;
+    if (yt != ""){
+    document.getElementById('cfield_trailer').value = yt;}
     }
 		
     var director = doc.getElementById("direcao").innerText;
     var imdb = doc.getElementById("imdb").innerText;
     var site = doc.getElementById("site").innerText;
     var actor = doc.getElementById("actor").innerText;
-    var sumario = doc.getElementById("sinopse").innerText;
-    var yt = doc.getElementById("yt").innerText;
     var exinfo = doc.getElementById("exinfo").innerText;
     GM_setValue('img', doc.getElementById("img").innerText);
-var curiosidades = document.getElementById('cfield_curiosity').value;
+    var curiosidades = document.getElementById('cfield_curiosity').value;
 
 
     document.getElementById('cfield_title').value = o_titulo;
@@ -405,11 +410,7 @@ var curiosidades = document.getElementById('cfield_curiosity').value;
     document.getElementById('cfield_imdb').value = imdb;
     document.getElementById('cfield_site').value = site;
     document.getElementById('cfield_cast').value = actor;
-    if (sumario != ""){
-    document.getElementById('cfield_summary').value = sumario;}
-    if (yt != ""){
-    document.getElementById('cfield_trailer').value = yt;}
-
+		
 if (curiosidades == "" || curiosidades.indexOf('[b]Produtora') > -1 || curiosidades.indexOf('[b]Orçamento') > -1  || curiosidades.indexOf('[b]Receita') > -1){
         if (curiosidades == "" ){
         document.getElementById('cfield_curiosity').value = exinfo;
