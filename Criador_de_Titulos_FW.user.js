@@ -309,7 +309,7 @@ if (window.location.href.indexOf('https://filewarez.tv/postador.php?do=edittitle
 if(document.getElementById('cfield_imdb')){
     var img = new Image();
     img.src = 'https://i.imgur.com/jqqCux6.png';
-    img.title ='Atualizar Título (Apenas Filmes)';
+    img.title ='Atualizar Título (Filmes e Séries)';
     img.style ="float:left;margin-top:5px;";
     img.addEventListener("mouseover", function(){img.src = 'https://i.imgur.com/HLfKSIH.png';});
     img.addEventListener("mouseout", function(){img.src = 'https://i.imgur.com/jqqCux6.png';});
@@ -362,6 +362,17 @@ document.addEventListener('keydown', function(e) {
     var genre = doc.getElementById("genero").innerText;
     var minutos = doc.getElementById("minutos").innerText;
     var year = doc.getElementById("ano").innerText;
+		
+    //if para editar séries
+    if (doc.getElementById("criador").innerText){
+    var criador = doc.getElementById("criador").innerText;
+    var episodios = doc.getElementById("episodios").innerText;
+    var temp = doc.getElementById("temp").innerText;
+    document.getElementById('cfield_creator').value = criador;
+    document.getElementById('cfield_episodes').value = episodios;
+    document.getElementById('cfield_season').value = temp;
+    }
+		
     var director = doc.getElementById("direcao").innerText;
     var imdb = doc.getElementById("imdb").innerText;
     var site = doc.getElementById("site").innerText;
@@ -1235,10 +1246,13 @@ var id = doc1[1].split('/');
  local.appendChild(criar);
  local.appendChild(img);
 }
+//se for série
 if(document.getElementById('titleYear') == null){
 var img = new Image();
 img.src = 'https://i.imgur.com/jqqCux6.png';
 img.alt ='Clique no Ícone para Buscar';
+img.addEventListener("mouseover", function(){img.src = 'https://i.imgur.com/DZ2twAY.png';});
+img.addEventListener("mouseout", function(){img.src = 'https://i.imgur.com/jqqCux6.png';});
 
 
 if(document.getElementsByClassName('originalTitle')[0]){
