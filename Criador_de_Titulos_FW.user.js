@@ -361,10 +361,10 @@ document.addEventListener('keydown', function(e) {
     var titulo = doc.getElementById("titulo").innerText;
     var genre = doc.getElementById("genero").innerText;
     var minutos = doc.getElementById("minutos").innerText;
-    var year = doc.getElementById("ano").innerText;
+    
 		
     //if para editar séries
-    if (doc.getElementById("criador").innerText){
+    if (doc.getElementById("criador")){
     var criador = doc.getElementById("criador").innerText;
     var episodios = doc.getElementById("episodios").innerText;
     var temp = doc.getElementById("temp").innerText;
@@ -378,6 +378,8 @@ document.addEventListener('keydown', function(e) {
     var yt = doc.getElementById("yt").innerText;
     if (yt != ""){
     document.getElementById('cfield_trailer').value = yt;}
+    var year = doc.getElementById("ano").innerText;
+    document.getElementById('cfield_year').value = year;
     }
 		
     var director = doc.getElementById("direcao").innerText;
@@ -404,7 +406,7 @@ document.addEventListener('keydown', function(e) {
     $('#cfield_genre').val(genre_array);
 
     document.getElementById('cfield_duration').value = minutos;
-    document.getElementById('cfield_year').value = year;
+    
     if (director != ""){
     document.getElementById('cfield_direction').value = director;}
     document.getElementById('cfield_imdb').value = imdb;
