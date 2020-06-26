@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.14
+// @version      1.15
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -413,27 +413,30 @@ document.addEventListener('keydown', function(e) {
     document.getElementById('cfield_site').value = site;
     document.getElementById('cfield_cast').value = actor;
 		
-if (curiosidades == "" || curiosidades.indexOf('[b]Produtora') > -1 || curiosidades.indexOf('[b]Orçamento') > -1  || curiosidades.indexOf('[b]Receita') > -1){
+if (curiosidades == "" || curiosidades.indexOf('[b]Produ') > -1 || curiosidades.indexOf('[b]Orçamento') > -1  || curiosidades.indexOf('[b]Receita') > -1){
         if (curiosidades == "" ){
         document.getElementById('cfield_curiosity').value = exinfo;
     }
-    if (curiosidades.indexOf('[b]Produtora') > -1){
+    if (curiosidades.indexOf('[b]Produ') > -1){
         // break the textblock into an array of lines
        curiosidades = curiosidades.split('\n');
         // remove one line, starting at the first position
        curiosidades.splice(0,1);
         // join the array back into a single string
        curiosidades = curiosidades.join('\n');
+       curiosidades = curiosidades.replace(/^\s+|\s+$/g, '');
        document.getElementById('cfield_curiosity').value = exinfo + '\n' + curiosidades;
     }if(curiosidades.indexOf('[b]Orçamento') > -1){
        curiosidades = curiosidades.split('\n');
-       curiosidades.splice(0,1);
+       curiosidades.splice(0,2);
        curiosidades = curiosidades.join('\n');
+       curiosidades = curiosidades.replace(/^\s+|\s+$/g, '');
        document.getElementById('cfield_curiosity').value = exinfo + '\n' + curiosidades;
     }if(curiosidades.indexOf('[b]Receita') > -1){
        curiosidades = curiosidades.split('\n');
        curiosidades.splice(0,2);
        curiosidades = curiosidades.join('\n');
+       curiosidades = curiosidades.replace(/^\s+|\s+$/g, '');
        document.getElementById('cfield_curiosity').value = exinfo + '\n' + curiosidades;
     }
 }else{
