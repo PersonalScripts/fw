@@ -339,7 +339,7 @@ document.addEventListener('keydown', function(e) {
         var site = $('#cfield_imdb').val();
         site = site.replace(/imdb/g, "www.imdb");
         $.ajax({
-          url : "https://pvp2004.000webhostapp.com/filmes.php",
+          url : "https://pvp2004.000webhostapp.com/filmes2.php",
           type : 'post',
 
           data : {
@@ -1206,7 +1206,7 @@ var id = doc1[1].split('/');
 
 
         $.ajax({
-          url : "https://pvp2004.000webhostapp.com/filmes.php",
+          url : "https://pvp2004.000webhostapp.com/filmes2.php",
           type : 'post',
 
           data : {
