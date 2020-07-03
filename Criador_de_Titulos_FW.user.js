@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.16
+// @version      1.17
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -1254,11 +1254,16 @@ var id = doc1[1].split('/');
 }
 //se for série
 if(document.getElementById('titleYear') == null){
-var img = new Image();
-img.src = 'https://i.imgur.com/jqqCux6.png';
-img.alt ='Clique no Ícone para Buscar';
-img.addEventListener("mouseover", function(){img.src = 'https://i.imgur.com/DZ2twAY.png';});
-img.addEventListener("mouseout", function(){img.src = 'https://i.imgur.com/jqqCux6.png';});
+    var img = new Image();
+    img.src = 'https://i.imgur.com/jqqCux6.png';
+    img.title ='Buscar Uploads';
+    var criar = new Image();
+    criar.src = 'https://i.imgur.com/jqqCux6.png';
+    criar.title ='Criar Título';
+    criar.addEventListener("mouseover", function(){criar.src = 'https://i.imgur.com/EKlG285.png';});
+    criar.addEventListener("mouseout", function(){criar.src = 'https://i.imgur.com/jqqCux6.png';});
+    img.addEventListener("mouseover", function(){img.src = 'https://i.imgur.com/DZ2twAY.png';});
+    img.addEventListener("mouseout", function(){img.src = 'https://i.imgur.com/jqqCux6.png';});
 
 
 if(document.getElementsByClassName('originalTitle')[0]){
@@ -1283,10 +1288,62 @@ console.log(titulo_principal[0]);
 img.onclick = function() {
 window.open('https://filewarez.tv/postador.php?do=searchupload&title_title='+titulo_principal[0]+'&status=1&type=tvshow');
 };
-
 }
+criar.addEventListener('click', function () {
+var page= document.documentElement.innerHTML;
+var doc1 = page.split('"url": "/title/');
+var id = doc1[1].split('/');
+
+
+        $.ajax({
+          url : "https://pvp2004.000webhostapp.com/filmes2.php",
+          type : 'post',
+
+          data : {
+               copia:id[0]
+          },
+          beforeSend : function(){
+               GM_notification ( {
+                title: 'PvP diz:', timeout: '2300', text: 'Buscando Informações!'
+            } );
+          }
+     })
+     .done(function(msg){
+ GM_notification ( {
+                title: 'PvP diz:', timeout: '1700', text: 'Informações Inseridas!'
+            } );
+            //console.log(msg);
+    var doc = new DOMParser().parseFromString(msg, 'text/html');
+            GM_setValue('o_titulo', doc.getElementById("o_titulo").innerText);
+            GM_setValue('titulo', doc.getElementById("titulo").innerText);
+            var genero_imdb = doc.getElementById("genero").innerText;
+            genero_imdb = genero_imdb.replace(/\n/g, " ");
+            GM_setValue('genero', genero_imdb);
+            GM_setValue('minutos', doc.getElementById("minutos").innerText);
+            GM_setValue('ano', doc.getElementById("ano").innerText);
+            GM_setValue('direcao', doc.getElementById("direcao").innerText);
+            GM_setValue('imdb', doc.getElementById("imdb").innerText);
+            GM_setValue('site', doc.getElementById("site").innerText);
+            GM_setValue('actor', doc.getElementById("actor").innerText);
+            GM_setValue('sinopse', doc.getElementById("sinopse").innerText);
+            GM_setValue('episodios', doc.getElementById("episodios").innerText);
+            GM_setValue('criador', doc.getElementById("criador").innerText);
+            GM_setValue('temp', doc.getElementById("temp").innerText);
+            GM_setValue('yt', doc.getElementById("yt").innerText);
+            GM_setValue('exinfo', doc.getElementById("exinfo").innerText);
+            console.log(doc.getElementById("img").innerText);
+            GM_setValue('img', doc.getElementById("img").innerText);
+            window.open("https://filewarez.tv/postador.php?do=addtitle&step=2&type=tvshow");
+
+})
+        .fail(function(jqXHR, textStatus, msg){
+ alert(msg);
+   });
+
+})
 
 var local = document.getElementsByTagName('h1')[0];
+ local.appendChild(criar);
  local.appendChild(img);
 }
 }
