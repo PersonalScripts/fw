@@ -309,12 +309,26 @@ if (window.location.href.indexOf('https://filewarez.tv/postador.php?do=edittitle
 if(document.getElementById('cfield_imdb')){
     var img = new Image();
     img.src = 'https://i.imgur.com/jqqCux6.png';
-    img.title ='Atualizar Título (Filmes e Séries)';
-    img.style ="float:left;margin-top:5px;";
+    img.title ='Atualizar Título (Apenas Filmes)';
+    img.style ="float:center;margin-top:5px;";
+    img.id = "img_edit";
     img.addEventListener("mouseover", function(){img.src = 'https://i.imgur.com/HLfKSIH.png';});
     img.addEventListener("mouseout", function(){img.src = 'https://i.imgur.com/jqqCux6.png';});
     var local = document.getElementsByClassName('input')[2];
     local.appendChild(img);
+    var elencoimdb = new Image();
+    var elencotmdb = new Image();
+    var elencosemfoto = new Image();
+    elencoimdb.src = 'https://pvp2004.000webhostapp.com/img/imdblogo.png';
+    elencotmdb.src = 'https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_1-5bdc75aaebeb75dc7ae79426ddd9be3b2be1e342510f8202baf6bffa71d7f5c4.svg';
+    elencosemfoto.src = 'https://i.imgur.com/pcTy5ku.png';
+    elencoimdb.style ="float:left;margin-top:5px;margin-right:5px;height:20px;";
+    elencotmdb.style ="float:left;margin-top:5px;margin-right:5px;height:20px;width:31px;";
+    elencosemfoto.style ="float:left;margin-top:5px;height:20px;width:23px;";
+    var localelenco = document.getElementsByClassName('input')[8];
+    localelenco.appendChild(elencoimdb);
+    localelenco.appendChild(elencotmdb);
+    localelenco.appendChild(elencosemfoto);
 }
 
   img.addEventListener('click', function () {
@@ -362,7 +376,8 @@ document.addEventListener('keydown', function(e) {
     var genre = doc.getElementById("genero").innerText;
     var minutos = doc.getElementById("minutos").innerText;
     
-		
+    
+
     //if para editar séries
     if (doc.getElementById("criador")){
     var criador = doc.getElementById("criador").innerText;
@@ -371,6 +386,7 @@ document.addEventListener('keydown', function(e) {
     document.getElementById('cfield_creator').value = criador;
     document.getElementById('cfield_episodes').value = episodios;
     document.getElementById('cfield_season').value = temp;
+    //document.getElementById('cfield_summary').value ="";
     }else{
     var sumario = doc.getElementById("sinopse").innerText;
     if (sumario != ""){
@@ -381,14 +397,16 @@ document.addEventListener('keydown', function(e) {
     var year = doc.getElementById("ano").innerText;
     document.getElementById('cfield_year').value = year;
     }
-		
+
     var director = doc.getElementById("direcao").innerText;
     var imdb = doc.getElementById("imdb").innerText;
     var site = doc.getElementById("site").innerText;
     var actor = doc.getElementById("actor").innerText;
+    
+    
     var exinfo = doc.getElementById("exinfo").innerText;
     GM_setValue('img', doc.getElementById("img").innerText);
-    var curiosidades = document.getElementById('cfield_curiosity').value;
+var curiosidades = document.getElementById('cfield_curiosity').value;
 
 
     document.getElementById('cfield_title').value = o_titulo;
@@ -412,7 +430,8 @@ document.addEventListener('keydown', function(e) {
     document.getElementById('cfield_imdb').value = imdb;
     document.getElementById('cfield_site').value = site;
     document.getElementById('cfield_cast').value = actor;
-		
+    
+
 if (curiosidades == "" || curiosidades.indexOf('[b]Produ') > -1 || curiosidades.indexOf('[b]Orçamento') > -1  || curiosidades.indexOf('[b]Receita') > -1){
         if (curiosidades == "" ){
         document.getElementById('cfield_curiosity').value = exinfo;
@@ -448,7 +467,109 @@ if (curiosidades == "" || curiosidades.indexOf('[b]Produ') > -1 || curiosidades.
 
     }
 })
+
+elencoimdb.addEventListener('click', function () {
+   var site = $('#cfield_imdb').val();
+        site = site.replace(/imdb/g, "www.imdb");
+        $.ajax({
+          url : "https://pvp2004.000webhostapp.com/filmes2-imdb.php",
+          type : 'post',
+
+          data : {
+               copia:site
+          },
+          beforeSend : function(){
+               GM_notification ( {
+                title: 'PvP diz:', timeout: '1700', text: 'Buscando Informações!'
+            } );
+          }
+     })
+     .done(function(msg){
+ GM_notification ( {
+                title: 'PvP diz:', timeout: '1700', text: 'Informações Atualizadas!'
+            } );
+            console.log(msg);
+    var doc = new DOMParser().parseFromString(msg, 'text/html');
+    var actor = doc.getElementById("actor").innerText;
+    document.getElementById('cfield_cast').value = actor;
+    GM_setValue('img', doc.getElementById("img").innerText);
+})
+        .fail(function(jqXHR, textStatus, msg){
+ alert(msg);
+   });
+    })
+
+elencotmdb.addEventListener('click', function () {
+   var site = $('#cfield_imdb').val();
+        site = site.replace(/imdb/g, "www.imdb");
+        $.ajax({
+          url : "https://pvp2004.000webhostapp.com/filmes2-tmdb.php",
+          type : 'post',
+
+          data : {
+               copia:site
+          },
+          beforeSend : function(){
+               GM_notification ( {
+                title: 'PvP diz:', timeout: '1700', text: 'Buscando Informações!'
+            } );
+          }
+     })
+     .done(function(msg){
+ GM_notification ( {
+                title: 'PvP diz:', timeout: '1700', text: 'Informações Atualizadas!'
+            } );
+            console.log(msg);
+    var doc = new DOMParser().parseFromString(msg, 'text/html');
+    var actor = doc.getElementById("actor").innerText;
+    document.getElementById('cfield_cast').value = actor;
+    GM_setValue('img', doc.getElementById("img").innerText);
+})
+        .fail(function(jqXHR, textStatus, msg){
+ alert(msg);
+   });
+    })
+
+elencosemfoto.addEventListener('click', function () {
+   var site = $('#cfield_imdb').val();
+        site = site.replace(/imdb/g, "www.imdb");
+        $.ajax({
+          url : "https://pvp2004.000webhostapp.com/filmes.php",
+          type : 'post',
+
+          data : {
+               copia:site
+          },
+          beforeSend : function(){
+               GM_notification ( {
+                title: 'PvP diz:', timeout: '1700', text: 'Buscando Informações!'
+            } );
+          }
+     })
+     .done(function(msg){
+ GM_notification ( {
+                title: 'PvP diz:', timeout: '1700', text: 'Informações Atualizadas!'
+            } );
+            console.log(msg);
+    var doc = new DOMParser().parseFromString(msg, 'text/html');
+    var actor = doc.getElementById("actor").innerText;
+    document.getElementById('cfield_cast').value = actor;
+    GM_setValue('img', doc.getElementById("img").innerText);
+})
+        .fail(function(jqXHR, textStatus, msg){
+ alert(msg);
+   });
+    })
+
+
 }
+
+
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+/////////////////////////FIM DO EDITOR DE TÍTULOS//////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
 
 
 ///////////////////////////////////////////////////////////////////////////////// ADD IMAGENS NO POSTADOR COM ALT + P
