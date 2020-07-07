@@ -309,8 +309,8 @@ if (window.location.href.indexOf('https://filewarez.tv/postador.php?do=edittitle
 if(document.getElementById('cfield_imdb')){
     var img = new Image();
     img.src = 'https://i.imgur.com/jqqCux6.png';
-    img.title ='Atualizar Título (Apenas Filmes)';
-    img.style ="float:center;margin-top:5px;";
+    img.title ='Atualizar Título (Filmes e Séries)';
+    img.style ="float:left;margin-top:5px;";
     img.id = "img_edit";
     img.addEventListener("mouseover", function(){img.src = 'https://i.imgur.com/HLfKSIH.png';});
     img.addEventListener("mouseout", function(){img.src = 'https://i.imgur.com/jqqCux6.png';});
@@ -355,7 +355,6 @@ document.addEventListener('keydown', function(e) {
         $.ajax({
           url : "https://pvp2004.000webhostapp.com/filmes2.php",
           type : 'post',
-
           data : {
                copia:site
           },
@@ -375,9 +374,7 @@ document.addEventListener('keydown', function(e) {
     var titulo = doc.getElementById("titulo").innerText;
     var genre = doc.getElementById("genero").innerText;
     var minutos = doc.getElementById("minutos").innerText;
-    
-    
-
+  
     //if para editar séries
     if (doc.getElementById("criador")){
     var criador = doc.getElementById("criador").innerText;
@@ -402,13 +399,9 @@ document.addEventListener('keydown', function(e) {
     var imdb = doc.getElementById("imdb").innerText;
     var site = doc.getElementById("site").innerText;
     var actor = doc.getElementById("actor").innerText;
-    
-    
     var exinfo = doc.getElementById("exinfo").innerText;
     GM_setValue('img', doc.getElementById("img").innerText);
-var curiosidades = document.getElementById('cfield_curiosity').value;
-
-
+    var curiosidades = document.getElementById('cfield_curiosity').value;
     document.getElementById('cfield_title').value = o_titulo;
     if (titulo != ""){
     document.getElementById('cfield_title_translated').value = titulo;}
@@ -561,9 +554,7 @@ elencosemfoto.addEventListener('click', function () {
    });
     })
 
-
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
