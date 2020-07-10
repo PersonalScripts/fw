@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.18
+// @version      1.19
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -325,6 +325,9 @@ if(document.getElementById('cfield_imdb')){
     elencoimdb.style ="float:left;margin-top:5px;margin-right:5px;height:20px;";
     elencotmdb.style ="float:left;margin-top:5px;margin-right:5px;height:20px;width:31px;";
     elencosemfoto.style ="float:left;margin-top:5px;height:20px;width:23px;";
+    elencoimdb.title ='Atualizar Elenco com IMDB (Com Fotos)';
+    elencotmdb.title ='Atualizar Elenco com TMDB (Com Fotos)';
+    elencosemfoto.title ='Atualizar Elenco IMDB (Apenas Texto)';
     var localelenco = document.getElementsByClassName('input')[8];
     localelenco.appendChild(elencoimdb);
     localelenco.appendChild(elencotmdb);
