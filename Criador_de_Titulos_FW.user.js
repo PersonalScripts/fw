@@ -332,29 +332,20 @@ if(document.getElementById('cfield_imdb')){
 }
 
   img.addEventListener('click', function () {
-    // create a new keyboard event
-    var event = new KeyboardEvent('keydown', {
-      keyCode: '79',
-      altKey: true
+    
+      if($('#cfield_imdb').val() == "https://imdb.com/title/"){
+      alert('IMDB ID não preenchido!');}
+      else if($('#cfield_imdb').val() == ""){
+      alert('Você não pode fazer uma pesquisa em branco!');}
+      else{
+  
 
-    });
-      if($('#cfield_imdb').val() != ""){
-      document.dispatchEvent(event);}
-      else{alert('Você não pode fazer uma pesquisa em branco!');}
-
-  });
-}
-
-if (window.location.href.indexOf('https://filewarez.tv/postador.php?do=edittitle') != -1){
-document.addEventListener('keydown', function(e) {
-         //alt+o
-
-    if (e.keyCode == 79 && !e.shiftKey && !e.ctrlKey && e.altKey && !e.metaKey) {
         var site = $('#cfield_imdb').val();
         site = site.replace(/imdb/g, "www.imdb");
         $.ajax({
           url : "https://pvp2004.000webhostapp.com/filmes2.php",
           type : 'post',
+
           data : {
                copia:site
           },
@@ -374,7 +365,9 @@ document.addEventListener('keydown', function(e) {
     var titulo = doc.getElementById("titulo").innerText;
     var genre = doc.getElementById("genero").innerText;
     var minutos = doc.getElementById("minutos").innerText;
-  
+    
+    
+
     //if para editar séries
     if (doc.getElementById("criador")){
     var criador = doc.getElementById("criador").innerText;
@@ -399,9 +392,13 @@ document.addEventListener('keydown', function(e) {
     var imdb = doc.getElementById("imdb").innerText;
     var site = doc.getElementById("site").innerText;
     var actor = doc.getElementById("actor").innerText;
+    
+    
     var exinfo = doc.getElementById("exinfo").innerText;
     GM_setValue('img', doc.getElementById("img").innerText);
-    var curiosidades = document.getElementById('cfield_curiosity').value;
+var curiosidades = document.getElementById('cfield_curiosity').value;
+
+
     document.getElementById('cfield_title').value = o_titulo;
     if (titulo != ""){
     document.getElementById('cfield_title_translated').value = titulo;}
@@ -457,9 +454,8 @@ if (curiosidades == "" || curiosidades.indexOf('[b]Produ') > -1 || curiosidades.
         .fail(function(jqXHR, textStatus, msg){
  alert(msg);
    });
-
-    }
-})
+      }
+});
 
 elencoimdb.addEventListener('click', function () {
    var site = $('#cfield_imdb').val();
@@ -554,7 +550,9 @@ elencosemfoto.addEventListener('click', function () {
    });
     })
 
+
 }
+
 
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
