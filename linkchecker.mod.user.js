@@ -4,7 +4,7 @@
 // @include     /^http(s)?:\/\/(www\.)?filewarez\.tv/.*$/
 // @copyright   2016, XOR
 // @author      XOR [MOD by Castle]
-// @version     0.3.3.0.8
+// @version     0.3.3.0.9
 // @license     MIT License
 // @grant       unsafeWindow
 // @grant       window.close
@@ -571,7 +571,7 @@
     var d = d.getElementsByClassName("upload_link"), e = d.length;
     c.n = e;
     for (var f = 0;f < e;++f) {
-      var h = d[f], g = h.lastElementChild.firstElementChild, h = {linkE:h, statusE:g, url:h.firstElementChild.firstChild.href, status:g.classList.contains("online") ? "online" : "offline"};
+      var h = d[f], g = h.lastElementChild, h = {linkE:h, statusE:g, url:h.firstElementChild.href, status:g.classList.contains("online") ? "online" : "offline"};
       b(h);
       h = x(h.url).then(c.bind(this, h));
 
