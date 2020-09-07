@@ -22,6 +22,7 @@
 // @grant       GM_notification
 // @grant       GM_addStyle
 // @require http://code.jquery.com/jquery-3.4.1.min.js
+// @require https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js
 // ==/UserScript==
 
 if (window.location.href.indexOf("https://pvp2004.000webhostapp.com/") != -1 || window.location.href.indexOf("http://www.fw.artvetro.com.br/") != -1) {
@@ -142,13 +143,19 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
     document.getElementById('cfield_title').value = o_titulo;
     document.getElementById('cfield_title_translated').value = titulo;
     //Genre utiliza JQuery para selecionar mais de um, utilizando array
+    try{
     genre = genre.replace(/comedy/g, "commedy");
     genre = genre.replace(/mystery/g, "mistery");
     genre = genre.replace(/horror/g, "terror");
     genre = genre.replace(/ /g, ",");
+
     var genre_array = genre.split(',');
     console.log(genre_array);
-    $('#cfield_genre').val(genre_array);
+    }catch(e){}
+
+    $("#cfield_genre").next().remove();
+    $("#cfield_genre").select2({width: "100%"});
+    $('#cfield_genre').val(genre_array).trigger("change");
     document.getElementById('cfield_duration').value = minutos;
     document.getElementById('cfield_year').value = year;
     document.getElementById('cfield_direction').value = director;
