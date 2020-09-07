@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name        Criador de Títulos [FW] test
+// @name        Criador de Títulos [FW]
 // @namespace   PvP
 // @version      1.19
 // @description  Busca as informações e preenche o postador.
@@ -143,14 +143,20 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
     document.getElementById('cfield_title').value = o_titulo;
     document.getElementById('cfield_title_translated').value = titulo;
     //Genre utiliza JQuery para selecionar mais de um, utilizando array
+    try{
     genre = genre.replace(/comedy/g, "commedy");
     genre = genre.replace(/mystery/g, "mistery");
     genre = genre.replace(/horror/g, "terror");
     genre = genre.replace(/ /g, ",");
+
     var genre_array = genre.split(',');
     console.log(genre_array);
-    $('#cfield_genre').val(genre_array);
-    $('#cfield_genre').select2().trigger('change');
+    }catch(e){}
+    
+    $("#cfield_genre").next().remove();
+    $("#cfield_genre").select2({width: "100%"});
+    $('#cfield_genre').val(genre_array).trigger("change");
+    
     document.getElementById('cfield_duration').value = minutos;
     document.getElementById('cfield_year').value = year;
     document.getElementById('cfield_direction').value = director;
@@ -195,8 +201,9 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
     alert(title);
     document.getElementById('cfield_title').value = title;
     //Genre utiliza JQuery para selecionar mais de um, utilizando array
-    $('#cfield_genre').val(genero);
-    $('#cfield_genre').select2().trigger('change');
+    $("#cfield_genre").next().remove();
+    $("#cfield_genre").select2({width: "100%"});
+    $('#cfield_genre').val(genero).trigger("change");
     document.getElementById('cfield_duration').value = min;
     document.getElementById('cfield_year').value = ano;
     document.getElementById('cfield_direction').value = direcao;
@@ -231,8 +238,9 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
     document.getElementById('cfield_title').value = titulogames;
     var genregames_array = genregames.split(',');
     console.log(genregames_array);
-    $('#cfield_genre').val(genregames_array);
-    $('#cfield_genre').select2().trigger('change');
+    $("#cfield_genre").next().remove();
+    $("#cfield_genre").select2({width: "100%"});
+    $('#cfield_genre').val(genregames_array).trigger("change");
     document.getElementById('cfield_manufactor').value = fabricantegames;
     document.getElementById('cfield_year').value = anogames;
     document.getElementById('cfield_os').value = plataformagames;
@@ -276,8 +284,9 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
     genre_series = genre_series.replace(/ /g, ",");
     var genre_array_series = genre_series.split(',');
     console.log(genre_array_series);
-    $('#cfield_genre').val(genre_array_series);
-    $('#cfield_genre').select2().trigger('change');
+    $("#cfield_genre").next().remove();
+    $("#cfield_genre").select2({width: "100%"});
+    $('#cfield_genre').val(genre_array_series).trigger("change");
     document.getElementById('cfield_duration').value = minutos_series;
     document.getElementById('cfield_year').value = year_series;
     document.getElementById('cfield_creator').value = criador_series;
@@ -420,11 +429,9 @@ var curiosidades = document.getElementById('cfield_curiosity').value;
     var genre_array = genre.split(',');
     console.log(genre_array);
 
-    //var $select = $('#cfield_genre');
     $("#cfield_genre").next().remove();
     $("#cfield_genre").select2({width: "100%"});
     $('#cfield_genre').val(genre_array).trigger("change");
-
 
     document.getElementById('cfield_duration').value = minutos;
     
@@ -549,10 +556,6 @@ elencosemfoto.addEventListener('click', function () {
           }
      })
      .done(function(msg){
-            //$('#cfield_genre').select2().trigger('change');
-            var $newOption = $("<option selected='selected'></option>").val("TheID").text("The text")
-
-            $("#cfield_genre").append($newOption).trigger('change');
  GM_notification ( {
                 title: 'PvP diz:', timeout: '1700', text: 'Informações Atualizadas!'
             } );
