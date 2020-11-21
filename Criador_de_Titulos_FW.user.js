@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.20
+// @version      1.21
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -17,6 +17,7 @@
 // @downloadURL https://github.com/PersonalScripts/fw/raw/master/Criador_de_Titulos_FW.user.js
 // @include     https://pvp2004.000webhostapp.com/*
 // @include     http://www.fw.artvetro.com.br/*
+// @include     https://www.fw.artvetro.com.br/*
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_notification
@@ -25,7 +26,7 @@
 // @require https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js
 // ==/UserScript==
 
-if (window.location.href.indexOf("https://pvp2004.000webhostapp.com/") != -1 || window.location.href.indexOf("http://www.fw.artvetro.com.br/") != -1) {
+if (window.location.href.indexOf("https://www.fw.artvetro.com.br/") != -1 || window.location.href.indexOf("http://www.fw.artvetro.com.br/") != -1) {
 
     document.addEventListener('keydown', function(e) {
         // pressed alt+p
@@ -326,7 +327,7 @@ if(document.getElementById('cfield_imdb')){
     var elencoimdb = new Image();
     var elencotmdb = new Image();
     var elencosemfoto = new Image();
-    elencoimdb.src = 'https://pvp2004.000webhostapp.com/img/imdblogo.png';
+    elencoimdb.src = 'https://www.fw.artvetro.com.br/img/imdblogo.png';
     elencotmdb.src = 'https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_1-5bdc75aaebeb75dc7ae79426ddd9be3b2be1e342510f8202baf6bffa71d7f5c4.svg';
     elencosemfoto.src = 'https://i.imgur.com/pcTy5ku.png';
     elencoimdb.style ="float:left;margin-top:5px;margin-right:5px;height:20px;";
@@ -353,7 +354,7 @@ if(document.getElementById('cfield_imdb')){
         var site = $('#cfield_imdb').val();
         site = site.replace(/imdb/g, "www.imdb");
         $.ajax({
-          url : "https://pvp2004.000webhostapp.com/filmes2.php",
+          url : "https://www.fw.artvetro.com.br/filmes2.php",
           type : 'post',
 
           data : {
@@ -471,7 +472,7 @@ elencoimdb.addEventListener('click', function () {
    var site = $('#cfield_imdb').val();
         site = site.replace(/imdb/g, "www.imdb");
         $.ajax({
-          url : "https://pvp2004.000webhostapp.com/filmes2-imdb.php",
+          url : "https://www.fw.artvetro.com.br/filmes2-imdb.php",
           type : 'post',
 
           data : {
@@ -502,7 +503,7 @@ elencotmdb.addEventListener('click', function () {
    var site = $('#cfield_imdb').val();
         site = site.replace(/imdb/g, "www.imdb");
         $.ajax({
-          url : "https://pvp2004.000webhostapp.com/filmes2-tmdb.php",
+          url : "https://www.fw.artvetro.com.br/filmes2-tmdb.php",
           type : 'post',
 
           data : {
@@ -533,7 +534,7 @@ elencosemfoto.addEventListener('click', function () {
    var site = $('#cfield_imdb').val();
         site = site.replace(/imdb/g, "www.imdb");
         $.ajax({
-          url : "https://pvp2004.000webhostapp.com/filmes.php",
+          url : "https://www.fw.artvetro.com.br/filmes.php",
           type : 'post',
 
           data : {
@@ -1326,7 +1327,7 @@ var id = doc1[1].split('/');
 
 
         $.ajax({
-          url : "https://pvp2004.000webhostapp.com/filmes2.php",
+          url : "https://www.fw.artvetro.com.br/filmes2.php",
           type : 'post',
 
           data : {
@@ -1416,7 +1417,7 @@ var id = doc1[1].split('/');
 
 
         $.ajax({
-          url : "https://pvp2004.000webhostapp.com/filmes2.php",
+          url : "https://www.fw.artvetro.com.br/filmes2.php",
           type : 'post',
 
           data : {
