@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.21
+// @version      1.22
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -313,7 +313,7 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
 /////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////
 
-if (window.location.href.indexOf('https://filewarez.tv/postador.php?do=edittitle') != -1){
+if (window.location.href.indexOf('https://filewarez.tv/postador.php?do=edittitle') != -1 || window.location.href.indexOf('https://filewarez.tv/postador.php?do=addtitle') != -1){
 if(document.getElementById('cfield_imdb')){
     var img = new Image();
     img.src = 'https://i.imgur.com/jqqCux6.png';
