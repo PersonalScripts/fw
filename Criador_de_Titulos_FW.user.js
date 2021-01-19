@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.23
+// @version      1.24
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
