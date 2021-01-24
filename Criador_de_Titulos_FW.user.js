@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.24
+// @version      1.25
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -340,7 +340,6 @@ if(document.getElementById('cfield_imdb')){
     localelenco.appendChild(elencoimdb);
     localelenco.appendChild(elencotmdb);
     localelenco.appendChild(elencosemfoto);
-}
 
   img.addEventListener('click', function () {
     
@@ -561,7 +560,7 @@ elencosemfoto.addEventListener('click', function () {
    });
     })
 
-
+}
 }
 
 
