@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.25
+// @version      1.26
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -201,7 +201,9 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
     alert(title);
     document.getElementById('cfield_title').value = title;
     //Genre utiliza JQuery para selecionar mais de um, utilizando array
-    $('#cfield_genre').val(genero);
+    $('#cfield_genre').next().remove();
+    $('#cfield_genre').select2({width: "100%"});
+    $('#cfield_genre').val(genero).trigger("change");
     document.getElementById('cfield_duration').value = min;
     document.getElementById('cfield_year').value = ano;
     document.getElementById('cfield_direction').value = direcao;
@@ -236,10 +238,15 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
     document.getElementById('cfield_title').value = titulogames;
     var genregames_array = genregames.split(',');
     console.log(genregames_array);
-    $('#cfield_genre').val(genregames_array);
+    $('#cfield_genre').next().remove();
+    $('#cfield_genre').select2({width: "100%"});
+    $('#cfield_genre').val(genregames_array).trigger("change");
     document.getElementById('cfield_manufactor').value = fabricantegames;
     document.getElementById('cfield_year').value = anogames;
-    document.getElementById('cfield_os').value = plataformagames;
+    $('#cfield_os').next().remove();
+    $('#cfield_os').select2({width: "100%"});
+    $('#cfield_os').val(plataformagames).trigger("change");
+    //document.getElementById('cfield_os').value = plataformagames;
     document.getElementById('cfield_site').value = steam;
     document.getElementById('cfield_summary').value = sinopsegames;
     document.getElementById('cfield_requirements').value = minimo+"\n\n";
@@ -280,7 +287,9 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
     genre_series = genre_series.replace(/ /g, ",");
     var genre_array_series = genre_series.split(',');
     console.log(genre_array_series);
-    $('#cfield_genre').val(genre_array_series);
+    $('#cfield_genre').next().remove();
+    $('#cfield_genre').select2({width: "100%"});
+    $('#cfield_genre').val(genre_array_series).trigger("change");
     document.getElementById('cfield_duration').value = minutos_series;
     document.getElementById('cfield_year').value = year_series;
     document.getElementById('cfield_creator').value = criador_series;
@@ -421,7 +430,9 @@ var curiosidades = document.getElementById('cfield_curiosity').value;
             console.log(genre);
     var genre_array = genre.split(',');
     console.log(genre_array);
-    $('#cfield_genre').val(genre_array);
+    $('#cfield_genre').next().remove();
+    $('#cfield_genre').select2({width: "100%"});
+    $('#cfield_genre').val(genre_array).trigger("change");
 
     document.getElementById('cfield_duration').value = minutos;
     
