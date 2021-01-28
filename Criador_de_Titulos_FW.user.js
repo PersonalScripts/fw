@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.27
+// @version      1.28
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -12,6 +12,7 @@
 // @include     https://filewarez.tv/postador.php?do=addupload*
 // @include     https://filewarez.tv/newthread.php?do=newthread&f=14
 // @include     https://filewarez.tv/postador.php?do=edittitle*
+// @include     https://filewarez.tv/postador.php?do=moderatetitle*
 // @include     https://www.imdb.com/title*
 // @updateURL   https://github.com/PersonalScripts/fw/raw/master/Criador_de_Titulos_FW.user.js
 // @downloadURL https://github.com/PersonalScripts/fw/raw/master/Criador_de_Titulos_FW.user.js
@@ -322,7 +323,7 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
 /////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////
 
-if (window.location.href.indexOf('https://filewarez.tv/postador.php?do=edittitle') != -1 || window.location.href.indexOf('https://filewarez.tv/postador.php?do=addtitle') != -1){
+if (window.location.href.indexOf('https://filewarez.tv/postador.php?do=edittitle') != -1 || window.location.href.indexOf('https://filewarez.tv/postador.php?do=addtitle') != -1 || window.location.href.indexOf('https://filewarez.tv/postador.php?do=moderatetitle') != -1){
 if(document.getElementById('cfield_imdb')){
     var img = new Image();
     img.src = 'https://i.imgur.com/jqqCux6.png';
