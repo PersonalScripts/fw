@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.29
+// @version      1.30
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -1327,8 +1327,8 @@ img.onclick = function() {
 };
 }
 
-else if(document.getElementsByClassName('OriginalTitle__OriginalTitleText-jz9bzr-0 iqUOOR')[0]){
-    var titulo_secundario = document.getElementsByClassName('OriginalTitle__OriginalTitleText-jz9bzr-0 iqUOOR')[0].innerText;
+else if(document.getElementsByClassName('OriginalTitle__OriginalTitleText-jz9bzr-0 ')[0]){
+    var titulo_secundario = document.getElementsByClassName('OriginalTitle__OriginalTitleText-jz9bzr-0 ')[0].innerText;
 titulo_secundario = titulo_secundario.split('Original title: ');
     console.log(titulo_secundario[1]);
     var ano_principal = document.getElementsByClassName('ipc-inline-list__item')[0].innerText;
@@ -1357,33 +1357,14 @@ window.open('https://filewarez.tv/postador.php?do=searchupload&title_title='+tit
 };
 }
 
-else if(document.getElementsByClassName('TitleHeader__TitleText-sc-1wu6n3d-0 cLLqtE')[0]){
-var titulo_principal = document.getElementsByClassName('TitleHeader__TitleText-sc-1wu6n3d-0 cLLqtE')[0].innerText;
+else if(document.getElementsByClassName('TitleHeader__TitleText-sc-1wu6n3d-0 ')[0]){
+var titulo_principal = document.getElementsByClassName('TitleHeader__TitleText-sc-1wu6n3d-0 ')[0].innerText;
 console.log(titulo_principal);
 var ano_principal = document.getElementsByClassName('ipc-inline-list__item')[0].innerText;
 img.onclick = function() {
 window.open('https://filewarez.tv/postador.php?do=searchupload&title_title='+titulo_principal+'&title='+ano_principal+'&status=1&type=movie');
 };
 }
-
-else if(document.getElementsByClassName('TitleHeader__TitleText-sc-1wu6n3d-0 hACWfw')[0]){
-var titulo_principal = document.getElementsByClassName('TitleHeader__TitleText-sc-1wu6n3d-0 hACWfw')[0].innerText;
-console.log(titulo_principal);
-var ano_principal = document.getElementsByClassName('ipc-inline-list__item')[0].innerText;
-img.onclick = function() {
-window.open('https://filewarez.tv/postador.php?do=searchupload&title_title='+titulo_principal+'&title='+ano_principal+'&status=1&type=movie');
-};
-}
-
-else if(document.getElementsByClassName('TitleHeader__TitleText-sc-1wu6n3d-0 gRBoEc')[0]){
-var titulo_principal = document.getElementsByClassName('TitleHeader__TitleText-sc-1wu6n3d-0 gRBoEc')[0].innerText;
-console.log(titulo_principal);
-var ano_principal = document.getElementsByClassName('ipc-inline-list__item')[0].innerText;
-img.onclick = function() {
-window.open('https://filewarez.tv/postador.php?do=searchupload&title_title='+titulo_principal+'&title='+ano_principal+'&status=1&type=movie');
-};
-}
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1441,8 +1422,8 @@ var id = doc1[1].split('/');
 })
  var local = document.getElementById('titleYear');
  var local2=document.getElementsByClassName('TitleHeader__TitleText-sc-1wu6n3d-0 ')[0];
-    var local3 = document.getElementsByClassName('TitleHeader__TitleText-sc-1wu6n3d-0 hACWfw')[0];
-    var local4 = document.getElementsByClassName('TitleHeader__TitleText-sc-1wu6n3d-0 gRBoEc')[0];
+    //var local3 = document.getElementsByClassName('TitleHeader__TitleText-sc-1wu6n3d-0 hACWfw')[0];
+    //var local4 = document.getElementsByClassName('TitleHeader__TitleText-sc-1wu6n3d-0 gRBoEc')[0];
 
   if(local){
  local.appendChild(criar);
@@ -1450,13 +1431,13 @@ var id = doc1[1].split('/');
   }else if(local2){
     local2.appendChild(criar);
  local2.appendChild(img);
-    }else if(local3){
+    }/*else if(local3){
       local3.appendChild(criar);
  local3.appendChild(img);
   }else if(local4){
       local4.appendChild(criar);
  local4.appendChild(img);
-  }
+  }*/
 }
 
 
@@ -1494,8 +1475,8 @@ window.open('https://filewarez.tv/postador.php?do=searchupload&title_title='+tit
 };
 }
 
-else if(document.getElementsByClassName('OriginalTitle__OriginalTitleText-jz9bzr-0 iqUOOR')[0]){
-var titulo_secundario = document.getElementsByClassName('OriginalTitle__OriginalTitleText-jz9bzr-0 iqUOOR')[0].innerText;
+else if(document.getElementsByClassName('OriginalTitle__OriginalTitleText-jz9bzr-0 ')[0]){
+var titulo_secundario = document.getElementsByClassName('OriginalTitle__OriginalTitleText-jz9bzr-0 ')[0].innerText;
 titulo_secundario = titulo_secundario.split('Original title: ');
 console.log(titulo_secundario[1]);
 img.onclick = function() {
@@ -1519,8 +1500,8 @@ img.onclick = function() {
 window.open('https://filewarez.tv/postador.php?do=searchupload&title_title='+titulo_principal[0]+'&status=1&type=tvshow');
 };
 }
-else if(document.getElementsByClassName('TitleHeader__TitleText-sc-1wu6n3d-0 cLLqtE')[0]){
-var titulo_principal = document.getElementsByClassName('TitleHeader__TitleText-sc-1wu6n3d-0 cLLqtE')[0].innerText;
+else if(document.getElementsByClassName('TitleHeader__TitleText-sc-1wu6n3d-0 ')[0]){
+var titulo_principal = document.getElementsByClassName('TitleHeader__TitleText-sc-1wu6n3d-0 ')[0].innerText;
 console.log(titulo_principal);
 img.onclick = function() {
 window.open('https://filewarez.tv/postador.php?do=searchupload&title_title='+titulo_principal+'&status=1&type=tvshow');
@@ -1585,20 +1566,20 @@ var id = doc1[1].split('/');
 
 var local = document.getElementsByTagName('h1')[0];
  var local2=document.getElementsByClassName('TitleHeader__TitleText-sc-1wu6n3d-0 ')[0];
-    var local3 = document.getElementsByClassName('TitleHeader__TitleText-sc-1wu6n3d-0 hACWfw')[0];
-    var local4 = document.getElementsByClassName('TitleHeader__TitleText-sc-1wu6n3d-0 gRBoEc')[0];
+    //var local3 = document.getElementsByClassName('TitleHeader__TitleText-sc-1wu6n3d-0 hACWfw')[0];
+    //var local4 = document.getElementsByClassName('TitleHeader__TitleText-sc-1wu6n3d-0 gRBoEc')[0];
   if(local){
  local.appendChild(criar);
  local.appendChild(img);
   }else if(local2){
     local2.appendChild(criar);
  local2.appendChild(img);
-    }else if(local3){
+    }/*else if(local3){
       local3.appendChild(criar);
  local3.appendChild(img);
   }else if(local4){
       local4.appendChild(criar);
  local4.appendChild(img);
-  }
+  }*/
 }
 }
