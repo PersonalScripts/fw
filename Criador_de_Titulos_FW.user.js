@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.30
+// @version      1.31
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -25,6 +25,7 @@
 // @grant       GM_addStyle
 // @require http://code.jquery.com/jquery-3.4.1.min.js
 // @require https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js
+// @require     https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js
 // ==/UserScript==
 
 if (window.location.href.indexOf("https://www.fw.artvetro.com.br/") != -1 || window.location.href.indexOf("http://www.fw.artvetro.com.br/") != -1) {
@@ -142,6 +143,23 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
     var sumario = GM_getValue('sinopse');
     var yt = GM_getValue('yt');
     var exinfo = GM_getValue('exinfo');
+    var actor_preview = actor;
+    actor_preview = actor_preview.replace(/TABLE\]/gi, "table>");
+    actor_preview = actor_preview.replace(/TD\]/gi, "td>");
+    actor_preview = actor_preview.replace(/TR\]/gi, "tr>");
+    actor_preview = actor_preview.replace(/URL=/gi, 'a href="');
+    actor_preview = actor_preview.replace(/\[\/URL]/gi, "</a>");
+    actor_preview = actor_preview.replace(/CENTER\]/gi, "center>");
+    actor_preview = actor_preview.replace(/B\]/gi, "b>");
+    actor_preview = actor_preview.replace(/\[IMG2='120px'\]/gi, '<img width="120" src="');
+    actor_preview = actor_preview.replace(/\[\/IMG2\]/gi, '"></img>');
+    actor_preview = actor_preview.replace(/\[IMG\]/gi, '<img src="');
+    actor_preview = actor_preview.replace(/\[\/IMG\]/gi, '"></img>');
+    actor_preview = actor_preview.replace(/\[/gi, "<");
+    actor_preview = actor_preview.replace(/\]/gi, '">');
+    actor_preview = actor_preview.replace(/\n<b>/gi, '<br><b>');
+    actor_preview = actor_preview.replace(/"><img/gi, '" target="_blank"><img');
+    console.log(actor_preview);
     document.getElementById('cfield_title').value = o_titulo;
     document.getElementById('cfield_title_translated').value = titulo;
     //Genre utiliza JQuery para selecionar mais de um, utilizando array
@@ -337,19 +355,165 @@ if(document.getElementById('cfield_imdb')){
     var elencoimdb = new Image();
     var elencotmdb = new Image();
     var elencosemfoto = new Image();
+    var preview_actors = new Image();
     elencoimdb.src = 'https://www.fw.artvetro.com.br/img/imdblogo.png';
     elencotmdb.src = 'https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_1-5bdc75aaebeb75dc7ae79426ddd9be3b2be1e342510f8202baf6bffa71d7f5c4.svg';
     elencosemfoto.src = 'https://i.imgur.com/pcTy5ku.png';
+    preview_actors.src = 'https://i.imgur.com/hV9FqXR.png';
     elencoimdb.style ="float:left;margin-top:5px;margin-right:5px;height:20px;";
     elencotmdb.style ="float:left;margin-top:5px;margin-right:5px;height:20px;width:31px;";
     elencosemfoto.style ="float:left;margin-top:5px;height:20px;width:23px;";
+    preview_actors.style ="float:left;margin-top:5px;margin-left:5px;height:17px;width:27px;";
     elencoimdb.title ='Atualizar Elenco com IMDB (Com Fotos)';
     elencotmdb.title ='Atualizar Elenco com TMDB (Com Fotos)';
     elencosemfoto.title ='Atualizar Elenco IMDB (Apenas Texto)';
-    var localelenco = document.getElementsByClassName('input')[8];
+    preview_actors.title ='Preview do Elenco';
+    if(document.getElementById('cfield_episodes')){
+    var localelenco = document.getElementsByClassName('input')[11];
+    var localelenco1 = document.getElementsByClassName('blockrow postador_field')[11];
     localelenco.appendChild(elencoimdb);
     localelenco.appendChild(elencotmdb);
     localelenco.appendChild(elencosemfoto);
+    localelenco1.appendChild(preview_actors);
+    }else{
+    var localelenco = document.getElementsByClassName('input')[8];
+    var localelenco1 = document.getElementsByClassName('blockrow postador_field')[8];
+    localelenco.appendChild(elencoimdb);
+    localelenco.appendChild(elencotmdb);
+    localelenco.appendChild(elencosemfoto);
+    localelenco1.appendChild(preview_actors);
+    }
+
+var style = document.createElement('style');
+
+function myFunc () {
+    'use strict';
+    if(document.getElementById('cfield_cast')){
+    var actor_preview = document.getElementById('cfield_cast').value;
+    actor_preview = actor_preview.replace(/TABLE\]/gi, "table>");
+    actor_preview = actor_preview.replace(/TD\]/gi, "td>");
+    actor_preview = actor_preview.replace(/TR\]/gi, "tr>");
+    actor_preview = actor_preview.replace(/URL=/gi, 'a href="');
+    actor_preview = actor_preview.replace(/\[\/URL]/gi, "</a>");
+    actor_preview = actor_preview.replace(/CENTER\]/gi, "center>");
+    actor_preview = actor_preview.replace(/B\]/gi, "b>");
+    actor_preview = actor_preview.replace(/\[IMG2='120px'\]/gi, '<img width="120" src="');
+    actor_preview = actor_preview.replace(/\[\/IMG2\]/gi, '"></img>');
+    actor_preview = actor_preview.replace(/\[IMG\]/gi, '<img src="');
+    actor_preview = actor_preview.replace(/\[\/IMG\]/gi, '"></img>');
+    actor_preview = actor_preview.replace(/\[/gi, "<");
+    actor_preview = actor_preview.replace(/\]/gi, '">');
+    actor_preview = actor_preview.replace(/\n<b>/gi, '<br><b>');
+    actor_preview = actor_preview.replace(/"><img/gi, '" target="_blank"><img');
+    }
+
+    var modalHtml = `
+<!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-xl">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Preview</h4>
+        </div>
+        <div class="modal-body">
+`+actor_preview+`
+      </div>
+      <div class="modal-footer">
+
+        </div>
+    </div>
+  </div>
+</div>
+`;
+
+    //--- Add nodes to page
+    //$("body").prepend(deleteButtonHtml);
+$("body").prepend(modalHtml);
+    style.innerHTML = `
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #FDCB74;
+  width: 645px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+overflow: auto;
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: black;
+  float: right;
+  font-size: 15px;
+  font-weight: bold;
+  width: 30px;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+.modal-title{font-size: 15px;font:   bold 12px Tahoma, Helvetica, Geneva;margin:0;line-height:1.42857143}
+.btn-default{width: 30px;float: center;font-size: 15px;color:#333;background-color:#fff;border-color:#ccc}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: #E19B38;
+    border-bottom: 1px solid #FDCB74;
+  color: white;
+height:25px;
+}
+
+.modal-body {padding: 10px 16px;overflow-x: auto;}
+
+
+div.modal-body {
+    max-width: 100%;
+    overflow-x: auto;
+}`;
+    document.head.appendChild(style);
+}
+    preview_actors.onclick = function() {
+         myFunc();
+         $('#myModal').modal("show");
+};
 
   img.addEventListener('click', function () {
     
