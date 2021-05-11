@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.31
+// @version      1.32
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -1506,6 +1506,15 @@ titulo_secundario = titulo_secundario.split('Original title: ');
     //QUANDO SÓ EXISTE TÍTULO ORIGINAL
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
+else if(document.getElementsByClassName('TitleHeader__TitleText-sc-1wu6n3d-0 ')[0]){
+var titulo_principal = document.getElementsByClassName('TitleHeader__TitleText-sc-1wu6n3d-0 ')[0].innerText;
+console.log(titulo_principal);
+var ano_principal = document.getElementsByClassName('ipc-inline-list__item')[0].innerText;
+img.onclick = function() {
+window.open('https://filewarez.tv/postador.php?do=searchupload&title_title='+titulo_principal+'&title='+ano_principal+'&status=1&type=movie');
+};
+}	
+	
 else if(document.getElementsByTagName('h1')[0]){
 
 var titulo_principal = document.getElementsByTagName('h1')[0].innerText;
@@ -1518,15 +1527,6 @@ ano_principal = ano_principal[1].split(')');
 console.log(ano_principal[0]);
 img.onclick = function() {
 window.open('https://filewarez.tv/postador.php?do=searchupload&title_title='+titulo_principal[0]+'&title='+ano_principal+'&status=1&type=movie');
-};
-}
-
-else if(document.getElementsByClassName('TitleHeader__TitleText-sc-1wu6n3d-0 ')[0]){
-var titulo_principal = document.getElementsByClassName('TitleHeader__TitleText-sc-1wu6n3d-0 ')[0].innerText;
-console.log(titulo_principal);
-var ano_principal = document.getElementsByClassName('ipc-inline-list__item')[0].innerText;
-img.onclick = function() {
-window.open('https://filewarez.tv/postador.php?do=searchupload&title_title='+titulo_principal+'&title='+ano_principal+'&status=1&type=movie');
 };
 }
 
