@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.32
+// @version      1.33
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -1165,7 +1165,14 @@ carregador.addEventListener('change', function(e) {
             var height = height0[1].split('pixels');
             //FPS
             var fps0 = content.split('Framerate:');
-            var fps = fps0[1].split('.');
+            var fps = fps0[1].split('FPS');
+            var fps_final;
+            if(fps[0].includes('(')){
+               var fps_final0 = fps[0].split('(');
+                fps_final = fps_final0[0];
+            }else{
+                fps_final = fps[0];
+            }
             //library
             var library0 = content.split('Writinglibrary:');
             var library = library0[2];
@@ -1431,7 +1438,7 @@ function capitalize(s){//FUNÇÃO PRIMEIRA LETRA DE CADA PALAVRA EM MAIUSCULO
             $('#cfield_title').val(release[0]);
             $('#cfield_size').val(tam[0]);
             $('#cfield_resolution').val(width[0]+'x'+height[0]);
-            $('#cfield_framerate').val(fps[0]+" fps");
+            $('#cfield_framerate').val(fps_final+" fps");
             $('#cfield_compression').val('rar');
             $('#cfield_description').val('[mediainfo]'+content_mediainfo+'[/mediainfo]');
             $('#cfield_subtitles_included').val('no');
