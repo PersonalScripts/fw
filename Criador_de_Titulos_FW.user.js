@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.35
+// @version      1.36
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -1763,9 +1763,11 @@ var local = document.getElementsByTagName('h1')[0];
 if (window.location.href.indexOf("https://store.steampowered.com/app") != -1) {
     var img_games = new Image();
     img_games.src = 'https://i.imgur.com/jqqCux6.png';
+    img_games.style ="vertical-align: middle;margin-bottom:5px;";
     img_games.title ='Buscar Uploads';
     var criar_games = new Image();
     criar_games.src = 'https://i.imgur.com/jqqCux6.png';
+    criar_games.style ="vertical-align: middle;margin-bottom:5px;";
     criar_games.title ='Criar Título';
     criar_games.addEventListener("mouseover", function(){criar_games.src = 'https://i.imgur.com/EKlG285.png';});
     criar_games.addEventListener("mouseout", function(){criar_games.src = 'https://i.imgur.com/jqqCux6.png';});
