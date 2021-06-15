@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.33
+// @version      1.34
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -19,6 +19,8 @@
 // @include     https://pvp2004.000webhostapp.com/*
 // @include     http://www.fw.artvetro.com.br/*
 // @include     https://www.fw.artvetro.com.br/*
+// @include     https://store.steampowered.com/app*
+// @include     https://www.epicgames.com/store*
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_notification
@@ -1753,4 +1755,191 @@ var local = document.getElementsByTagName('h1')[0];
  local4.appendChild(img);
   }*/
 }
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+if (window.location.href.indexOf("https://store.steampowered.com/app") != -1) {
+    var img_games = new Image();
+    img_games.src = 'https://i.imgur.com/jqqCux6.png';
+    img_games.title ='Buscar Uploads';
+    var criar_games = new Image();
+    criar_games.src = 'https://i.imgur.com/jqqCux6.png';
+    criar_games.title ='Criar Título';
+    criar_games.addEventListener("mouseover", function(){criar_games.src = 'https://i.imgur.com/EKlG285.png';});
+    criar_games.addEventListener("mouseout", function(){criar_games.src = 'https://i.imgur.com/jqqCux6.png';});
+    img_games.addEventListener("mouseover", function(){img_games.src = 'https://i.imgur.com/DZ2twAY.png';});
+    img_games.addEventListener("mouseout", function(){img_games.src = 'https://i.imgur.com/jqqCux6.png';});
+    if (window.location.href.indexOf("https://store.steampowered.com/app") != -1){
+    var local_games = document.getElementsByClassName('apphub_AppName')[0];
+    local_games.appendChild(criar_games);
+    local_games.appendChild(img_games);
+    }
+
+criar_games.addEventListener('click', function () {
+var page= window.location.href;
+GM_setValue('page', page);
+console.log(page);
+var myWindow = window.open('https://filewarez.tv/postador.php?do=addtitle&step=2&type=game');
+})
+
+img_games.onclick = function() {
+var titulo_game = document.getElementById('appHubAppName').innerText;
+    titulo_game = titulo_game.replace(/™/g, '');
+    titulo_game = titulo_game.replace(/:/g, '');
+window.open('https://filewarez.tv/postador.php?do=searchupload&title='+titulo_game+'&status=1&type=game');
+};
+}
+
+if(window.location.href.indexOf("https://www.epicgames.com/store/pt-BR/p/") != -1) {
+window.addEventListener("load", function() {
+console.log(window.location.href);
+
+    if(document.getElementsByClassName('css-1vtep46-Headline1__headline1')[0]){
+    local_games = document.getElementsByClassName('css-1vtep46-Headline1__headline1')[0];
+    }else if(document.getElementsByClassName('css-16yws1f-Headline1__headline1')[0]){
+    local_games = document.getElementsByClassName('css-16yws1f-Headline1__headline1')[0];
+    }
+    var criar_games = document.createElement("button");
+    criar_games.innerHTML = "<img src='https://i.imgur.com/jqqCux6.png'/>";
+    criar_games.id = 'criar_games';
+    var img_games = document.createElement("button");
+    img_games.innerHTML = "<img src='https://i.imgur.com/jqqCux6.png'/>";
+    img_games.id = 'img_games';
+    criar_games.addEventListener("mouseover", function(){criar_games.innerHTML = "<img src='https://i.imgur.com/EKlG285.png'/>";});
+    criar_games.addEventListener("mouseout", function(){criar_games.innerHTML = "<img src='https://i.imgur.com/jqqCux6.png'/>";});
+    img_games.addEventListener("mouseover", function(){img_games.innerHTML = "<img src='https://i.imgur.com/DZ2twAY.png'/>";});
+    img_games.addEventListener("mouseout", function(){img_games.innerHTML = "<img src='https://i.imgur.com/jqqCux6.png'/>";});
+    local_games.appendChild(criar_games);
+    local_games.appendChild(img_games);
+
+criar_games.addEventListener('click', function () {
+var page= window.location.href;
+GM_setValue('page', page);
+console.log(page);
+var myWindow = window.open('https://filewarez.tv/postador.php?do=addtitle&step=2&type=game');
+})
+
+img_games.onclick = function() {
+var titulo_game = local_games.innerText;
+titulo_game = titulo_game.replace(/™/g, '');
+titulo_game = titulo_game.replace(/:/g, '');
+window.open('https://filewarez.tv/postador.php?do=searchupload&title='+titulo_game+'&status=1&type=game');
+};
+});
+}
+
+if(window.location.href.indexOf("https://www.epicgames.com/store") != -1){
+    window.addEventListener("click", () => {
+    var local_games;
+    console.log(window.location.href);
+    if((window.location.href.indexOf("https://www.epicgames.com/store/pt-BR/p/") != -1)){
+    var contador = setInterval(function(){
+    if(!(document.getElementById('criar_games')) && !(document.getElementById('img_games'))){
+    console.log('começou');
+    if(document.getElementsByClassName('css-1vtep46-Headline1__headline1')[0]){
+    local_games = document.getElementsByClassName('css-1vtep46-Headline1__headline1')[0];
+    }else if(document.getElementsByClassName('css-16yws1f-Headline1__headline1')[0]){
+    local_games = document.getElementsByClassName('css-16yws1f-Headline1__headline1')[0];
+    }
+    var criar_games = document.createElement("button");
+    criar_games.innerHTML = "<img src='https://i.imgur.com/jqqCux6.png'/>";
+    criar_games.id = 'criar_games';
+    var img_games = document.createElement("button");
+    img_games.innerHTML = "<img src='https://i.imgur.com/jqqCux6.png'/>";
+    img_games.id = 'img_games';
+    criar_games.addEventListener("mouseover", function(){criar_games.innerHTML = "<img src='https://i.imgur.com/EKlG285.png'/>";});
+    criar_games.addEventListener("mouseout", function(){criar_games.innerHTML = "<img src='https://i.imgur.com/jqqCux6.png'/>";});
+    img_games.addEventListener("mouseover", function(){img_games.innerHTML = "<img src='https://i.imgur.com/DZ2twAY.png'/>";});
+    img_games.addEventListener("mouseout", function(){img_games.innerHTML = "<img src='https://i.imgur.com/jqqCux6.png'/>";});
+    if(local_games){
+    local_games.appendChild(criar_games);
+    local_games.appendChild(img_games);
+
+criar_games.addEventListener('click', function () {
+var page= window.location.href;
+GM_setValue('page', page);
+console.log(page);
+var myWindow = window.open('https://filewarez.tv/postador.php?do=addtitle&step=2&type=game');
+})
+
+
+img_games.onclick = function() {
+var titulo_game = local_games.innerText;
+titulo_game = titulo_game.replace(/™/g, '');
+titulo_game = titulo_game.replace(/:/g, '');
+window.open('https://filewarez.tv/postador.php?do=searchupload&title='+titulo_game+'&status=1&type=game');
+};
+
+}
+}else{
+    console.log('fechou');
+    clearInterval(contador);
+}},1000);
+}
+})
+}
+
+if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addtitle&step=2&type=game") != -1){
+window.addEventListener("load", function() {
+    var page = GM_getValue('page');
+    GM_setValue('page', '');
+    console.log(page);
+if(page.includes('steampowered') || page.includes('epicgames')){
+$.ajax({
+          url : "https://www.fw.artvetro.com.br/jogo.php",
+          type : 'post',
+
+          data : {
+               copia:page
+          },
+          beforeSend : function(){
+               GM_notification ( {
+                title: 'PvP diz:', timeout: '2300', text: 'Buscando Informações!'
+            } );
+          }
+     })
+     .done(function(msg){
+ GM_notification ( {
+                title: 'PvP diz:', timeout: '1700', text: 'Informações Inseridas!'
+            } );
+console.log(msg);
+    var doc = new DOMParser().parseFromString(msg, 'text/html');
+    var sinopse_games = doc.getElementById("sinopse").innerText;
+    var req_games = doc.getElementById("req").innerText;
+    sinopse_games = $.trim(sinopse_games);
+    req_games = $.trim(req_games);
+    sinopse_games = sinopse_games.replace(/\n\n*/g,'\r\n\n');
+    sinopse_games = sinopse_games.replace(/^\s*[\r\n]/gm, '\n\n');
+    sinopse_games = sinopse_games.replace(/\[\/b\]\[\/b\]/gm, '[/b]');
+    sinopse_games = sinopse_games.replace(/\[\/b\]\n\n\[\/b\]/gm, '[/b]');
+    sinopse_games = sinopse_games.replace(/\[\/b\]\W\[\/b\]/gm, '[/b]');
+    req_games = req_games.replace(/\n\n*/g,'\n');
+    req_games = req_games.replace(/  +/g, '');
+    req_games = req_games.replace(/	+/g, '');
+
+    document.getElementById('cfield_title').value = doc.getElementById("title").innerText;
+    var genregames_array = doc.getElementById("genre").innerText.split(',');
+    console.log(genregames_array);
+    $('#cfield_genre').next().remove();
+    $('#cfield_genre').select2({width: "100%"});
+    $('#cfield_genre').val(genregames_array).trigger("change");
+    document.getElementById('cfield_manufactor').value = doc.getElementById("fabricante").innerText;
+    document.getElementById('cfield_year').value = doc.getElementById("year").innerText;
+    $('#cfield_os').next().remove();
+    $('#cfield_os').select2({width: "100%"});
+    $('#cfield_os').val(doc.getElementById("plataform").innerText).trigger("change");
+    //document.getElementById('cfield_os').value = plataformagames;
+    document.getElementById('cfield_site').value = doc.getElementById("site").innerText;
+    document.getElementById('cfield_summary').value = sinopse_games;
+    document.getElementById('cfield_requirements').value = req_games+"\n\n";
+    document.getElementById('cfield_trailer').value = doc.getElementById("video").innerText;
+    GM_setValue('img', doc.getElementById("img").innerText);
+})
+        .fail(function(jqXHR, textStatus, msg){
+ alert('FALHOU');
+   });
+   }
+})
 }
