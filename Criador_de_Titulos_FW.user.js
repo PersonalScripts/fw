@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.34
+// @version      1.35
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -1788,7 +1788,7 @@ img_games.onclick = function() {
 var titulo_game = document.getElementById('appHubAppName').innerText;
     titulo_game = titulo_game.replace(/™/g, '');
     titulo_game = titulo_game.replace(/:/g, '');
-window.open('https://filewarez.tv/postador.php?do=searchupload&title='+titulo_game+'&status=1&type=game');
+window.open('https://filewarez.tv/postador.php?do=searchupload&title_title='+titulo_game+'&status=1&type=game');
 };
 }
 
@@ -1825,7 +1825,7 @@ img_games.onclick = function() {
 var titulo_game = local_games.innerText;
 titulo_game = titulo_game.replace(/™/g, '');
 titulo_game = titulo_game.replace(/:/g, '');
-window.open('https://filewarez.tv/postador.php?do=searchupload&title='+titulo_game+'&status=1&type=game');
+window.open('https://filewarez.tv/postador.php?do=searchupload&title_title='+titulo_game+'&status=1&type=game');
 };
 });
 }
@@ -1869,7 +1869,7 @@ img_games.onclick = function() {
 var titulo_game = local_games.innerText;
 titulo_game = titulo_game.replace(/™/g, '');
 titulo_game = titulo_game.replace(/:/g, '');
-window.open('https://filewarez.tv/postador.php?do=searchupload&title='+titulo_game+'&status=1&type=game');
+window.open('https://filewarez.tv/postador.php?do=searchupload&title_title='+titulo_game+'&status=1&type=game');
 };
 
 }
