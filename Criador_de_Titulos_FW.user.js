@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.36
+// @version      1.37
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -1198,10 +1198,11 @@ carregador.addEventListener('change', function(e) {
             audio[0] = audio[0].toLowerCase();
             var canais0 = content.split('Channel(s):');
             //var canais = canais0[1].split('Channel');
-                var canais = canais0[1].split(/\n/);
+            var canais = canais0[1].split(/\n/);
             var canais2 = canais0[2];
             var array_audio;
             var linguagem0 = canais0[1].split('Language:');
+	    if(linguagem0[1]){
             var linguagem = linguagem0[1].split(/\n/);
             linguagem[0] = linguagem[0].toLowerCase();
             var language_array;
@@ -1221,7 +1222,8 @@ carregador.addEventListener('change', function(e) {
                 language_array = ('french');
             $('#cfield_language').val(language_array);}
             console.log(linguagem[0]);
-
+	    }
+		    
             if (canais2){
                 canais2 = canais0[2].split('Channel');
 
