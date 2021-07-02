@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.37
+// @version      1.38
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -1472,7 +1472,7 @@ function capitalize(s){//FUNÇÃO PRIMEIRA LETRA DE CADA PALAVRA EM MAIUSCULO
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
 if (window.location.href.indexOf("https://www.imdb.com/title") != -1 ) {
-if(document.getElementById('titleYear') || document.getElementsByClassName('ipc-inline-list__item')[0].innerText != 'TV Series' && document.getElementsByClassName('ipc-inline-list__item')[0].innerText != ''){
+if(document.getElementById('titleYear') || !document.getElementsByClassName('ipc-inline-list__item')[0].innerText.includes("Series") && document.getElementsByClassName('ipc-inline-list__item')[0].innerText != ''){
     var img = new Image();
     img.src = 'https://i.imgur.com/jqqCux6.png';
     img.title ='Buscar Uploads';
@@ -1622,7 +1622,7 @@ var id = doc1[1].split('/');
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-if(document.getElementsByClassName('bp_item np_episode_guide np_right_arrow')[0] || document.getElementsByClassName('ipc-inline-list__item')[0].innerText == 'TV Series'){
+if(document.getElementsByClassName('bp_item np_episode_guide np_right_arrow')[0] || document.getElementsByClassName('ipc-inline-list__item')[0].innerText.includes("Series")){
     var img = new Image();
     img.src = 'https://i.imgur.com/jqqCux6.png';
     img.title ='Buscar Uploads';
