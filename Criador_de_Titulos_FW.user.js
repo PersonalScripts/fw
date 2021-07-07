@@ -1,11 +1,13 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.38
+// @version      1.39
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=tvshow
+// @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=cartoon
+// @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=anime
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=game
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=xxx
 // @include     https://filewarez.tv/postador.php
@@ -28,6 +30,7 @@
 // @require http://code.jquery.com/jquery-3.4.1.min.js
 // @require https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js
 // @require     https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js
+// @require     https://code.jquery.com/ui/1.12.1/jquery-ui.js
 // ==/UserScript==
 
 if (window.location.href.indexOf("https://www.fw.artvetro.com.br/") != -1 || window.location.href.indexOf("http://www.fw.artvetro.com.br/") != -1) {
@@ -321,6 +324,112 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
     document.getElementById('cfield_trailer').value = yt_series;
     document.getElementById('cfield_season').value = temporada;
     document.getElementById('cfield_episodes').value = episodios_series;
+            GM_setValue('o_titulo', "");
+            GM_setValue('titulo', "");
+            GM_setValue('genero', "");
+            GM_setValue('minutos', "");
+            GM_setValue('ano', "");
+            GM_setValue('criador', "");
+            GM_setValue('temp', "");
+            GM_setValue('episodios', "");
+            GM_setValue('imdb', "");
+            GM_setValue('site', "");
+            GM_setValue('actor', "");
+            GM_setValue('sinopse', "");
+            GM_setValue('yt', "");
+
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////SET DE DESENHOS
+else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addtitle&step=2&type=cartoon") != -1){
+    var o_titulo_cartoon = GM_getValue('o_titulo');
+    var titulo_cartoon = GM_getValue('titulo');
+    var genre_cartoon = GM_getValue('genero');
+    var minutos_cartoon = GM_getValue('minutos');
+    var year_cartoon = GM_getValue('ano');
+    var criador_cartoon = GM_getValue('criador');
+    var imdb_cartoon = GM_getValue('imdb');
+    var site_cartoon = GM_getValue('site');
+    var actor_cartoon = GM_getValue('actor');
+    var sumario_cartoon = GM_getValue('sinopse');
+    var yt_cartoon = GM_getValue('yt');
+    var temporada_cartoon = GM_getValue('temp');
+    var episodios_cartoon = GM_getValue('episodios');
+    document.getElementById('cfield_title').value = o_titulo_cartoon;
+    document.getElementById('cfield_title_translated').value = titulo_cartoon;
+    //Genre utiliza JQuery para selecionar mais de um, utilizando array
+    genre_cartoon = genre_cartoon.replace(/comedy/g, "commedy");
+    genre_cartoon = genre_cartoon.replace(/mystery/g, "mistery");
+    genre_cartoon = genre_cartoon.replace(/horror/g, "terror");
+    genre_cartoon = genre_cartoon.replace(/ /g, ",");
+    var genre_array_cartoon = genre_cartoon.split(',');
+    console.log(genre_array_cartoon);
+    $('#cfield_genre').next().remove();
+    $('#cfield_genre').select2({width: "100%"});
+    $('#cfield_genre').val(genre_array_cartoon).trigger("change");
+    document.getElementById('cfield_duration').value = minutos_cartoon;
+    document.getElementById('cfield_year').value = year_cartoon;
+    document.getElementById('cfield_creator').value = criador_cartoon;
+    document.getElementById('cfield_imdb').value = imdb_cartoon;
+    document.getElementById('cfield_site').value = site_cartoon;
+    document.getElementById('cfield_cast').value = actor_cartoon;
+    document.getElementById('cfield_summary').value = sumario_cartoon;
+    document.getElementById('cfield_trailer').value = yt_cartoon;
+    document.getElementById('cfield_season').value = temporada_cartoon;
+    document.getElementById('cfield_episodes').value = episodios_cartoon;
+            GM_setValue('o_titulo', "");
+            GM_setValue('titulo', "");
+            GM_setValue('genero', "");
+            GM_setValue('minutos', "");
+            GM_setValue('ano', "");
+            GM_setValue('criador', "");
+            GM_setValue('temp', "");
+            GM_setValue('episodios', "");
+            GM_setValue('imdb', "");
+            GM_setValue('site', "");
+            GM_setValue('actor', "");
+            GM_setValue('sinopse', "");
+            GM_setValue('yt', "");
+
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////SET DE ANIMES
+else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addtitle&step=2&type=anime") != -1){
+    var o_titulo_anime = GM_getValue('o_titulo');
+    var titulo_anime = GM_getValue('titulo');
+    var genre_anime = GM_getValue('genero');
+    var minutos_anime = GM_getValue('minutos');
+    var year_anime = GM_getValue('ano');
+    var criador_anime = GM_getValue('criador');
+    var imdb_anime = GM_getValue('imdb');
+    var site_anime = GM_getValue('site');
+    var actor_anime = GM_getValue('actor');
+    var sumario_anime = GM_getValue('sinopse');
+    var yt_anime = GM_getValue('yt');
+    var temporada_anime = GM_getValue('temp');
+    var episodios_anime = GM_getValue('episodios');
+    document.getElementById('cfield_title').value = o_titulo_anime;
+    document.getElementById('cfield_title_translated').value = titulo_anime;
+    //Genre utiliza JQuery para selecionar mais de um, utilizando array
+    genre_anime = genre_anime.replace(/comedy/g, "commedy");
+    genre_anime = genre_anime.replace(/mystery/g, "mistery");
+    genre_anime = genre_anime.replace(/horror/g, "terror");
+    genre_anime = genre_anime.replace(/ /g, ",");
+    var genre_array_anime = genre_anime.split(',');
+    console.log(genre_array_anime);
+    $('#cfield_genre').next().remove();
+    $('#cfield_genre').select2({width: "100%"});
+    $('#cfield_genre').val(genre_array_anime).trigger("change");
+    document.getElementById('cfield_duration').value = minutos_anime;
+    document.getElementById('cfield_year').value = year_anime;
+    document.getElementById('cfield_creator').value = criador_anime;
+    //document.getElementById('cfield_imdb').value = imdb_anime;
+    //document.getElementById('cfield_site').value = site_anime;
+    document.getElementById('cfield_cast').value = actor_anime;
+    document.getElementById('cfield_summary').value = sumario_anime;
+    document.getElementById('cfield_trailer').value = yt_anime;
+    //document.getElementById('cfield_season').value = temporada_anime;
+    document.getElementById('cfield_episodes').value = episodios_anime;
             GM_setValue('o_titulo', "");
             GM_setValue('titulo', "");
             GM_setValue('genero', "");
@@ -1730,7 +1839,26 @@ var id = doc1[1].split('/');
             GM_setValue('exinfo', doc.getElementById("exinfo").innerText);
             console.log(doc.getElementById("img").innerText);
             GM_setValue('img', doc.getElementById("img").innerText);
-            window.open("https://filewarez.tv/postador.php?do=addtitle&step=2&type=tvshow");
+            if(genero_imdb.includes('animation')){
+                $("head").append (
+    '<link href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" '
+  + 'rel="stylesheet" type="text/css">'
+);
+            var dialog = $('<p>Onde deseja criar o título ?</p>').dialog({
+                resizable: false,
+      height: "auto",
+      width: 400,
+            buttons: {
+                "Desenhos": function() {window.open("https://filewarez.tv/postador.php?do=addtitle&step=2&type=cartoon");},
+                "Animes":  function() {window.open("https://filewarez.tv/postador.php?do=addtitle&step=2&type=anime");},
+                "Séries":  function() {
+                    window.open("https://filewarez.tv/postador.php?do=addtitle&step=2&type=tvshow");
+                }
+            }
+        });
+        }else{
+           window.open("https://filewarez.tv/postador.php?do=addtitle&step=2&type=tvshow");
+}
 
 })
         .fail(function(jqXHR, textStatus, msg){
