@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.39
+// @version      1.40
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -1849,10 +1849,11 @@ var id = doc1[1].split('/');
       height: "auto",
       width: 400,
             buttons: {
-                "Desenhos": function() {window.open("https://filewarez.tv/postador.php?do=addtitle&step=2&type=cartoon");},
-                "Animes":  function() {window.open("https://filewarez.tv/postador.php?do=addtitle&step=2&type=anime");},
+                "Desenhos": function() {window.open("https://filewarez.tv/postador.php?do=addtitle&step=2&type=cartoon");$( this ).dialog( "close" );},
+                "Animes":  function() {window.open("https://filewarez.tv/postador.php?do=addtitle&step=2&type=anime");$( this ).dialog( "close" );},
                 "Séries":  function() {
                     window.open("https://filewarez.tv/postador.php?do=addtitle&step=2&type=tvshow");
+			$( this ).dialog( "close" );
                 }
             }
         });
