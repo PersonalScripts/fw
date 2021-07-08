@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.42
+// @version      1.43
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -1739,8 +1739,8 @@ img.onclick = function() {
                     useBootstrap: false,
                     boxWidth: '18%',
                buttons: {
-                "Títulos": {btnClass: 'btn-orange text-dark',action: function() {window.open("https://filewarez.tv/postador.php?do=searchtitle&title_imdb="+imdbId+"&status=1&type=tvshow");}},
-                "Uploads":  {btnClass: 'btn-orange text-dark',action: function() {window.open("https://filewarez.tv/postador.php?do=searchupload&title_imdb="+imdbId+"&status=1&type=tvshow");}}
+                "Títulos": {btnClass: 'btn-orange text-dark',action: function() {window.open("https://filewarez.tv/postador.php?do=searchtitle&title_imdb="+imdbId+"&status=1");}},
+                "Uploads":  {btnClass: 'btn-orange text-dark',action: function() {window.open("https://filewarez.tv/postador.php?do=searchupload&title_imdb="+imdbId+"&status=1");}}
                }
         });
 };
