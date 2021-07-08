@@ -31,6 +31,7 @@
 // @require https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js
 // @require     https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js
 // @require     https://code.jquery.com/ui/1.12.1/jquery-ui.js
+// @require     https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js
 // ==/UserScript==
 
 if (window.location.href.indexOf("https://www.fw.artvetro.com.br/") != -1 || window.location.href.indexOf("http://www.fw.artvetro.com.br/") != -1) {
@@ -423,7 +424,7 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
     document.getElementById('cfield_duration').value = minutos_anime;
     document.getElementById('cfield_year').value = year_anime;
     document.getElementById('cfield_creator').value = criador_anime;
-    //document.getElementById('cfield_imdb').value = imdb_anime;
+    document.getElementById('cfield_imdb').value = imdb_anime;
     //document.getElementById('cfield_site').value = site_anime;
     document.getElementById('cfield_cast').value = actor_anime;
     document.getElementById('cfield_summary').value = sumario_anime;
@@ -456,7 +457,7 @@ if (window.location.href.indexOf('https://filewarez.tv/postador.php?do=edittitle
 if(document.getElementById('cfield_imdb')){
     var img = new Image();
     img.src = 'https://i.imgur.com/jqqCux6.png';
-    img.title ='Atualizar Título (Filmes e Séries)';
+    img.title ='Atualizar Título (Filmes/Séries/Desenhos/Animes)';
     img.style ="float:left;margin-top:5px;";
     img.id = "img_edit";
     img.addEventListener("mouseover", function(){img.src = 'https://i.imgur.com/HLfKSIH.png';});
@@ -471,29 +472,19 @@ if(document.getElementById('cfield_imdb')){
     elencotmdb.src = 'https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_1-5bdc75aaebeb75dc7ae79426ddd9be3b2be1e342510f8202baf6bffa71d7f5c4.svg';
     elencosemfoto.src = 'https://i.imgur.com/pcTy5ku.png';
     preview_actors.src = 'https://i.imgur.com/hV9FqXR.png';
-    elencoimdb.style ="float:left;margin-top:5px;margin-right:5px;height:20px;";
-    elencotmdb.style ="float:left;margin-top:5px;margin-right:5px;height:20px;width:31px;";
-    elencosemfoto.style ="float:left;margin-top:5px;height:20px;width:23px;";
+    elencoimdb.style ="float:left;margin-bottom:5px;margin-right:5px;height:20px;";
+    elencotmdb.style ="float:left;margin-bottom:5px;margin-right:5px;height:20px;width:31px;";
+    elencosemfoto.style ="float:left;margin-bottom:5px;height:20px;width:23px;";
     preview_actors.style ="float:left;margin-top:5px;margin-left:5px;height:17px;width:27px;";
     elencoimdb.title ='Atualizar Elenco com IMDB (Com Fotos)';
     elencotmdb.title ='Atualizar Elenco com TMDB (Com Fotos)';
     elencosemfoto.title ='Atualizar Elenco IMDB (Apenas Texto)';
     preview_actors.title ='Preview do Elenco';
-    if(document.getElementById('cfield_episodes')){
-    var localelenco = document.getElementsByClassName('input')[11];
-    var localelenco1 = document.getElementsByClassName('blockrow postador_field')[11];
-    localelenco.appendChild(elencoimdb);
-    localelenco.appendChild(elencotmdb);
-    localelenco.appendChild(elencosemfoto);
-    localelenco1.appendChild(preview_actors);
-    }else{
-    var localelenco = document.getElementsByClassName('input')[8];
-    var localelenco1 = document.getElementsByClassName('blockrow postador_field')[8];
-    localelenco.appendChild(elencoimdb);
-    localelenco.appendChild(elencotmdb);
-    localelenco.appendChild(elencosemfoto);
-    localelenco1.appendChild(preview_actors);
-    }
+    var localelenco = document.getElementById("cfield_cast");
+    localelenco.before(elencoimdb);
+    localelenco.before(elencotmdb);
+    localelenco.before(elencosemfoto);
+    localelenco.after(preview_actors);
 
 var style = document.createElement('style');
 
@@ -749,7 +740,7 @@ if (curiosidades == "" || curiosidades.indexOf('[b]Produ') > -1 || curiosidades.
     document.getElementById('cfield_curiosity').value = exinfo + '\n' + curiosidades;}
 })
         .fail(function(jqXHR, textStatus, msg){
- alert(msg);
+ alert('Falhou!');
    });
       }
 });
@@ -781,7 +772,7 @@ elencoimdb.addEventListener('click', function () {
     GM_setValue('img', doc.getElementById("img").innerText);
 })
         .fail(function(jqXHR, textStatus, msg){
- alert(msg);
+ alert('Falhou!');
    });
     })
 
@@ -812,7 +803,7 @@ elencotmdb.addEventListener('click', function () {
     GM_setValue('img', doc.getElementById("img").innerText);
 })
         .fail(function(jqXHR, textStatus, msg){
- alert(msg);
+ alert('Falhou!');
    });
     })
 
@@ -843,7 +834,7 @@ elencosemfoto.addEventListener('click', function () {
     GM_setValue('img', doc.getElementById("img").innerText);
 })
         .fail(function(jqXHR, textStatus, msg){
- alert(msg);
+ alert('Falhou!');
    });
     })
 
@@ -1581,6 +1572,28 @@ function capitalize(s){//FUNÇÃO PRIMEIRA LETRA DE CADA PALAVRA EM MAIUSCULO
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
 if (window.location.href.indexOf("https://www.imdb.com/title") != -1 ) {
+    $("head").append (
+    '<link href="//stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" '
+  + 'rel="stylesheet" type="text/css">'
+);
+    $("head").append (
+    '<link href="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css" '
+  + 'rel="stylesheet" type="text/css">'
+);
+                $("head").append (
+    '<link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" '
+  + 'rel="stylesheet" type="text/css">'
+);
+                $("head").append (
+    '<link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" '
+  + 'rel="stylesheet" type="text/css">'
+);
+$("head").append (
+    '<link href="//cdn.rawgit.com/raphaelfabeni/css-loader/7090f306bff5627b5b94c3607306838db7df7396/dist/css-loader.css" '
+  + 'rel="stylesheet" type="text/css">'
+);
+var divwait = `<div class="loader loader-bouncing is-active"></div>`;
+
 if(document.getElementById('titleYear') || !document.getElementsByClassName('ipc-inline-list__item')[0].innerText.includes("Series") && document.getElementsByClassName('ipc-inline-list__item')[0].innerText != ''){
     var img = new Image();
     img.src = 'https://i.imgur.com/jqqCux6.png';
@@ -1654,6 +1667,7 @@ window.open('https://filewarez.tv/postador.php?do=searchupload&title_title='+tit
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 criar.addEventListener('click', function () {
+$("body").prepend(divwait);
 var page= window.location.href;
 var doc1 = page.split('/title/');
 var id = doc1[1].split('/');
@@ -1677,7 +1691,8 @@ var id = doc1[1].split('/');
                 title: 'PvP diz:', timeout: '1700', text: 'Informações Inseridas!'
             } );
             //console.log(msg);
-    var doc = new DOMParser().parseFromString(msg, 'text/html');
+            document.getElementsByClassName("loader loader-bouncing is-active")[0].remove();
+            var doc = new DOMParser().parseFromString(msg, 'text/html');
             GM_setValue('o_titulo', doc.getElementById("o_titulo").innerText);
             GM_setValue('titulo', doc.getElementById("titulo").innerText);
             var genero_imdb = doc.getElementById("genero").innerText;
@@ -1700,7 +1715,7 @@ var id = doc1[1].split('/');
 
 })
         .fail(function(jqXHR, textStatus, msg){
- alert(msg);
+ alert('Falhou!');
    });
 
 })
@@ -1796,6 +1811,7 @@ window.open('https://filewarez.tv/postador.php?do=searchupload&title_title='+tit
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 criar.addEventListener('click', function () {
+$("body").prepend(divwait);
 var page= window.location.href;
 var doc1 = page.split('/title/');
 var id = doc1[1].split('/');
@@ -1819,7 +1835,8 @@ var id = doc1[1].split('/');
                 title: 'PvP diz:', timeout: '1700', text: 'Informações Inseridas!'
             } );
             //console.log(msg);
-    var doc = new DOMParser().parseFromString(msg, 'text/html');
+            document.getElementsByClassName("loader loader-bouncing is-active")[0].remove();
+            var doc = new DOMParser().parseFromString(msg, 'text/html');
             GM_setValue('o_titulo', doc.getElementById("o_titulo").innerText);
             GM_setValue('titulo', doc.getElementById("titulo").innerText);
             var genero_imdb = doc.getElementById("genero").innerText;
@@ -1840,22 +1857,28 @@ var id = doc1[1].split('/');
             console.log(doc.getElementById("img").innerText);
             GM_setValue('img', doc.getElementById("img").innerText);
             if(genero_imdb.includes('animation')){
-                $("head").append (
-    '<link href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" '
-  + 'rel="stylesheet" type="text/css">'
-);
-            var dialog = $('<p>Onde deseja criar o título ?</p>').dialog({
-                resizable: false,
-      height: "auto",
-      width: 400,
-            buttons: {
-                "Desenhos": function() {window.open("https://filewarez.tv/postador.php?do=addtitle&step=2&type=cartoon");$( this ).dialog( "close" );},
-                "Animes":  function() {window.open("https://filewarez.tv/postador.php?do=addtitle&step=2&type=anime");$( this ).dialog( "close" );},
-                "Séries":  function() {
-                    window.open("https://filewarez.tv/postador.php?do=addtitle&step=2&type=tvshow");
-			$( this ).dialog( "close" );
-                }
-            }
+
+                var a = $.confirm({
+               theme: 'dark',
+               title: 'Escolha para continuar...',
+               content: 'Uma animação foi detectada. Escolha a área adequada a qual deseja criar o título:',
+               columnClass: 'small',
+               closeIcon: true,
+               type: 'orange',
+               backgroundDismiss: true,
+               icon: 'fa fa-spinner fa-spin',
+               draggable: false,
+               animation: 'scaleY',
+               animationBounce: 2.5,
+               animationSpeed: 1000,
+               closeAnimation: 'scale',
+                    useBootstrap: false,
+                    boxWidth: '20%',
+               buttons: {
+                "Desenhos": {btnClass: 'btn-orange text-dark',action: function() {window.open("https://filewarez.tv/postador.php?do=addtitle&step=2&type=cartoon");}},
+                "Animes":  {btnClass: 'btn-orange text-dark',action: function() {window.open("https://filewarez.tv/postador.php?do=addtitle&step=2&type=anime");}},
+                "Séries":  {btnClass: 'btn-orange text-dark',action: function() {window.open("https://filewarez.tv/postador.php?do=addtitle&step=2&type=tvshow");}}
+               }
         });
         }else{
            window.open("https://filewarez.tv/postador.php?do=addtitle&step=2&type=tvshow");
@@ -1863,7 +1886,7 @@ var id = doc1[1].split('/');
 
 })
         .fail(function(jqXHR, textStatus, msg){
- alert(msg);
+ alert('Falhou!');
    });
 
 })
@@ -2071,7 +2094,7 @@ console.log(msg);
     GM_setValue('img', doc.getElementById("img").innerText);
 })
         .fail(function(jqXHR, textStatus, msg){
- alert('FALHOU');
+ alert('Falhou!');
    });
    }
 })
