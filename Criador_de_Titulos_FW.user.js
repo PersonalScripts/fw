@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.43
+// @version      1.44
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -485,7 +485,45 @@ if(document.getElementById('cfield_imdb')){
     localelenco.before(elencotmdb);
     localelenco.before(elencosemfoto);
     localelenco.after(preview_actors);
+    if(document.getElementById('cfield_myanimelist')){
+        var elencomal = new Image();
+        elencomal.src = 'https://i.imgur.com/wAzTPtT.png';
+        elencomal.style ="float:left;margin-top:1px;margin-left:5px;height:18px;";
+        elencomal.title ='Atualizar Elenco MAL (MyAnimeList)';
+        elencomal.id ='myanimelist';
+        localelenco.before(elencomal);
+        if(document.getElementById('myanimelist')){
+        elencomal.addEventListener('click', function () {
+            var site = $('#cfield_myanimelist').val();
+        $.ajax({
+          url : "https://www.fw.artvetro.com.br/filmes2-animes.php",
+          type : 'post',
 
+          data : {
+               copia:site
+          },
+          beforeSend : function(){
+               GM_notification ( {
+                title: 'PvP diz:', timeout: '1700', text: 'Buscando Informações!'
+            } );
+          }
+     	})
+     	.done(function(msg){
+ 	GM_notification ( {
+                title: 'PvP diz:', timeout: '1700', text: 'Informações Atualizadas!'
+            } );
+            console.log(msg);
+    	var doc = new DOMParser().parseFromString(msg, 'text/html');
+    	var actor = doc.getElementById("actor").innerText;
+    	document.getElementById('cfield_cast').value = actor;
+	})
+        .fail(function(jqXHR, textStatus, msg){
+	alert('Falhou!');
+   	});
+    	})
+        }
+    }
+	
 var style = document.createElement('style');
 
 function myFunc () {
