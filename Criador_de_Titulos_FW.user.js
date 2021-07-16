@@ -752,7 +752,7 @@ var curiosidades = document.getElementById('cfield_curiosity').value;
 
     document.getElementById('cfield_duration').value = minutos;
     
-    if (director != ""){
+    if (document.getElementById('cfield_direction') && director != ""){
     document.getElementById('cfield_direction').value = director;}
     document.getElementById('cfield_imdb').value = imdb;
     document.getElementById('cfield_site').value = site;
