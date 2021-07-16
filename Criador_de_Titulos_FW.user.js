@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.47
+// @version      1.50
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -704,7 +704,9 @@ div.modal-body {
     var criador = doc.getElementById("criador").innerText;
     var episodios = doc.getElementById("episodios").innerText;
     var temp = doc.getElementById("temp").innerText;
+	    if (criador != ""){
     document.getElementById('cfield_creator').value = criador;
+	    }
     document.getElementById('cfield_episodes').value = episodios;
 	    if (document.getElementById('cfield_season')){
     document.getElementById('cfield_season').value = temp;
