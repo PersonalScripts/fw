@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.44
+// @version      1.45
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -516,6 +516,13 @@ if(document.getElementById('cfield_imdb')){
     	var doc = new DOMParser().parseFromString(msg, 'text/html');
     	var actor = doc.getElementById("actor").innerText;
     	document.getElementById('cfield_cast').value = actor;
+	var studio = doc.getElementById("studio").innerText;
+    	var epi_anime = doc.getElementById("epi_anime").innerText;
+    	document.getElementById('cfield_cast').value = actor;
+    	document.getElementById('cfield_studio').value = studio;
+            if(epi_anime !='' || epi_anime !='~'){
+    	document.getElementById('cfield_episodes').value = epi_anime;
+            }	
 	})
         .fail(function(jqXHR, textStatus, msg){
 	alert('Falhou!');
@@ -699,7 +706,9 @@ div.modal-body {
     var temp = doc.getElementById("temp").innerText;
     document.getElementById('cfield_creator').value = criador;
     document.getElementById('cfield_episodes').value = episodios;
+	    if (document.getElementById('cfield_season')){
     document.getElementById('cfield_season').value = temp;
+	    }
     //document.getElementById('cfield_summary').value ="";
     }else{
     var sumario = doc.getElementById("sinopse").innerText;
@@ -714,7 +723,9 @@ div.modal-body {
 
     var director = doc.getElementById("direcao").innerText;
     var imdb = doc.getElementById("imdb").innerText;
+	if(document.getElementById('cfield_site')){
     var site = doc.getElementById("site").innerText;
+	}
     var actor = doc.getElementById("actor").innerText;
     
     
