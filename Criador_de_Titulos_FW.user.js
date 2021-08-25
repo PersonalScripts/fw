@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.51
+// @version      1.52
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -1076,6 +1076,8 @@ function parse_mediainfo(content){
             //NOME DO RELEASE
             var release0 = content.split('Completename:');
             var release = release0[1].split(/\n/);
+	    var pathOut = release[0].substring(0, release[0].lastIndexOf('/')) + '/';
+            content_mediainfo = content_mediainfo.replace(pathOut, "", "g");
             var tipodearquivo = release0[1].split('Format:');
             release[0] = release[0].replace(/mp4/g, "");
             release[0] = release[0].replace(/mkv/g, "");
@@ -1604,9 +1606,13 @@ var carregador = document.getElementById('carregador');
 
 ler_mediainfo.addEventListener('click', function(e) {
     var content = document.getElementById('cfield_description').value;
-    console.log(content);
+    if(content != ""){
     parse_mediainfo(content);
-})
+    }else{
+    navigator.clipboard.readText().then(
+    clipText => parse_mediainfo(clipText));
+    }
+});
 carregador.addEventListener('change', function(e) {
     var file = carregador.files[0];
     var textType = /text.*/;
