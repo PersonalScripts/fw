@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.50
+// @version      1.51
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -1067,28 +1067,8 @@ var enviando_titulo = document.getElementById("cfield_title");
 
 if (window.location.href.indexOf('https://filewarez.tv/postador.php?do=addupload') != -1){
 
-var input = document.createElement('input');
-var brazzers = document.createElement('button');
-brazzers.innerHTML = "Do Something";
-brazzers.id = "bz";
-input.type = "file";
-input.id = "carregador";
-input.accept=".txt";
-input.style = "top:0;right:0;position:fixed;z-index:99999;padding:17.5px;background:rgba(0,0,0,0.5) none;cursor:pointer;";
-document.body.appendChild(input);
-
-var carregador = document.getElementById('carregador');
-
-carregador.addEventListener('change', function(e) {
-    var file = carregador.files[0];
-    var textType = /text.*/;
-
-    if (file.type.match(textType)) {
-        var reader = new FileReader();
-
-        reader.onload = function(e) {
-            var content = reader.result;
-            var content_mediainfo = content;
+function parse_mediainfo(content){
+    var content_mediainfo = content;
             content = content.replace(/ /g, "");
             //content = content.replace(/:/g, ": ");
             content = content.replace(/GiB/g, " GB");
@@ -1374,7 +1354,7 @@ carregador.addEventListener('change', function(e) {
             $('#cfield_language').val(language_array);}
             console.log(linguagem[0]);
 	    }
-		    
+
             if (canais2){
                 canais2 = canais0[2].split('Channel');
 
@@ -1590,6 +1570,9 @@ function capitalize(s){//FUNÇÃO PRIMEIRA LETRA DE CADA PALAVRA EM MAIUSCULO
             release[0] = release[0].replace(/Bdrip/g, "BDRip");
             release[0] = release[0].replace(/Brrip/g, "BRRip");
             release[0] = release[0].replace(/Unrated/g, "UNRATED");
+            release[0] = release[0].replace(/Repack/g, "REPACK");
+            release[0] = release[0].replace(/PIGNUS/g, "PiGNUS");
+            release[0] = release[0].replace(/WOAT/g, "WoAT");
             $('#cfield_title').val(release[0]);
             $('#cfield_size').val(tam[0]);
             $('#cfield_resolution').val(width[0]+'x'+height[0]);
@@ -1602,6 +1585,38 @@ function capitalize(s){//FUNÇÃO PRIMEIRA LETRA DE CADA PALAVRA EM MAIUSCULO
             //alert(content);
 
 }
+}
+
+var input = document.createElement('input');
+var ler_mediainfo = document.createElement('button');
+ler_mediainfo.innerHTML = "<img src='https://i.imgur.com/Iga9vd2.png?1' width='20'/>";
+ler_mediainfo.id = "MI";
+ler_mediainfo.style = "background: none;color: inherit;border: none;padding: 0;font: inherit;cursor: pointer;outline: inherit;";
+ler_mediainfo.title = "Ler Mediainfo dos Comentários do Uploader";
+input.type = "file";
+input.id = "carregador";
+input.accept=".txt";
+input.style = "top:0;right:0;position:fixed;z-index:99999;padding:17.5px;background:rgba(0,0,0,0.5) none;cursor:pointer;";
+document.body.appendChild(input);
+document.getElementById('cfield_description').before(ler_mediainfo);
+
+var carregador = document.getElementById('carregador');
+
+ler_mediainfo.addEventListener('click', function(e) {
+    var content = document.getElementById('cfield_description').value;
+    console.log(content);
+    parse_mediainfo(content);
+})
+carregador.addEventListener('change', function(e) {
+    var file = carregador.files[0];
+    var textType = /text.*/;
+
+    if (file.type.match(textType)) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            var content = reader.result;
+            parse_mediainfo(content);
         }
 
         reader.readAsText(file);
