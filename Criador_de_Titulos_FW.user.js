@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.54
+// @version      1.55
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -1285,8 +1285,12 @@ function parse_mediainfo(content){
             }
             if (release[0].indexOf('2160p') > -1){
                 $('#cfield_forumid').val('1403');
-            }if (release[0].indexOf('WEB') > -1 ){
+            }if (release[0].indexOf('WEB-') > -1 ){
                 $('#cfield_sourcetype').val('webdl');
+            }if (release[0].indexOf(' WEB ') > -1 ){
+                $('#cfield_sourcetype').val('web');
+            }if (release[0].indexOf('WEBRip') > -1 ){
+                $('#cfield_sourcetype').val('webrip');
             }if (release[0].indexOf('BluRay') > -1 || release[0].indexOf('Bluray') > -1 || release[0].indexOf('bluray') > -1){
                 $('#cfield_sourcetype').val('bluray');
             }if (release[0].indexOf('BRRip') > -1 || release[0].indexOf('brrip') > -1){
@@ -1564,8 +1568,11 @@ function parse_mediainfo(content){
             }
             
             release[0] = release[0].replace(/5 1 /g, "5.1 ");
+            release[0] = release[0].replace(/5 1-/g, "5.1-");
             release[0] = release[0].replace(/2 0 /g, "2.0 ");
+            release[0] = release[0].replace(/2 0-/g, "2.0-");
             release[0] = release[0].replace(/7 1 /g, "7.1 ");
+            release[0] = release[0].replace(/7 1-/g, "7.1-");
             release[0] = release[0].replace(/ H 264/g, " H264");
             release[0] = release[0].replace(/ X264/g, " x264");
             release[0] = release[0].replace(/Bdrip/g, "BDRip");
