@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.52
+// @version      1.54
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -1066,7 +1066,9 @@ var enviando_titulo = document.getElementById("cfield_title");
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 if (window.location.href.indexOf('https://filewarez.tv/postador.php?do=addupload') != -1){
-
+function capitalize(s){//FUNÇÃO PRIMEIRA LETRA DE CADA PALAVRA EM MAIUSCULO
+    return s.toLowerCase().replace( /\b./g, function(a){ return a.toUpperCase(); } );
+};
 function parse_mediainfo(content){
     var content_mediainfo = content;
             content = content.replace(/ /g, "");
@@ -1083,6 +1085,13 @@ function parse_mediainfo(content){
             release[0] = release[0].replace(/mp4/g, "");
             release[0] = release[0].replace(/mkv/g, "");
             release[0] = release[0].replace(/\./g, " ");
+	    if(release[0] == release[0].toLowerCase()){
+              var release_lowercase = release[0].split('-');
+              release_lowercase[1] = release_lowercase[1].toUpperCase();
+              release_lowercase[0] = capitalize(release_lowercase[0]);
+              release[0] = release_lowercase[0].concat('-',release_lowercase[1]);
+              release[0] = release[0].replace(/Web/g, "WEB");
+            }
 //////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////// DVD-R ///////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
@@ -1546,11 +1555,6 @@ function parse_mediainfo(content){
             $('#cfield_audiocodec').val(array_audio);}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function capitalize(s){//FUNÇÃO PRIMEIRA LETRA DE CADA PALAVRA EM MAIUSCULO
-    return s.toLowerCase().replace( /\b./g, function(a){ return a.toUpperCase(); } );
-};
-                //////////////////////////////////
-
             if (release[0].indexOf(' HDR ') > -1){
                 $('#cfield_hdr').val('yes');}
             if (release[0].indexOf('/') > -1){
@@ -1558,13 +1562,7 @@ function capitalize(s){//FUNÇÃO PRIMEIRA LETRA DE CADA PALAVRA EM MAIUSCULO
             excl_path.reverse();
             release[0] = excl_path[0];
             }
-            if(release[0] == release[0].toLowerCase()){
-              var release_lowercase = release[0].split('-');
-              release_lowercase[1] = release_lowercase[1].toUpperCase();
-              release_lowercase[0] = capitalize(release_lowercase[0]);
-              release[0] = release_lowercase[0].concat('-',release_lowercase[1]);
-            }
-
+            
             release[0] = release[0].replace(/5 1 /g, "5.1 ");
             release[0] = release[0].replace(/2 0 /g, "2.0 ");
             release[0] = release[0].replace(/7 1 /g, "7.1 ");
@@ -1576,6 +1574,13 @@ function capitalize(s){//FUNÇÃO PRIMEIRA LETRA DE CADA PALAVRA EM MAIUSCULO
             release[0] = release[0].replace(/Repack/g, "REPACK");
             release[0] = release[0].replace(/PIGNUS/g, "PiGNUS");
             release[0] = release[0].replace(/WOAT/g, "WoAT");
+	    if (release[0].match(/\sS\d\de\d\d\s/g)) {
+                var regexseries = release[0].match(/\sS\d\de\d\d\s/g);
+                var regexseries_uppercase = regexseries[0].toUpperCase();
+                release[0] = release[0].replace(regexseries[0], regexseries_uppercase);
+	    } else {
+      	 	console.log('nao é série');
+ 	    }	    
             $('#cfield_title').val(release[0]);
             $('#cfield_size').val(tam[0]);
             $('#cfield_resolution').val(width[0]+'x'+height[0]);
