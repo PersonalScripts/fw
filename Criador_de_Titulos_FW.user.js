@@ -1076,8 +1076,9 @@ function parse_mediainfo(content){
             //NOME DO RELEASE
             var release0 = content.split('Completename:');
             var release = release0[1].split(/\n/);
-	    var pathOut = release[0].substring(0, release[0].lastIndexOf('/')) + '/';
+	    var pathOut = release[0].substring(0, release[0].lastIndexOf('\\')) + "\\";
             content_mediainfo = content_mediainfo.replace(pathOut, "", "g");
+            release[0] = release[0].split("\\").pop();
             var tipodearquivo = release0[1].split('Format:');
             release[0] = release[0].replace(/mp4/g, "");
             release[0] = release[0].replace(/mkv/g, "");
@@ -1320,7 +1321,7 @@ function parse_mediainfo(content){
             }else{
             if (release[0].indexOf('264') > -1 ){
                 $('#cfield_videocodec').val('h264');
-            }if (release[0].indexOf('265') > -1 ){
+            }if (release[0].indexOf('HEVC') > -1 ){
                 $('#cfield_videocodec').val('h265');
             }}
             //audios
