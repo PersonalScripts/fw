@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.55
+// @version      1.56
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -516,7 +516,7 @@ if(document.getElementById('cfield_imdb')){
     	var doc = new DOMParser().parseFromString(msg, 'text/html');
     	var actor = doc.getElementById("actor").innerText;
     	document.getElementById('cfield_cast').value = actor;
-	var studio = doc.getElementById("studio").innerText;
+        var studio = doc.getElementById("studio").innerText;
     	var epi_anime = doc.getElementById("epi_anime").innerText;
     	document.getElementById('cfield_cast').value = actor;
     	document.getElementById('cfield_studio').value = studio;
@@ -1040,7 +1040,7 @@ var enviando_titulo = document.getElementById("cfield_title");
     img_title.addEventListener("mouseover", function(){img_title.src = 'https://i.imgur.com/SVEClsJ.png';});
     img_title.addEventListener("mouseout", function(){img_title.src = 'https://i.imgur.com/jqqCux6.png';});
 
-   $("#cfield_title").keyup(function () {
+   $("#cfield_title").change(function () {
    if ($(this).val()) {
     $("#img_title").show();
     var local = document.getElementById('cfield_title');
@@ -1270,39 +1270,84 @@ function parse_mediainfo(content){
                 //$('#cfield_forumid').val('623');
                 //$('#cfield_forumid').val('375');
                 $('#cfield_forumid').val('623');
+                $('#cfield_forumid').next().remove();
+                $('#cfield_forumid').select2({width: "100%"});
+                $('#cfield_forumid').val('623').trigger("change");
                 var values = $('#cfield_forumid').val();
                 if (values == null){
-                $('#cfield_forumid').val('375');}
+                $('#cfield_forumid').val('375');
+                $('#cfield_forumid').next().remove();
+                $('#cfield_forumid').select2({width: "100%"});
+                $('#cfield_forumid').val('375').trigger("change");}
             }
             if (release[0].indexOf('HDRip') > -1 || release[0].indexOf('DVDScr') > -1){
                 $('#cfield_forumid').val('310');
+                $('#cfield_forumid').next().remove();
+                $('#cfield_forumid').select2({width: "100%"});
+                $('#cfield_forumid').val('310').trigger("change");
             }
             if (release[0].indexOf('BDRip') > -1 || release[0].indexOf('BRRip') > -1 || release[0].indexOf('bdrip') > -1 || release[0].indexOf('brrip') > -1){
                 $('#cfield_forumid').val('336');
+                $('#cfield_forumid').next().remove();
+                $('#cfield_forumid').select2({width: "100%"});
+                $('#cfield_forumid').val('336').trigger("change");
             }
             if (release[0].indexOf('CAM ') > -1 ){
                 $('#cfield_forumid').val('338');
+                $('#cfield_forumid').next().remove();
+                $('#cfield_forumid').select2({width: "100%"});
+                $('#cfield_forumid').val('338').trigger("change");
             }
             if (release[0].indexOf('2160p') > -1){
                 $('#cfield_forumid').val('1403');
+                $('#cfield_forumid').next().remove();
+                $('#cfield_forumid').select2({width: "100%"});
+                $('#cfield_forumid').val('1403').trigger("change");
             }if (release[0].indexOf('WEB-') > -1 ){
                 $('#cfield_sourcetype').val('webdl');
+                $('#cfield_sourcetype').next().remove();
+                $('#cfield_sourcetype').select2({width: "100%"});
+                $('#cfield_sourcetype').val('webdl').trigger("change");
             }if (release[0].indexOf(' WEB ') > -1 ){
                 $('#cfield_sourcetype').val('web');
+                $('#cfield_sourcetype').next().remove();
+                $('#cfield_sourcetype').select2({width: "100%"});
+                $('#cfield_sourcetype').val('web').trigger("change");
             }if (release[0].indexOf('WEBRip') > -1 ){
                 $('#cfield_sourcetype').val('webrip');
+                $('#cfield_sourcetype').next().remove();
+                $('#cfield_sourcetype').select2({width: "100%"});
+                $('#cfield_sourcetype').val('webrip').trigger("change");
             }if (release[0].indexOf('BluRay') > -1 || release[0].indexOf('Bluray') > -1 || release[0].indexOf('bluray') > -1){
                 $('#cfield_sourcetype').val('bluray');
+                $('#cfield_sourcetype').next().remove();
+                $('#cfield_sourcetype').select2({width: "100%"});
+                $('#cfield_sourcetype').val('bluray').trigger("change");
             }if (release[0].indexOf('BRRip') > -1 || release[0].indexOf('brrip') > -1){
                 $('#cfield_sourcetype').val('brrip');
+                $('#cfield_sourcetype').next().remove();
+                $('#cfield_sourcetype').select2({width: "100%"});
+                $('#cfield_sourcetype').val('brrip').trigger("change");
             }if (release[0].indexOf('BDRip') > -1 || release[0].indexOf('bdrip') > -1){
                 $('#cfield_sourcetype').val('bdrip');
+                $('#cfield_sourcetype').next().remove();
+                $('#cfield_sourcetype').select2({width: "100%"});
+                $('#cfield_sourcetype').val('bdrip').trigger("change");
             }if (tipodearquivo[0].indexOf('.mkv') > -1 ){
                 $('#cfield_format').val('mkv');
+                $('#cfield_format').next().remove();
+                $('#cfield_format').select2({width: "100%"});
+                $('#cfield_format').val('mkv').trigger("change");
             }if (tipodearquivo[0].indexOf('.ts') > -1 || tipodearquivo[0].indexOf('.TS') > -1){
                 $('#cfield_format').val('ts');
+                $('#cfield_format').next().remove();
+                $('#cfield_format').select2({width: "100%"});
+                $('#cfield_format').val('ts').trigger("change");
             }if (tipodearquivo[0].indexOf('.mp4') > -1 || tipodearquivo[0].indexOf('.MP4') > -1){
                 $('#cfield_format').val('mp4');
+                $('#cfield_format').next().remove();
+                $('#cfield_format').select2({width: "100%"});
+                $('#cfield_format').val('mp4').trigger("change");
             }
             //TAMANHO DO UPLOAD
             var tam0 = content.split('Filesize:');
@@ -1322,20 +1367,38 @@ function parse_mediainfo(content){
             }else{
                 fps_final = fps[0];
             }
+
             //library
             var library0 = content.split('Writinglibrary:');
             var library = library0[2];
             if (library){
                 if (library.indexOf('264') > -1 ){
                 $('#cfield_videocodec').val('h264');
+                $('#cfield_videocodec').next().remove();
+                $('#cfield_videocodec').select2({width: "100%"});
+                $('#cfield_videocodec').val('h264').trigger("change");
             }if (library.indexOf('265') > -1 ){
                 $('#cfield_videocodec').val('h265');
+                $('#cfield_videocodec').next().remove();
+                $('#cfield_videocodec').select2({width: "100%"});
+                $('#cfield_videocodec').val('h265').trigger("change");
             }
             }else{
             if (release[0].indexOf('264') > -1 ){
                 $('#cfield_videocodec').val('h264');
+                $('#cfield_videocodec').next().remove();
+                $('#cfield_videocodec').select2({width: "100%"});
+                $('#cfield_videocodec').val('h264').trigger("change");
             }if (release[0].indexOf('HEVC') > -1 ){
                 $('#cfield_videocodec').val('h265');
+                $('#cfield_videocodec').next().remove();
+                $('#cfield_videocodec').select2({width: "100%"});
+                $('#cfield_videocodec').val('h265').trigger("change");
+            }if (release[0].indexOf('H265') > -1 ){
+                $('#cfield_videocodec').val('h265');
+                $('#cfield_videocodec').next().remove();
+                $('#cfield_videocodec').select2({width: "100%"});
+                $('#cfield_videocodec').val('h265').trigger("change");
             }}
             //audios
             var som = content.split('Format/Info:');
@@ -1345,31 +1408,42 @@ function parse_mediainfo(content){
             audio[0] = audio[0].toLowerCase();
             var canais0 = content.split('Channel(s):');
             //var canais = canais0[1].split('Channel');
-            var canais = canais0[1].split(/\n/);
+                var canais = canais0[1].split(/\n/);
             var canais2 = canais0[2];
             var array_audio;
+
             var linguagem0 = canais0[1].split('Language:');
-	    if(linguagem0[1]){
+            if(linguagem0[1]){
             var linguagem = linguagem0[1].split(/\n/);
             linguagem[0] = linguagem[0].toLowerCase();
             var language_array;
             if (linguagem[0].indexOf('english') > -1){
                 language_array = ('english');
-            $('#cfield_language').val(language_array);}
+            $('#cfield_language').next().remove();
+            $('#cfield_language').select2({width: "100%"});
+            $('#cfield_language').val(language_array).trigger("change");}
             if (linguagem[0].indexOf('portuguese') > -1){
                 language_array = ('portuguese');
-            $('#cfield_language').val(language_array);}
+            $('#cfield_language').next().remove();
+            $('#cfield_language').select2({width: "100%"});
+            $('#cfield_language').val(language_array).trigger("change");}
             if (linguagem[0].indexOf('spanish') > -1){
                 language_array = ('spanish');
-            $('#cfield_language').val(language_array);}
+            $('#cfield_language').next().remove();
+            $('#cfield_language').select2({width: "100%"});
+            $('#cfield_language').val(language_array).trigger("change");}
             if (linguagem[0].indexOf('japanese') > -1){
                 language_array = ('japanese');
-            $('#cfield_language').val(language_array);}
+            $('#cfield_language').next().remove();
+            $('#cfield_language').select2({width: "100%"});
+            $('#cfield_language').val(language_array).trigger("change");}
             if (linguagem[0].indexOf('french') > -1){
                 language_array = ('french');
-            $('#cfield_language').val(language_array);}
+            $('#cfield_language').next().remove();
+            $('#cfield_language').select2({width: "100%"});
+            $('#cfield_language').val(language_array).trigger("change");}
             console.log(linguagem[0]);
-	    }
+            }
 
             if (canais2){
                 canais2 = canais0[2].split('Channel');
@@ -1384,23 +1458,33 @@ function parse_mediainfo(content){
                 if (linguagem2[0].indexOf('english') > -1){
                 language_array += (',english');
                 language_array = language_array.split(',');
-                $('#cfield_language').val(language_array);}
-                    if (linguagem2[0].indexOf('portuguese') > -1){
+                $('#cfield_language').next().remove();
+                $('#cfield_language').select2({width: "100%"});
+                $('#cfield_language').val(language_array).trigger("change");}
+                if (linguagem2[0].indexOf('portuguese') > -1){
                 language_array += (',portuguese');
-                    language_array = language_array.split(',');
-                    $('#cfield_language').val(language_array);}
+                language_array = language_array.split(',');
+                $('#cfield_language').next().remove();
+                $('#cfield_language').select2({width: "100%"});
+                $('#cfield_language').val(language_array).trigger("change");}
                 if (linguagem2[0].indexOf('spanish') > -1){
                 language_array += (',spanish');
                 language_array = language_array.split(',');
-                $('#cfield_language').val(language_array);}
+                $('#cfield_language').next().remove();
+                $('#cfield_language').select2({width: "100%"});
+                $('#cfield_language').val(language_array).trigger("change");}
                 if (linguagem2[0].indexOf('japanese') > -1){
                 language_array += (',japanese');
                 language_array = language_array.split(',');
-                $('#cfield_language').val(language_array);}
+                $('#cfield_language').next().remove();
+                $('#cfield_language').select2({width: "100%"});
+                $('#cfield_language').val(language_array).trigger("change");}
                 if (linguagem2[0].indexOf('french') > -1){
                 language_array += (',french');
                 language_array = language_array.split(',');
-                $('#cfield_language').val(language_array);}
+                $('#cfield_language').next().remove();
+                $('#cfield_language').select2({width: "100%"});
+                $('#cfield_language').val(language_array).trigger("change");}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////PRIMEIRO AUDIO/////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1464,109 +1548,143 @@ function parse_mediainfo(content){
                 array_audio += (',aac');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
-            $('#cfield_audiocodec').val(array_audio);}
+            $('#cfield_audiocodec').next().remove();
+            $('#cfield_audiocodec').select2({width: "100%"});
+            $('#cfield_audiocodec').val(array_audio).trigger('change');}
             if (audio[0].indexOf('aac') > -1 && canais[0].indexOf('6') > -1){
                 array_audio += (',aac51');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
-            $('#cfield_audiocodec').val(array_audio);}
+            $('#cfield_audiocodec').next().remove();
+            $('#cfield_audiocodec').select2({width: "100%"});
+            $('#cfield_audiocodec').val(array_audio).trigger('change');}
             if (audio[0].indexOf('aac') > -1 && canais[0].indexOf('8') > -1){
                 array_audio += (',aac71');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
-            $('#cfield_audiocodec').val(array_audio);}
+            $('#cfield_audiocodec').next().remove();
+            $('#cfield_audiocodec').select2({width: "100%"});
+            $('#cfield_audiocodec').val(array_audio).trigger('change');}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
             if (audio[0].indexOf('mp4a-40-2') > -1 && canais[0].indexOf('2') > -1){
                 array_audio += (',aac');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
-            $('#cfield_audiocodec').val(array_audio);}
+            $('#cfield_audiocodec').next().remove();
+            $('#cfield_audiocodec').select2({width: "100%"});
+            $('#cfield_audiocodec').val(array_audio).trigger('change');}
             if (audio[0].indexOf('mp4a-40-2') > -1 && canais[0].indexOf('6') > -1){
                 array_audio += (',aac51');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
-            $('#cfield_audiocodec').val(array_audio);}
+            $('#cfield_audiocodec').next().remove();
+            $('#cfield_audiocodec').select2({width: "100%"});
+            $('#cfield_audiocodec').val(array_audio).trigger('change');}
             if (audio[0].indexOf('mp4a-40-2') > -1 && canais[0].indexOf('8') > -1){
                 array_audio += (',aac71');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
-            $('#cfield_audiocodec').val(array_audio);}
+            $('#cfield_audiocodec').next().remove();
+            $('#cfield_audiocodec').select2({width: "100%"});
+            $('#cfield_audiocodec').val(array_audio).trigger('change');}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
             if (audio[0].indexOf('a_ac3') > -1 && canais[0].indexOf('2') > -1){
                 array_audio += (',ac3');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
-            $('#cfield_audiocodec').val(array_audio);}
+            $('#cfield_audiocodec').next().remove();
+            $('#cfield_audiocodec').select2({width: "100%"});
+            $('#cfield_audiocodec').val(array_audio).trigger('change');}
             if (audio[0].indexOf('a_ac3') > -1 && canais[0].indexOf('6') > -1){
                 array_audio += (',ac351');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
-            $('#cfield_audiocodec').val(array_audio);}
+                $('#cfield_audiocodec').next().remove();
+            $('#cfield_audiocodec').select2({width: "100%"});
+            $('#cfield_audiocodec').val(array_audio).trigger('change');
+            }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
             if (audio[0].indexOf('a_eac3') > -1 && canais[0].indexOf('2') > -1){
                 array_audio += (',ddp');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
-            $('#cfield_audiocodec').val(array_audio);}
+            $('#cfield_audiocodec').next().remove();
+            $('#cfield_audiocodec').select2({width: "100%"});
+            $('#cfield_audiocodec').val(array_audio).trigger('change');}
             if (audio[0].indexOf('a_eac3') > -1 && canais[0].indexOf('6') > -1){
                 array_audio += (',ddp51');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
-            $('#cfield_audiocodec').val(array_audio);}
+            $('#cfield_audiocodec').next().remove();
+            $('#cfield_audiocodec').select2({width: "100%"});
+            $('#cfield_audiocodec').val(array_audio).trigger('change');}
             if (audio[0].indexOf('a_eac3') > -1 && canais[0].indexOf('8') > -1){
                 array_audio += (',ddp71');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
-            $('#cfield_audiocodec').val(array_audio);}
+            $('#cfield_audiocodec').next().remove();
+            $('#cfield_audiocodec').select2({width: "100%"});
+            $('#cfield_audiocodec').val(array_audio).trigger('change');}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
             if (audio[0].indexOf('truehd') > -1 && canais[0].indexOf('2') > -1){
                 array_audio += (',dolbytruehd');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
-            $('#cfield_audiocodec').val(array_audio);}
+            $('#cfield_audiocodec').next().remove();
+            $('#cfield_audiocodec').select2({width: "100%"});
+            $('#cfield_audiocodec').val(array_audio).trigger('change');}
             if (audio[0].indexOf('truehd') > -1 && canais[0].indexOf('6') > -1){
                 array_audio += (',dolbytruehd51');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
-            $('#cfield_audiocodec').val(array_audio);}
-
+            $('#cfield_audiocodec').next().remove();
+            $('#cfield_audiocodec').select2({width: "100%"});
+            $('#cfield_audiocodec').val(array_audio).trigger('change');}
             if (audio[0].indexOf('truehd') > -1 && canais[0].indexOf('8') > -1){
                 array_audio += (',dolbytruehd71');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
-            $('#cfield_audiocodec').val(array_audio);}
+            $('#cfield_audiocodec').next().remove();
+            $('#cfield_audiocodec').select2({width: "100%"});
+            $('#cfield_audiocodec').val(array_audio).trigger('change');}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
             if (audio[0].indexOf('dts') > -1 && canais[0].indexOf('2') > -1){
                 array_audio += (',dts');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
-            $('#cfield_audiocodec').val(array_audio);}
+            $('#cfield_audiocodec').next().remove();
+            $('#cfield_audiocodec').select2({width: "100%"});
+            $('#cfield_audiocodec').val(array_audio).trigger('change');}
             if (audio[0].indexOf('dts') > -1 && canais[0].indexOf('6') > -1){
                 array_audio += (',dts51');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
-            $('#cfield_audiocodec').val(array_audio);}
+            $('#cfield_audiocodec').next().remove();
+            $('#cfield_audiocodec').select2({width: "100%"});
+            $('#cfield_audiocodec').val(array_audio).trigger('change');}
             if (audio[0].indexOf('dts') > -1 && canais[0].indexOf('7') > -1){
                 array_audio += (',dts61');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
-            $('#cfield_audiocodec').val(array_audio);}
+            $('#cfield_audiocodec').next().remove();
+            $('#cfield_audiocodec').select2({width: "100%"});
+            $('#cfield_audiocodec').val(array_audio).trigger('change');}
             if (audio[0].indexOf('dts') > -1 && canais[0].indexOf('8') > -1){
                 array_audio += (',dts71');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
-            $('#cfield_audiocodec').val(array_audio);}
+            $('#cfield_audiocodec').next().remove();
+            $('#cfield_audiocodec').select2({width: "100%"});
+            $('#cfield_audiocodec').val(array_audio).trigger('change');}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             if (release[0].indexOf(' HDR ') > -1){
-                $('#cfield_hdr').val('yes');}
-            if (release[0].indexOf('/') > -1){
-            var excl_path = release[0].split('/');
-            excl_path.reverse();
-            release[0] = excl_path[0];
+                $('#cfield_hdr').next().remove();
+            $('#cfield_hdr').select2({width: "100%"});
+            $('#cfield_hdr').val('yes').trigger('change');
             }
-            
+
             release[0] = release[0].replace(/5 1 /g, "5.1 ");
             release[0] = release[0].replace(/5 1-/g, "5.1-");
             release[0] = release[0].replace(/2 0 /g, "2.0 ");
@@ -1577,24 +1695,31 @@ function parse_mediainfo(content){
             release[0] = release[0].replace(/ X264/g, " x264");
             release[0] = release[0].replace(/Bdrip/g, "BDRip");
             release[0] = release[0].replace(/Brrip/g, "BRRip");
+            release[0] = release[0].replace(/Bluray/g, "BluRay");
             release[0] = release[0].replace(/Unrated/g, "UNRATED");
             release[0] = release[0].replace(/Repack/g, "REPACK");
             release[0] = release[0].replace(/PIGNUS/g, "PiGNUS");
             release[0] = release[0].replace(/WOAT/g, "WoAT");
-	    if (release[0].match(/\sS\d\de\d\d\s/g)) {
+            //release[0] = release[0].replace(/Web/g, "WEB");
+            if (release[0].match(/\sS\d\de\d\d\s/g)) {
                 var regexseries = release[0].match(/\sS\d\de\d\d\s/g);
                 var regexseries_uppercase = regexseries[0].toUpperCase();
                 release[0] = release[0].replace(regexseries[0], regexseries_uppercase);
-	    } else {
-      	 	console.log('nao é série');
- 	    }	    
-            $('#cfield_title').val(release[0]);
-            $('#cfield_size').val(tam[0]);
-            $('#cfield_resolution').val(width[0]+'x'+height[0]);
-            $('#cfield_framerate').val(fps_final+" fps");
-            $('#cfield_compression').val('rar');
+            } else {
+                console.log('nao é série');
+            }
+            $('#cfield_title').val(release[0]).trigger("change");
+            $('#cfield_size').val(tam[0]).trigger('change');
+            $('#cfield_resolution').val(width[0]+'x'+height[0]).trigger('change');
+            $('#cfield_framerate').val(fps_final+" fps").trigger('change');
+            $('#cfield_compression').next().remove();
+            $('#cfield_compression').select2({width: "100%"});
+            $('#cfield_compression').val('rar').trigger("change");
             $('#cfield_description').val('[mediainfo]'+content_mediainfo+'[/mediainfo]');
-            $('#cfield_subtitles_included').val('no');
+            $('#cfield_subtitles_included').val('no')
+            $('#cfield_subtitles_included').next().remove();
+            $('#cfield_subtitles_included').select2({width: "100%"});
+            $('#cfield_subtitles_included').val('no').trigger("change");
 
             alert(release[0]);
             //alert(content);
