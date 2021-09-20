@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.56
+// @version      1.57
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -468,23 +468,29 @@ if(document.getElementById('cfield_imdb')){
     var elencotmdb = new Image();
     var elencosemfoto = new Image();
     var preview_actors = new Image();
+    var preview_trailer = new Image();
     elencoimdb.src = 'https://www.fw.artvetro.com.br/img/imdblogo.png';
     elencotmdb.src = 'https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_1-5bdc75aaebeb75dc7ae79426ddd9be3b2be1e342510f8202baf6bffa71d7f5c4.svg';
     elencosemfoto.src = 'https://i.imgur.com/pcTy5ku.png';
     preview_actors.src = 'https://i.imgur.com/hV9FqXR.png';
+    preview_trailer.src = 'https://i.imgur.com/hV9FqXR.png';
     elencoimdb.style ="float:left;margin-bottom:5px;margin-right:5px;height:20px;";
     elencotmdb.style ="float:left;margin-bottom:5px;margin-right:5px;height:20px;width:31px;";
     elencosemfoto.style ="float:left;margin-bottom:5px;height:20px;width:23px;";
     preview_actors.style ="float:left;margin-top:5px;margin-left:5px;height:17px;width:27px;";
+    preview_trailer.style ="float:left;margin-top:5px;margin-left:5px;height:17px;width:27px;";
     elencoimdb.title ='Atualizar Elenco com IMDB (Com Fotos)';
     elencotmdb.title ='Atualizar Elenco com TMDB (Com Fotos)';
     elencosemfoto.title ='Atualizar Elenco IMDB (Apenas Texto)';
     preview_actors.title ='Preview do Elenco';
+    preview_trailer.title ='Preview do Trailer';
     var localelenco = document.getElementById("cfield_cast");
+    var localtrailer = document.getElementById("cfield_trailer");
     localelenco.before(elencoimdb);
     localelenco.before(elencotmdb);
     localelenco.before(elencosemfoto);
     localelenco.after(preview_actors);
+    localtrailer.after(preview_trailer);
     if(document.getElementById('cfield_myanimelist')){
         var elencomal = new Image();
         elencomal.src = 'https://i.imgur.com/wAzTPtT.png';
@@ -661,6 +667,129 @@ div.modal-body {
          myFunc();
          $('#myModal').modal("show");
 };
+	
+function myFunc2 () {
+    'use strict';
+    if(document.getElementById('cfield_trailer')){
+    var id_trailer = document.getElementById('cfield_trailer').value;
+var regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+var match = id_trailer.match(regExp);
+if (match && match[2].length == 11) {
+  id_trailer = match[2];
+} else {
+  //error
+}
+    var trailer_preview ='<center><iframe width="640" height="360" src="https://www.youtube.com/embed/'+id_trailer+'" frameborder="0" allowfullscreen></iframe></center>';
+    }
+
+    var modalHtml = `
+<!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-xl">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Preview</h4>
+        </div>
+        <div class="modal-body">
+`+trailer_preview+`
+      </div>
+      <div class="modal-footer">
+
+        </div>
+    </div>
+  </div>
+</div>
+`;
+
+    //--- Add nodes to page
+    //$("body").prepend(deleteButtonHtml);
+$("body").prepend(modalHtml);
+    style.innerHTML = `
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #FDCB74;
+  width: 665px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+overflow: auto;
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: black;
+  float: right;
+  font-size: 15px;
+  font-weight: bold;
+  width: 30px;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+.modal-title{font-size: 15px;font:   bold 12px Tahoma, Helvetica, Geneva;margin:0;line-height:1.42857143}
+.btn-default{width: 30px;float: center;font-size: 15px;color:#333;background-color:#fff;border-color:#ccc}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: #E19B38;
+    border-bottom: 1px solid #FDCB74;
+  color: white;
+height:25px;
+}
+
+.modal-body {padding: 10px 16px;overflow-x: auto;}
+
+
+div.modal-body {
+    max-width: 100%;
+    overflow-x: auto;
+}`;
+    document.head.appendChild(style);
+}
+
+    preview_trailer.onclick = function() {
+         myFunc2();
+         $('#myModal').modal("show");
+};	
 
   img.addEventListener('click', function () {
     
@@ -1728,7 +1857,7 @@ function parse_mediainfo(content){
 }
 
 var input = document.createElement('input');
-var ler_mediainfo = document.createElement('button');
+var ler_mediainfo = document.createElement('span');
 ler_mediainfo.innerHTML = "<img src='https://i.imgur.com/Iga9vd2.png?1' width='20'/>";
 ler_mediainfo.id = "MI";
 ler_mediainfo.style = "background: none;color: inherit;border: none;padding: 0;font: inherit;cursor: pointer;outline: inherit;";
