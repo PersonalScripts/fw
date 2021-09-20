@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.57
+// @version      1.58
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -1860,7 +1860,7 @@ var input = document.createElement('input');
 var ler_mediainfo = document.createElement('span');
 ler_mediainfo.innerHTML = "<img src='https://i.imgur.com/Iga9vd2.png?1' width='20'/>";
 ler_mediainfo.id = "MI";
-ler_mediainfo.style = "background: none;color: inherit;border: none;padding: 0;font: inherit;cursor: pointer;outline: inherit;";
+ler_mediainfo.style = "background: none;color: inherit;border: none;padding: 0;font: inherit;cursor: pointer;outline: inherit;float:left;margin-right:20px;";
 ler_mediainfo.title = "Ler Mediainfo dos Comentários do Uploader";
 input.type = "file";
 input.id = "carregador";
