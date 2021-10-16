@@ -1200,6 +1200,10 @@ function capitalize(s){//FUNÇÃO PRIMEIRA LETRA DE CADA PALAVRA EM MAIUSCULO
 };
 function parse_mediainfo(content){
     var content_mediainfo = content;
+	    var release_espaco0 = content.split('Complete name                            :');
+            var release_espaco = release_espaco0[1].split(/\n/);
+            release_espaco[0] = release_espaco[0].trim();
+            release_espaco[0] = release_espaco[0].substring(0, release_espaco[0].lastIndexOf('\\')) + "\\";
             content = content.replace(/ /g, "");
             //content = content.replace(/:/g, ": ");
             content = content.replace(/GiB/g, " GB");
@@ -1209,6 +1213,7 @@ function parse_mediainfo(content){
             var release = release0[1].split(/\n/);
 	    var pathOut = release[0].substring(0, release[0].lastIndexOf('\\')) + "\\";
             content_mediainfo = content_mediainfo.replace(pathOut, "", "g");
+	    content_mediainfo = content_mediainfo.replace(release_espaco[0], "", "g");
             release[0] = release[0].split("\\").pop();
             var tipodearquivo = release0[1].split('Format:');
             release[0] = release[0].replace(/mp4/g, "");
