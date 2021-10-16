@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.58
+// @version      1.59
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -1966,8 +1966,8 @@ img.onclick = function() {
                     useBootstrap: false,
                     boxWidth: '18%',
                buttons: {
-                "Títulos": {btnClass: 'btn-orange text-dark',action: function() {window.open("https://filewarez.tv/postador.php?do=searchtitle&title_imdb="+imdbId+"&status=1&type=movie");}},
-                "Uploads":  {btnClass: 'btn-orange text-dark',action: function() {window.open("https://filewarez.tv/postador.php?do=searchupload&title_imdb="+imdbId+"&status=1&type=movie");}}
+                "Títulos": {btnClass: 'btn-orange text-dark',action: function() {window.open("https://filewarez.tv/postador.php?do=searchtitle&title_imdb="+imdbId+"&status=online&type=movie");}},
+                "Uploads":  {btnClass: 'btn-orange text-dark',action: function() {window.open("https://filewarez.tv/postador.php?do=searchupload&title_imdb="+imdbId+"&status=online&type=movie");}}
                }
         });
 };
@@ -2078,8 +2078,8 @@ img.onclick = function() {
                     useBootstrap: false,
                     boxWidth: '18%',
                buttons: {
-                "Títulos": {btnClass: 'btn-orange text-dark',action: function() {window.open("https://filewarez.tv/postador.php?do=searchtitle&title_imdb="+imdbId+"&status=1");}},
-                "Uploads":  {btnClass: 'btn-orange text-dark',action: function() {window.open("https://filewarez.tv/postador.php?do=searchupload&title_imdb="+imdbId+"&status=1");}}
+                "Títulos": {btnClass: 'btn-orange text-dark',action: function() {window.open("https://filewarez.tv/postador.php?do=searchtitle&title_imdb="+imdbId+"&status=online");}},
+                "Uploads":  {btnClass: 'btn-orange text-dark',action: function() {window.open("https://filewarez.tv/postador.php?do=searchupload&title_imdb="+imdbId+"&status=online");}}
                }
         });
 };
@@ -2208,7 +2208,7 @@ img_games.onclick = function() {
 var titulo_game = document.getElementById('appHubAppName').innerText;
     titulo_game = titulo_game.replace(/™/g, '');
     titulo_game = titulo_game.replace(/:/g, '');
-window.open('https://filewarez.tv/postador.php?do=searchupload&title_title='+titulo_game+'&status=1&type=game');
+window.open('https://filewarez.tv/postador.php?do=searchupload&title_title='+titulo_game+'&status=online&type=game');
 };
 }
 
@@ -2245,7 +2245,7 @@ img_games.onclick = function() {
 var titulo_game = local_games.innerText;
 titulo_game = titulo_game.replace(/™/g, '');
 titulo_game = titulo_game.replace(/:/g, '');
-window.open('https://filewarez.tv/postador.php?do=searchupload&title_title='+titulo_game+'&status=1&type=game');
+window.open('https://filewarez.tv/postador.php?do=searchupload&title_title='+titulo_game+'&status=online&type=game');
 };
 });
 }
@@ -2289,7 +2289,7 @@ img_games.onclick = function() {
 var titulo_game = local_games.innerText;
 titulo_game = titulo_game.replace(/™/g, '');
 titulo_game = titulo_game.replace(/:/g, '');
-window.open('https://filewarez.tv/postador.php?do=searchupload&title_title='+titulo_game+'&status=1&type=game');
+window.open('https://filewarez.tv/postador.php?do=searchupload&title_title='+titulo_game+'&status=online&type=game');
 };
 
 }
