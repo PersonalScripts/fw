@@ -3,7 +3,7 @@
 // @description Userscript para auxiliar na verificação de uploads na FileWarez.
 // @include     /^http(s)?:\/\/(www\.)?filewarez\.tv/.*$/
 // @copyright   2016, XOR
-// @author      XOR [MOD by Castle]
+// @author      XOR [MOD by Castle][Updated by PvP]
 // @version     0.3.3.0.9
 // @license     MIT License
 // @grant       unsafeWindow
