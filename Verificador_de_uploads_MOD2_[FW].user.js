@@ -4,7 +4,7 @@
 // @include     /^http(s)?:\/\/(www\.)?filewarez\.tv/.*$/
 // @copyright   2016, XOR
 // @author      XOR [MOD by Castle][Updated by PvP]
-// @version     0.3.3.0.9
+// @version     0.3.3.1.0
 // @license     MIT License
 // @grant       unsafeWindow
 // @grant       window.close
@@ -14,8 +14,8 @@
 // @homepage    https://filewarez.tv/member.php?u=74646
 // @contactURL  https://filewarez.tv/private.php?do=newpm&u=74646
 // @supportURL  https://filewarez.tv/private.php?do=newpm&u=74646
-// @updateURL   https://github.com/PersonalScripts/fw/raw/master/linkchecker.mod.user.js
-// @downloadURL https://github.com/PersonalScripts/fw/raw/master/linkchecker.mod.user.js
+// @updateURL   https://github.com/PersonalScripts/fw/raw/master/Verificador_de_uploads_MOD2_[FW].user.js
+// @downloadURL https://github.com/PersonalScripts/fw/raw/master/Verificador_de_uploads_MOD2_[FW].user.js
 // @namespace   ffdebde62120de094d5075fadefcbc02
 // @connect     *
 // @run-at      document-start
