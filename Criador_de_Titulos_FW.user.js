@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.61
+// @version      1.62
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -14,6 +14,7 @@
 // @include     https://filewarez.tv/postador.php?do=addupload*
 // @include     https://filewarez.tv/newthread.php?do=newthread&f=14
 // @include     https://filewarez.tv/postador.php?do=edittitle*
+// @include     https://filewarez.tv/postador.php?do=editupload*
 // @include     https://filewarez.tv/postador.php?do=moderatetitle*
 // @include     https://www.imdb.com/title*
 // @updateURL   https://github.com/PersonalScripts/fw/raw/master/Criador_de_Titulos_FW.user.js
@@ -1194,7 +1195,7 @@ var enviando_titulo = document.getElementById("cfield_title");
 /////////////////////////////// CARREGADOR DE MEDIAINFO /////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-if (window.location.href.indexOf('https://filewarez.tv/postador.php?do=addupload') != -1){
+if ((window.location.href.indexOf('https://filewarez.tv/postador.php?do=addupload') != -1) || (window.location.href.indexOf('https://filewarez.tv/postador.php?do=editupload') != -1)){
 function capitalize(s){//FUNÇÃO PRIMEIRA LETRA DE CADA PALAVRA EM MAIUSCULO
     return s.toLowerCase().replace( /\b./g, function(a){ return a.toUpperCase(); } );
 };
