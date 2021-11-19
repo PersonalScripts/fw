@@ -1939,7 +1939,7 @@ $("head").append (
   + 'rel="stylesheet" type="text/css">'
 );
 var divwait = `<div class="loader loader-bouncing is-active"></div>`;
-if(document.getElementById('titleYear') || !document.getElementsByClassName('ipc-inline-list__item')[0].innerText.includes("Series") && document.getElementsByClassName('ipc-inline-list__item')[0].innerText != ''){
+if(document.getElementById('titleYear') || !document.getElementsByClassName('ipc-inline-list__item')[0].innerText.includes("Série") && document.getElementsByClassName('ipc-inline-list__item')[0].innerText != ''){
     var img = new Image();
     img.src = 'https://i.imgur.com/jqqCux6.png';
     img.title ='Buscar Títulos/Uploads';
@@ -2052,7 +2052,7 @@ alert('Falhou!');
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-if(document.getElementsByClassName('bp_item np_episode_guide np_right_arrow')[0] || document.getElementsByClassName('ipc-inline-list__item')[0].innerText.includes("Series")){
+if(document.getElementsByClassName('bp_item np_episode_guide np_right_arrow')[0] || document.getElementsByClassName('ipc-inline-list__item')[0].innerText.includes("Série")){
     var img = new Image();
     img.src = 'https://i.imgur.com/jqqCux6.png';
     img.title ='Buscar Uploads';
