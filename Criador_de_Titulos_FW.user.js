@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.62
+// @version      1.64
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -1407,38 +1407,44 @@ function parse_mediainfo(content){
                 //$('#cfield_forumid').val('375');
                 $('#cfield_forumid').val('623');
                 $('#cfield_forumid').next().remove();
-                $('#cfield_forumid').select2({width: "100%"});
+                $('#cfield_forumid').select2({width: "100%", dropdownAutoWidth : true});
                 $('#cfield_forumid').val('623').trigger("change");
                 var values = $('#cfield_forumid').val();
                 if (values == null){
                 $('#cfield_forumid').val('375');
                 $('#cfield_forumid').next().remove();
-                $('#cfield_forumid').select2({width: "100%"});
+                $('#cfield_forumid').select2({width: "100%", dropdownAutoWidth : true});
                 $('#cfield_forumid').val('375').trigger("change");}
             }
             if (release[0].indexOf('HDRip') > -1 || release[0].indexOf('DVDScr') > -1){
                 $('#cfield_forumid').val('310');
                 $('#cfield_forumid').next().remove();
-                $('#cfield_forumid').select2({width: "100%"});
+                $('#cfield_forumid').select2({width: "100%", dropdownAutoWidth : true});
                 $('#cfield_forumid').val('310').trigger("change");
             }
             if (release[0].indexOf('BDRip') > -1 || release[0].indexOf('BRRip') > -1 || release[0].indexOf('bdrip') > -1 || release[0].indexOf('brrip') > -1){
                 $('#cfield_forumid').val('336');
                 $('#cfield_forumid').next().remove();
-                $('#cfield_forumid').select2({width: "100%"});
+                $('#cfield_forumid').select2({width: "100%", dropdownAutoWidth : true});
                 $('#cfield_forumid').val('336').trigger("change");
             }
             if (release[0].indexOf('CAM ') > -1 ){
                 $('#cfield_forumid').val('338');
                 $('#cfield_forumid').next().remove();
-                $('#cfield_forumid').select2({width: "100%"});
+                $('#cfield_forumid').select2({width: "100%", dropdownAutoWidth : true});
                 $('#cfield_forumid').val('338').trigger("change");
             }
             if (release[0].indexOf('2160p') > -1){
                 $('#cfield_forumid').val('1403');
                 $('#cfield_forumid').next().remove();
-                $('#cfield_forumid').select2({width: "100%"});
+                $('#cfield_forumid').select2({width: "100%", dropdownAutoWidth : true});
                 $('#cfield_forumid').val('1403').trigger("change");
+		var values = $('#cfield_forumid').val();
+                if (values == null){
+                $('#cfield_forumid').val('375');
+                $('#cfield_forumid').next().remove();
+                $('#cfield_forumid').select2({width: "100%", dropdownAutoWidth : true});
+                $('#cfield_forumid').val('375').trigger("change");}
             }if (release[0].indexOf('WEB-') > -1 ){
                 $('#cfield_sourcetype').val('webdl');
                 $('#cfield_sourcetype').next().remove();
