@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.64
+// @version      1.65
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -1945,7 +1945,11 @@ $("head").append (
   + 'rel="stylesheet" type="text/css">'
 );
 var divwait = `<div class="loader loader-bouncing is-active"></div>`;
-if(document.getElementById('titleYear') || !document.getElementsByClassName('ipc-inline-list__item')[0].innerText.includes("Série") && document.getElementsByClassName('ipc-inline-list__item')[0].innerText != ''){
+    var movieOrSeries = 'movie';
+    if(document.getElementsByClassName('ipc-inline-list__item')[0].innerText.includes("Série") || document.getElementsByClassName('ipc-inline-list__item')[0].innerText.includes("Series")){
+    movieOrSeries = 'serie';
+    }else{movieOrSeries = 'movie';}
+if(document.getElementById('titleYear') || movieOrSeries == 'movie' && document.getElementsByClassName('ipc-inline-list__item')[0].innerText != ''){
     var img = new Image();
     img.src = 'https://i.imgur.com/jqqCux6.png';
     img.title ='Buscar Títulos/Uploads';
@@ -1959,7 +1963,8 @@ if(document.getElementById('titleYear') || !document.getElementsByClassName('ipc
 
 
 img.onclick = function() {
-   var imdbId = window.location.href;
+    var imdbId = window.location.href;
+    //imdbId = imdbId.match(/tt[0-9]+/);
     imdbId = imdbId.replace(/https:\/\/www.imdb.com\/title\//g, "");
     imdbId = imdbId.replace(/\//g, " ");
     var chooseTTorUP = $.confirm({
@@ -2058,7 +2063,7 @@ alert('Falhou!');
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-if(document.getElementsByClassName('bp_item np_episode_guide np_right_arrow')[0] || document.getElementsByClassName('ipc-inline-list__item')[0].innerText.includes("Série")){
+if(document.getElementsByClassName('bp_item np_episode_guide np_right_arrow')[0] || movieOrSeries == 'serie'){
     var img = new Image();
     img.src = 'https://i.imgur.com/jqqCux6.png';
     img.title ='Buscar Uploads';
