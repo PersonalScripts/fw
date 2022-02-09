@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.65
+// @version      1.66
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -1406,90 +1406,58 @@ function parse_mediainfo(content){
                 //$('#cfield_forumid').val('623');
                 //$('#cfield_forumid').val('375');
                 $('#cfield_forumid').val('623');
-                $('#cfield_forumid').next().remove();
-                $('#cfield_forumid').select2({width: "100%", dropdownAutoWidth : true});
-                $('#cfield_forumid').val('623').trigger("change");
+                document.getElementById('cfield_forumid').dispatchEvent(new Event('change'));
                 var values = $('#cfield_forumid').val();
                 if (values == null){
                 $('#cfield_forumid').val('375');
-                $('#cfield_forumid').next().remove();
-                $('#cfield_forumid').select2({width: "100%", dropdownAutoWidth : true});
-                $('#cfield_forumid').val('375').trigger("change");}
+                document.getElementById('cfield_forumid').dispatchEvent(new Event('change'));}
             }
             if (release[0].indexOf('HDRip') > -1 || release[0].indexOf('DVDScr') > -1){
                 $('#cfield_forumid').val('310');
-                $('#cfield_forumid').next().remove();
-                $('#cfield_forumid').select2({width: "100%", dropdownAutoWidth : true});
-                $('#cfield_forumid').val('310').trigger("change");
+                document.getElementById('cfield_forumid').dispatchEvent(new Event('change'));
             }
             if (release[0].indexOf('BDRip') > -1 || release[0].indexOf('BRRip') > -1 || release[0].indexOf('bdrip') > -1 || release[0].indexOf('brrip') > -1){
                 $('#cfield_forumid').val('336');
-                $('#cfield_forumid').next().remove();
-                $('#cfield_forumid').select2({width: "100%", dropdownAutoWidth : true});
-                $('#cfield_forumid').val('336').trigger("change");
+                document.getElementById('cfield_forumid').dispatchEvent(new Event('change'));
             }
             if (release[0].indexOf('CAM ') > -1 ){
                 $('#cfield_forumid').val('338');
-                $('#cfield_forumid').next().remove();
-                $('#cfield_forumid').select2({width: "100%", dropdownAutoWidth : true});
-                $('#cfield_forumid').val('338').trigger("change");
+                document.getElementById('cfield_forumid').dispatchEvent(new Event('change'));
             }
             if (release[0].indexOf('2160p') > -1){
                 $('#cfield_forumid').val('1403');
-                $('#cfield_forumid').next().remove();
-                $('#cfield_forumid').select2({width: "100%", dropdownAutoWidth : true});
-                $('#cfield_forumid').val('1403').trigger("change");
-		var values = $('#cfield_forumid').val();
+                document.getElementById('cfield_forumid').dispatchEvent(new Event('change'));
+            var values = $('#cfield_forumid').val();
                 if (values == null){
                 $('#cfield_forumid').val('375');
-                $('#cfield_forumid').next().remove();
-                $('#cfield_forumid').select2({width: "100%", dropdownAutoWidth : true});
-                $('#cfield_forumid').val('375').trigger("change");}
+                document.getElementById('cfield_forumid').dispatchEvent(new Event('change'));}
             }if (release[0].indexOf('WEB-') > -1 ){
                 $('#cfield_sourcetype').val('webdl');
-                $('#cfield_sourcetype').next().remove();
-                $('#cfield_sourcetype').select2({width: "100%"});
-                $('#cfield_sourcetype').val('webdl').trigger("change");
+                document.getElementById('cfield_sourcetype').dispatchEvent(new Event('change'));
             }if (release[0].indexOf(' WEB ') > -1 ){
                 $('#cfield_sourcetype').val('web');
-                $('#cfield_sourcetype').next().remove();
-                $('#cfield_sourcetype').select2({width: "100%"});
-                $('#cfield_sourcetype').val('web').trigger("change");
+                document.getElementById('cfield_sourcetype').dispatchEvent(new Event('change'));
             }if (release[0].indexOf('WEBRip') > -1 ){
                 $('#cfield_sourcetype').val('webrip');
-                $('#cfield_sourcetype').next().remove();
-                $('#cfield_sourcetype').select2({width: "100%"});
-                $('#cfield_sourcetype').val('webrip').trigger("change");
+                document.getElementById('cfield_sourcetype').dispatchEvent(new Event('change'));
             }if (release[0].indexOf('BluRay') > -1 || release[0].indexOf('Bluray') > -1 || release[0].indexOf('bluray') > -1){
                 $('#cfield_sourcetype').val('bluray');
-                $('#cfield_sourcetype').next().remove();
-                $('#cfield_sourcetype').select2({width: "100%"});
-                $('#cfield_sourcetype').val('bluray').trigger("change");
+                document.getElementById('cfield_sourcetype').dispatchEvent(new Event('change'));
             }if (release[0].indexOf('BRRip') > -1 || release[0].indexOf('brrip') > -1){
                 $('#cfield_sourcetype').val('brrip');
-                $('#cfield_sourcetype').next().remove();
-                $('#cfield_sourcetype').select2({width: "100%"});
-                $('#cfield_sourcetype').val('brrip').trigger("change");
+                document.getElementById('cfield_sourcetype').dispatchEvent(new Event('change'));
             }if (release[0].indexOf('BDRip') > -1 || release[0].indexOf('bdrip') > -1){
                 $('#cfield_sourcetype').val('bdrip');
-                $('#cfield_sourcetype').next().remove();
-                $('#cfield_sourcetype').select2({width: "100%"});
-                $('#cfield_sourcetype').val('bdrip').trigger("change");
+                document.getElementById('cfield_sourcetype').dispatchEvent(new Event('change'));
             }if (tipodearquivo[0].indexOf('.mkv') > -1 ){
                 $('#cfield_format').val('mkv');
-                $('#cfield_format').next().remove();
-                $('#cfield_format').select2({width: "100%"});
-                $('#cfield_format').val('mkv').trigger("change");
+                document.getElementById('cfield_format').dispatchEvent(new Event('change'));
             }if (tipodearquivo[0].indexOf('.ts') > -1 || tipodearquivo[0].indexOf('.TS') > -1){
                 $('#cfield_format').val('ts');
-                $('#cfield_format').next().remove();
-                $('#cfield_format').select2({width: "100%"});
-                $('#cfield_format').val('ts').trigger("change");
+                document.getElementById('cfield_format').dispatchEvent(new Event('change'));
             }if (tipodearquivo[0].indexOf('.mp4') > -1 || tipodearquivo[0].indexOf('.MP4') > -1){
                 $('#cfield_format').val('mp4');
-                $('#cfield_format').next().remove();
-                $('#cfield_format').select2({width: "100%"});
-                $('#cfield_format').val('mp4').trigger("change");
+                document.getElementById('cfield_format').dispatchEvent(new Event('change'));
             }
             //TAMANHO DO UPLOAD
             var tam0 = content.split('Filesize:');
@@ -1516,31 +1484,21 @@ function parse_mediainfo(content){
             if (library){
                 if (library.indexOf('264') > -1 ){
                 $('#cfield_videocodec').val('h264');
-                $('#cfield_videocodec').next().remove();
-                $('#cfield_videocodec').select2({width: "100%"});
-                $('#cfield_videocodec').val('h264').trigger("change");
+                document.getElementById('cfield_videocodec').dispatchEvent(new Event('change'));
             }if (library.indexOf('265') > -1 ){
                 $('#cfield_videocodec').val('h265');
-                $('#cfield_videocodec').next().remove();
-                $('#cfield_videocodec').select2({width: "100%"});
-                $('#cfield_videocodec').val('h265').trigger("change");
+                document.getElementById('cfield_videocodec').dispatchEvent(new Event('change'));
             }
             }else{
             if (release[0].indexOf('264') > -1 ){
                 $('#cfield_videocodec').val('h264');
-                $('#cfield_videocodec').next().remove();
-                $('#cfield_videocodec').select2({width: "100%"});
-                $('#cfield_videocodec').val('h264').trigger("change");
+                document.getElementById('cfield_videocodec').dispatchEvent(new Event('change'));
             }if (release[0].indexOf('HEVC') > -1 ){
                 $('#cfield_videocodec').val('h265');
-                $('#cfield_videocodec').next().remove();
-                $('#cfield_videocodec').select2({width: "100%"});
-                $('#cfield_videocodec').val('h265').trigger("change");
+                document.getElementById('cfield_videocodec').dispatchEvent(new Event('change'));
             }if (release[0].indexOf('H265') > -1 ){
                 $('#cfield_videocodec').val('h265');
-                $('#cfield_videocodec').next().remove();
-                $('#cfield_videocodec').select2({width: "100%"});
-                $('#cfield_videocodec').val('h265').trigger("change");
+                document.getElementById('cfield_videocodec').dispatchEvent(new Event('change'));
             }}
             //audios
             var som = content.split('Format/Info:');
@@ -1561,30 +1519,25 @@ function parse_mediainfo(content){
             var language_array;
             if (linguagem[0].indexOf('english') > -1){
                 language_array = ('english');
-            $('#cfield_language').next().remove();
-            $('#cfield_language').select2({width: "100%"});
-            $('#cfield_language').val(language_array).trigger("change");}
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
             if (linguagem[0].indexOf('portuguese') > -1){
                 language_array = ('portuguese');
-            $('#cfield_language').next().remove();
-            $('#cfield_language').select2({width: "100%"});
-            $('#cfield_language').val(language_array).trigger("change");}
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
             if (linguagem[0].indexOf('spanish') > -1){
                 language_array = ('spanish');
-            $('#cfield_language').next().remove();
-            $('#cfield_language').select2({width: "100%"});
-            $('#cfield_language').val(language_array).trigger("change");}
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
             if (linguagem[0].indexOf('japanese') > -1){
                 language_array = ('japanese');
-            $('#cfield_language').next().remove();
-            $('#cfield_language').select2({width: "100%"});
-            $('#cfield_language').val(language_array).trigger("change");}
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
             if (linguagem[0].indexOf('french') > -1){
                 language_array = ('french');
-            $('#cfield_language').next().remove();
-            $('#cfield_language').select2({width: "100%"});
-            $('#cfield_language').val(language_array).trigger("change");}
-            console.log(linguagem[0]);
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+            console.log(linguagem);
             }
 
             if (canais2){
@@ -1600,33 +1553,28 @@ function parse_mediainfo(content){
                 if (linguagem2[0].indexOf('english') > -1){
                 language_array += (',english');
                 language_array = language_array.split(',');
-                $('#cfield_language').next().remove();
-                $('#cfield_language').select2({width: "100%"});
-                $('#cfield_language').val(language_array).trigger("change");}
+                $('#cfield_language').val(language_array);
+                document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
                 if (linguagem2[0].indexOf('portuguese') > -1){
                 language_array += (',portuguese');
                 language_array = language_array.split(',');
-                $('#cfield_language').next().remove();
-                $('#cfield_language').select2({width: "100%"});
-                $('#cfield_language').val(language_array).trigger("change");}
+                $('#cfield_language').val(language_array);
+                document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
                 if (linguagem2[0].indexOf('spanish') > -1){
                 language_array += (',spanish');
                 language_array = language_array.split(',');
-                $('#cfield_language').next().remove();
-                $('#cfield_language').select2({width: "100%"});
-                $('#cfield_language').val(language_array).trigger("change");}
+                $('#cfield_language').val(language_array);
+                document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
                 if (linguagem2[0].indexOf('japanese') > -1){
                 language_array += (',japanese');
                 language_array = language_array.split(',');
-                $('#cfield_language').next().remove();
-                $('#cfield_language').select2({width: "100%"});
-                $('#cfield_language').val(language_array).trigger("change");}
+                $('#cfield_language').val(language_array);
+                document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
                 if (linguagem2[0].indexOf('french') > -1){
                 language_array += (',french');
                 language_array = language_array.split(',');
-                $('#cfield_language').next().remove();
-                $('#cfield_language').select2({width: "100%"});
-                $('#cfield_language').val(language_array).trigger("change");}
+                $('#cfield_language').val(language_array);
+                document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////PRIMEIRO AUDIO/////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1690,142 +1638,123 @@ function parse_mediainfo(content){
                 array_audio += (',aac');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
-            $('#cfield_audiocodec').next().remove();
-            $('#cfield_audiocodec').select2({width: "100%"});
-            $('#cfield_audiocodec').val(array_audio).trigger('change');}
+            $('#cfield_audiocodec').val(array_audio);
+                document.getElementById('cfield_audiocodec').dispatchEvent(new Event('change'));}
             if (audio[0].indexOf('aac') > -1 && canais[0].indexOf('6') > -1){
                 array_audio += (',aac51');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
-            $('#cfield_audiocodec').next().remove();
-            $('#cfield_audiocodec').select2({width: "100%"});
-            $('#cfield_audiocodec').val(array_audio).trigger('change');}
+            $('#cfield_audiocodec').val(array_audio);
+                document.getElementById('cfield_audiocodec').dispatchEvent(new Event('change'));}
             if (audio[0].indexOf('aac') > -1 && canais[0].indexOf('8') > -1){
                 array_audio += (',aac71');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
-            $('#cfield_audiocodec').next().remove();
-            $('#cfield_audiocodec').select2({width: "100%"});
-            $('#cfield_audiocodec').val(array_audio).trigger('change');}
+            $('#cfield_audiocodec').val(array_audio);
+                document.getElementById('cfield_audiocodec').dispatchEvent(new Event('change'));}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
             if (audio[0].indexOf('mp4a-40-2') > -1 && canais[0].indexOf('2') > -1){
                 array_audio += (',aac');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
-            $('#cfield_audiocodec').next().remove();
-            $('#cfield_audiocodec').select2({width: "100%"});
-            $('#cfield_audiocodec').val(array_audio).trigger('change');}
+            $('#cfield_audiocodec').val(array_audio);
+                document.getElementById('cfield_audiocodec').dispatchEvent(new Event('change'));}
             if (audio[0].indexOf('mp4a-40-2') > -1 && canais[0].indexOf('6') > -1){
                 array_audio += (',aac51');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
-            $('#cfield_audiocodec').next().remove();
-            $('#cfield_audiocodec').select2({width: "100%"});
-            $('#cfield_audiocodec').val(array_audio).trigger('change');}
+            $('#cfield_audiocodec').val(array_audio);
+                document.getElementById('cfield_audiocodec').dispatchEvent(new Event('change'));}
             if (audio[0].indexOf('mp4a-40-2') > -1 && canais[0].indexOf('8') > -1){
                 array_audio += (',aac71');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
-            $('#cfield_audiocodec').next().remove();
-            $('#cfield_audiocodec').select2({width: "100%"});
-            $('#cfield_audiocodec').val(array_audio).trigger('change');}
+            $('#cfield_audiocodec').val(array_audio);
+                document.getElementById('cfield_audiocodec').dispatchEvent(new Event('change'));}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
             if (audio[0].indexOf('a_ac3') > -1 && canais[0].indexOf('2') > -1){
                 array_audio += (',ac3');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
-            $('#cfield_audiocodec').next().remove();
-            $('#cfield_audiocodec').select2({width: "100%"});
-            $('#cfield_audiocodec').val(array_audio).trigger('change');}
+            $('#cfield_audiocodec').val(array_audio);
+                document.getElementById('cfield_audiocodec').dispatchEvent(new Event('change'));}
             if (audio[0].indexOf('a_ac3') > -1 && canais[0].indexOf('6') > -1){
                 array_audio += (',ac351');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
-                $('#cfield_audiocodec').next().remove();
-            $('#cfield_audiocodec').select2({width: "100%"});
-            $('#cfield_audiocodec').val(array_audio).trigger('change');
-            }
+                $('#cfield_audiocodec').val(array_audio);
+                document.getElementById('cfield_audiocodec').dispatchEvent(new Event('change'));}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
             if (audio[0].indexOf('a_eac3') > -1 && canais[0].indexOf('2') > -1){
                 array_audio += (',ddp');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
-            $('#cfield_audiocodec').next().remove();
-            $('#cfield_audiocodec').select2({width: "100%"});
-            $('#cfield_audiocodec').val(array_audio).trigger('change');}
+            $('#cfield_audiocodec').val(array_audio);
+                document.getElementById('cfield_audiocodec').dispatchEvent(new Event('change'));}
             if (audio[0].indexOf('a_eac3') > -1 && canais[0].indexOf('6') > -1){
                 array_audio += (',ddp51');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
-            $('#cfield_audiocodec').next().remove();
-            $('#cfield_audiocodec').select2({width: "100%"});
-            $('#cfield_audiocodec').val(array_audio).trigger('change');}
+            $('#cfield_audiocodec').val(array_audio);
+                document.getElementById('cfield_audiocodec').dispatchEvent(new Event('change'));}
             if (audio[0].indexOf('a_eac3') > -1 && canais[0].indexOf('8') > -1){
                 array_audio += (',ddp71');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
-            $('#cfield_audiocodec').next().remove();
-            $('#cfield_audiocodec').select2({width: "100%"});
-            $('#cfield_audiocodec').val(array_audio).trigger('change');}
+            $('#cfield_audiocodec').val(array_audio);
+                document.getElementById('cfield_audiocodec').dispatchEvent(new Event('change'));}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
             if (audio[0].indexOf('truehd') > -1 && canais[0].indexOf('2') > -1){
                 array_audio += (',dolbytruehd');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
-            $('#cfield_audiocodec').next().remove();
-            $('#cfield_audiocodec').select2({width: "100%"});
-            $('#cfield_audiocodec').val(array_audio).trigger('change');}
+            $('#cfield_audiocodec').val(array_audio);
+                document.getElementById('cfield_audiocodec').dispatchEvent(new Event('change'));}
             if (audio[0].indexOf('truehd') > -1 && canais[0].indexOf('6') > -1){
                 array_audio += (',dolbytruehd51');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
-            $('#cfield_audiocodec').next().remove();
-            $('#cfield_audiocodec').select2({width: "100%"});
-            $('#cfield_audiocodec').val(array_audio).trigger('change');}
+            $('#cfield_audiocodec').val(array_audio);
+                document.getElementById('cfield_audiocodec').dispatchEvent(new Event('change'));}
             if (audio[0].indexOf('truehd') > -1 && canais[0].indexOf('8') > -1){
                 array_audio += (',dolbytruehd71');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
-            $('#cfield_audiocodec').next().remove();
-            $('#cfield_audiocodec').select2({width: "100%"});
-            $('#cfield_audiocodec').val(array_audio).trigger('change');}
+            $('#cfield_audiocodec').val(array_audio);
+                document.getElementById('cfield_audiocodec').dispatchEvent(new Event('change'));}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
             if (audio[0].indexOf('dts') > -1 && canais[0].indexOf('2') > -1){
                 array_audio += (',dts');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
-            $('#cfield_audiocodec').next().remove();
-            $('#cfield_audiocodec').select2({width: "100%"});
-            $('#cfield_audiocodec').val(array_audio).trigger('change');}
+            $('#cfield_audiocodec').val(array_audio);
+                document.getElementById('cfield_audiocodec').dispatchEvent(new Event('change'));}
             if (audio[0].indexOf('dts') > -1 && canais[0].indexOf('6') > -1){
                 array_audio += (',dts51');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
-            $('#cfield_audiocodec').next().remove();
-            $('#cfield_audiocodec').select2({width: "100%"});
-            $('#cfield_audiocodec').val(array_audio).trigger('change');}
+            $('#cfield_audiocodec').val(array_audio);
+                document.getElementById('cfield_audiocodec').dispatchEvent(new Event('change'));}
             if (audio[0].indexOf('dts') > -1 && canais[0].indexOf('7') > -1){
                 array_audio += (',dts61');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
-            $('#cfield_audiocodec').next().remove();
-            $('#cfield_audiocodec').select2({width: "100%"});
-            $('#cfield_audiocodec').val(array_audio).trigger('change');}
+            $('#cfield_audiocodec').val(array_audio);
+                document.getElementById('cfield_audiocodec').dispatchEvent(new Event('change'));}
             if (audio[0].indexOf('dts') > -1 && canais[0].indexOf('8') > -1){
                 array_audio += (',dts71');
                 array_audio = array_audio.split(',');
                 console.log(array_audio);
-            $('#cfield_audiocodec').next().remove();
-            $('#cfield_audiocodec').select2({width: "100%"});
-            $('#cfield_audiocodec').val(array_audio).trigger('change');}
+            $('#cfield_audiocodec').val(array_audio);
+                document.getElementById('cfield_audiocodec').dispatchEvent(new Event('change'));}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             if (release[0].indexOf(' HDR ') > -1){
-                $('#cfield_hdr').next().remove();
-            $('#cfield_hdr').select2({width: "100%"});
-            $('#cfield_hdr').val('yes').trigger('change');
+                $('#cfield_hdr').val('yes');
+                document.getElementById('cfield_hdr').dispatchEvent(new Event('change'));
             }
+
 
             release[0] = release[0].replace(/5 1 /g, "5.1 ");
             release[0] = release[0].replace(/5 1-/g, "5.1-");
@@ -1842,6 +1771,11 @@ function parse_mediainfo(content){
             release[0] = release[0].replace(/Repack/g, "REPACK");
             release[0] = release[0].replace(/PIGNUS/g, "PiGNUS");
             release[0] = release[0].replace(/WOAT/g, "WoAT");
+            if(language_array.length == "2"){
+                if(!(release[0].includes('DUAL'))){
+                release[0] = release[0].replace(/-SiGLA/g, "-DUAL-SiGLA");
+                }
+            }
             //release[0] = release[0].replace(/Web/g, "WEB");
             if (release[0].match(/\sS\d\de\d\d\s/g)) {
                 var regexseries = release[0].match(/\sS\d\de\d\d\s/g);
@@ -1850,18 +1784,109 @@ function parse_mediainfo(content){
             } else {
                 console.log('nao é série');
             }
-            $('#cfield_title').val(release[0]).trigger("change");
-            $('#cfield_size').val(tam[0]).trigger('change');
-            $('#cfield_resolution').val(width[0]+'x'+height[0]).trigger('change');
-            $('#cfield_framerate').val(fps_final+" fps").trigger('change');
+
+            $('#cfield_title').val(release[0]);
+            $('#cfield_size').val(tam[0]);
+            $('#cfield_resolution').val(width[0]+'x'+height[0]);
+            $('#cfield_framerate').val(fps_final+" fps");
             $('#cfield_compression').next().remove();
             $('#cfield_compression').select2({width: "100%"});
             $('#cfield_compression').val('rar').trigger("change");
             $('#cfield_description').val('[mediainfo]'+content_mediainfo+'[/mediainfo]');
-            $('#cfield_subtitles_included').val('no')
-            $('#cfield_subtitles_included').next().remove();
-            $('#cfield_subtitles_included').select2({width: "100%"});
-            $('#cfield_subtitles_included').val('no').trigger("change");
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////LEGENDA/////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            var sub00 = content.split('\nText');
+            if(sub00[1] && sub00[1].includes("Portuguese")){
+            document.getElementById('cfield_subtitles_included').value = 'yes';
+            document.getElementById('cfield_subtitles_included').dispatchEvent(new Event('change'));
+
+/////////////////////////////////////////////////////////////////
+            function getMatch(a, b) {
+                var matches = [];
+                for ( var i = 0; i < a.length; i++ ) {
+                    for ( var e = 0; e < b.length; e++ ) {
+                        if ( a[i] === b[e] ) matches.push( a[i] );
+                    }
+                }
+                return matches;
+            }
+
+                var name_release = release[0].split(' ');
+                var streamings = ["GLBO", "TC", "TPLY", "DSCP", "PLAY", "FUNI", "CLRO", "DTV", "KNPY", "CRIT", "PMTP", "TNT", "VIX", "DSNP", "ATVP", "AMZN", "NF", "PLTO", "HMAX"];
+                var result = getMatch(name_release, streamings);
+
+                switch(result[0]){
+                    case 'GLBO':
+                        $('#cfield_subtitles_author').val('Globo Play');
+                        break;
+                    case 'TC':
+                        $('#cfield_subtitles_author').val('Telecine Play');
+                        break;
+                    case 'TPLY':
+                        $('#cfield_subtitles_author').val('Telecine Play');
+                        break;
+                    case 'DSCP':
+                        $('#cfield_subtitles_author').val('Discovery Plus');
+                        break;
+                    case 'PLAY':
+                        $('#cfield_subtitles_author').val('Google Play');
+                        break;
+                    case 'FUNI':
+                        $('#cfield_subtitles_author').val('Funimation');
+                        break;
+                    case 'CLRO':
+                        $('#cfield_subtitles_author').val('Claro Video');
+                        break;
+                    case 'DTV':
+                        $('#cfield_subtitles_author').val('DirectTV GO');
+                        break;
+                    case 'KNPY':
+                        $('#cfield_subtitles_author').val('Kanopy');
+                        break;
+                    case 'CRIT':
+                        $('#cfield_subtitles_author').val('Criterion Channel');
+                        break;
+                    case 'PMTP':
+                        $('#cfield_subtitles_author').val('Paramount Plus');
+                        break;
+                    case 'TNT':
+                        $('#cfield_subtitles_author').val('TNT GO TV');
+                        break;
+                    case 'VIX':
+                        $('#cfield_subtitles_author').val('VIX');
+                        break;
+                    case 'DSNP':
+                        $('#cfield_subtitles_author').val('Disney+');
+                        break;
+                    case 'ATVP':
+                        $('#cfield_subtitles_author').val('AppleTV+');
+                        break;
+                    case 'PLTO':
+                        $('#cfield_subtitles_author').val('PlutoTV');
+                        break;
+                    case 'HMAX':
+                        $('#cfield_subtitles_author').val('HBOMAX');
+                        break;
+                    case 'AMZN':
+                        $('#cfield_subtitles_author').val('Amazon Prime Video');
+                        break;
+                    case 'NF':
+                        $('#cfield_subtitles_author').val('Netflix');
+                        break;
+                    default:
+                        $('#cfield_subtitles_author').val('Subpack');
+                }
+            }else{
+            document.getElementById('cfield_subtitles_included').value = 'no';
+            document.getElementById('cfield_subtitles_included').dispatchEvent(new Event('change'));
+                }
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////
 
             alert(release[0]);
             //alert(content);
