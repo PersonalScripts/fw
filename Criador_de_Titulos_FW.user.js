@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.66
+// @version      1.67
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -1496,7 +1496,7 @@ function parse_mediainfo(content){
             }if (release[0].indexOf('HEVC') > -1 ){
                 $('#cfield_videocodec').val('h265');
                 document.getElementById('cfield_videocodec').dispatchEvent(new Event('change'));
-            }if (release[0].indexOf('H265') > -1 ){
+            }if (release[0].indexOf('H265') > -1 || release[0].indexOf('H 265') > -1){
                 $('#cfield_videocodec').val('h265');
                 document.getElementById('cfield_videocodec').dispatchEvent(new Event('change'));
             }}
@@ -1763,6 +1763,7 @@ function parse_mediainfo(content){
             release[0] = release[0].replace(/7 1 /g, "7.1 ");
             release[0] = release[0].replace(/7 1-/g, "7.1-");
             release[0] = release[0].replace(/ H 264/g, " H264");
+	    release[0] = release[0].replace(/ H 265/g, " H265");	    
             release[0] = release[0].replace(/ X264/g, " x264");
             release[0] = release[0].replace(/Bdrip/g, "BDRip");
             release[0] = release[0].replace(/Brrip/g, "BRRip");
