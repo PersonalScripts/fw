@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.67
+// @version      1.68
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -1787,6 +1787,7 @@ function parse_mediainfo(content){
             }
 
             $('#cfield_title').val(release[0]);
+	    document.getElementById('cfield_title').dispatchEvent(new Event('change'));
             $('#cfield_size').val(tam[0]);
             $('#cfield_resolution').val(width[0]+'x'+height[0]);
             $('#cfield_framerate').val(fps_final+" fps");
