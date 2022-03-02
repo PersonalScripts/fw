@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.68
+// @version      1.69
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -1403,10 +1403,13 @@ function parse_mediainfo(content){
 ///////////////////////////////////////// SE NÃO FOR DVD-R ////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
             if (release[0].indexOf(' WEB') > -1 && release[0].indexOf('1080p') > -1 || release[0].indexOf(' WEB') > -1 && release[0].indexOf('720p') > -1 || release[0].indexOf('BluRay ') > -1 || release[0].indexOf('Bluray ') > -1 || release[0].indexOf('bluray ') > -1){
-                //$('#cfield_forumid').val('623');
-                //$('#cfield_forumid').val('375');
+                if(release[0].indexOf('REMUX') > -1){
+                $('#cfield_forumid').val('1016');
+                document.getElementById('cfield_forumid').dispatchEvent(new Event('change'));
+                }else{
                 $('#cfield_forumid').val('623');
                 document.getElementById('cfield_forumid').dispatchEvent(new Event('change'));
+                }
                 var values = $('#cfield_forumid').val();
                 if (values == null){
                 $('#cfield_forumid').val('375');
