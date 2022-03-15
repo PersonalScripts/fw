@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.70
+// @version      1.71
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -10,6 +10,7 @@
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=anime
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=game
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=xxx
+// @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=show
 // @include     https://filewarez.tv/postador.php
 // @include     https://filewarez.tv/postador.php?do=addupload*
 // @include     https://filewarez.tv/newthread.php?do=newthread&f=14
@@ -174,6 +175,7 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
     genre = genre.replace(/comedy/g, "commedy");
     genre = genre.replace(/mystery/g, "mistery");
     genre = genre.replace(/horror/g, "terror");
+    genre = genre.replace(/music/g, "musical");
     genre = genre.replace(/ /g, ",");
 
     var genre_array = genre.split(',');
@@ -310,6 +312,7 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
     genre_series = genre_series.replace(/comedy/g, "commedy");
     genre_series = genre_series.replace(/mystery/g, "mistery");
     genre_series = genre_series.replace(/horror/g, "terror");
+    genre_series = genre_series.replace(/music/g, "musical");
     genre_series = genre_series.replace(/ /g, ",");
     var genre_array_series = genre_series.split(',');
     console.log(genre_array_series);
@@ -363,6 +366,7 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
     genre_cartoon = genre_cartoon.replace(/comedy/g, "commedy");
     genre_cartoon = genre_cartoon.replace(/mystery/g, "mistery");
     genre_cartoon = genre_cartoon.replace(/horror/g, "terror");
+    genre_cartoon = genre_cartoon.replace(/music/g, "musical");
     genre_cartoon = genre_cartoon.replace(/ /g, ",");
     var genre_array_cartoon = genre_cartoon.split(',');
     console.log(genre_array_cartoon);
@@ -416,6 +420,7 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
     genre_anime = genre_anime.replace(/comedy/g, "commedy");
     genre_anime = genre_anime.replace(/mystery/g, "mistery");
     genre_anime = genre_anime.replace(/horror/g, "terror");
+    genre_anime = genre_anime.replace(/music/g, "musical");
     genre_anime = genre_anime.replace(/ /g, ",");
     var genre_array_anime = genre_anime.split(',');
     console.log(genre_array_anime);
@@ -448,6 +453,77 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
 
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////SET DE SHOWS
+else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addtitle&step=2&type=show") != -1){
+    var o_titulo_show = GM_getValue('o_titulo');
+    var titulo_show = GM_getValue('titulo');
+    var genre_show = GM_getValue('genero');
+    var minutos_show = GM_getValue('minutos');
+    var year_show = GM_getValue('ano');
+    var director_show = GM_getValue('direcao');
+    var imdb_show = GM_getValue('imdb');
+    var site_show = GM_getValue('site');
+    var actor_show = GM_getValue('actor');
+    var sumario_show = GM_getValue('sinopse');
+    var yt_show = GM_getValue('yt');
+    var exinfo_show = GM_getValue('exinfo');
+    var actor_preview_show = actor_show;
+    actor_preview_show = actor_preview_show.replace(/TABLE\]/gi, "table>");
+    actor_preview_show = actor_preview_show.replace(/TD\]/gi, "td>");
+    actor_preview_show = actor_preview_show.replace(/TR\]/gi, "tr>");
+    actor_preview_show = actor_preview_show.replace(/URL=/gi, 'a href="');
+    actor_preview_show = actor_preview_show.replace(/\[\/URL]/gi, "</a>");
+    actor_preview_show = actor_preview_show.replace(/CENTER\]/gi, "center>");
+    actor_preview_show = actor_preview_show.replace(/B\]/gi, "b>");
+    actor_preview_show = actor_preview_show.replace(/\[IMG2='120px'\]/gi, '<img width="120" src="');
+    actor_preview_show = actor_preview_show.replace(/\[\/IMG2\]/gi, '"></img>');
+    actor_preview_show = actor_preview_show.replace(/\[IMG\]/gi, '<img src="');
+    actor_preview_show = actor_preview_show.replace(/\[\/IMG\]/gi, '"></img>');
+    actor_preview_show = actor_preview_show.replace(/\[/gi, "<");
+    actor_preview_show = actor_preview_show.replace(/\]/gi, '">');
+    actor_preview_show = actor_preview_show.replace(/\n<b>/gi, '<br><b>');
+    actor_preview_show = actor_preview_show.replace(/"><img/gi, '" target="_blank"><img');
+    console.log(actor_preview_show);
+    document.getElementById('cfield_title').value = o_titulo_show;
+    document.getElementById('cfield_title_translated').value = titulo_show;
+    //Genre utiliza JQuery para selecionar mais de um, utilizando array
+    try{
+    genre_show = genre_show.replace(/comedy/g, "commedy");
+    genre_show = genre_show.replace(/mystery/g, "mistery");
+    genre_show = genre_show.replace(/horror/g, "terror");
+    genre_show = genre_show.replace(/music/g, "musical");
+    genre_show = genre_show.replace(/ /g, ",");
+
+    var genre_array_show = genre_show.split(',');
+    console.log(genre_array_show);
+    }catch(e){}
+
+    $("#cfield_genre").next().remove();
+    $("#cfield_genre").select2({width: "100%"});
+    $('#cfield_genre').val(genre_array_show).trigger("change");
+    document.getElementById('cfield_duration').value = minutos_show;
+    document.getElementById('cfield_year').value = year_show;
+    document.getElementById('cfield_direction').value = director_show;
+    document.getElementById('cfield_imdb').value = imdb_show;
+    document.getElementById('cfield_site').value = site_show;
+    document.getElementById('cfield_components').value = actor_show;
+    document.getElementById('cfield_summary').value = sumario_show;
+    document.getElementById('cfield_trailer').value = yt_show;
+        GM_setValue('o_titulo', "");
+        GM_setValue('titulo', "");
+        GM_setValue('genero', "");
+        GM_setValue('minutos', "");
+        GM_setValue('ano', "");
+        GM_setValue('direcao', "");
+        GM_setValue('imdb', "");
+        GM_setValue('site', "");
+        GM_setValue('actor', "");
+        GM_setValue('sinopse', "");
+        GM_setValue('yt', "");
+        GM_setValue('exinfo', "");
+
+}
+
 /////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////
 ////////////////////////EDITOR DE TÍTULOS DE FILMES//////////////////////////////
@@ -463,8 +539,8 @@ if(document.getElementById('cfield_imdb')){
     img.id = "img_edit";
     img.addEventListener("mouseover", function(){img.src = 'https://i.imgur.com/HLfKSIH.png';});
     img.addEventListener("mouseout", function(){img.src = 'https://i.imgur.com/jqqCux6.png';});
-    var local = document.getElementsByClassName('input')[2];
-    local.appendChild(img);
+    var local = document.getElementById('cfield_imdb');
+    local.after(img);
     var elencoimdb = new Image();
     var elencotmdb = new Image();
     var elencosemfoto = new Image();
@@ -485,13 +561,22 @@ if(document.getElementById('cfield_imdb')){
     elencosemfoto.title ='Atualizar Elenco IMDB (Apenas Texto)';
     preview_actors.title ='Preview do Elenco';
     preview_trailer.title ='Preview do Trailer';
-    var localelenco = document.getElementById("cfield_cast");
+    if(document.getElementById("cfield_artist")){
+        var localelenco = document.getElementById("cfield_components");
     var localtrailer = document.getElementById("cfield_trailer");
     localelenco.before(elencoimdb);
     localelenco.before(elencotmdb);
     localelenco.before(elencosemfoto);
     localelenco.after(preview_actors);
     localtrailer.after(preview_trailer);
+       }else{
+    var localelenco = document.getElementById("cfield_cast");
+    var localtrailer = document.getElementById("cfield_trailer");
+    localelenco.before(elencoimdb);
+    localelenco.before(elencotmdb);
+    localelenco.before(elencosemfoto);
+    localelenco.after(preview_actors);
+    localtrailer.after(preview_trailer);}
     if(document.getElementById('cfield_myanimelist')){
         var elencomal = new Image();
         elencomal.src = 'https://i.imgur.com/wAzTPtT.png';
@@ -544,6 +629,24 @@ function myFunc () {
     'use strict';
     if(document.getElementById('cfield_cast')){
     var actor_preview = document.getElementById('cfield_cast').value;
+    actor_preview = actor_preview.replace(/TABLE\]/gi, "table>");
+    actor_preview = actor_preview.replace(/TD\]/gi, "td>");
+    actor_preview = actor_preview.replace(/TR\]/gi, "tr>");
+    actor_preview = actor_preview.replace(/URL=/gi, 'a href="');
+    actor_preview = actor_preview.replace(/\[\/URL]/gi, "</a>");
+    actor_preview = actor_preview.replace(/CENTER\]/gi, "center>");
+    actor_preview = actor_preview.replace(/B\]/gi, "b>");
+    actor_preview = actor_preview.replace(/\[IMG2='120px'\]/gi, '<img width="120" src="');
+    actor_preview = actor_preview.replace(/\[\/IMG2\]/gi, '"></img>');
+    actor_preview = actor_preview.replace(/\[IMG\]/gi, '<img src="');
+    actor_preview = actor_preview.replace(/\[\/IMG\]/gi, '"></img>');
+    actor_preview = actor_preview.replace(/\[/gi, "<");
+    actor_preview = actor_preview.replace(/\]/gi, '">');
+    actor_preview = actor_preview.replace(/\n<b>/gi, '<br><b>');
+    actor_preview = actor_preview.replace(/"><img/gi, '" target="_blank"><img');
+    }
+    if(document.getElementById('cfield_components')){
+    var actor_preview = document.getElementById('cfield_components').value;
     actor_preview = actor_preview.replace(/TABLE\]/gi, "table>");
     actor_preview = actor_preview.replace(/TD\]/gi, "td>");
     actor_preview = actor_preview.replace(/TR\]/gi, "tr>");
@@ -872,6 +975,7 @@ var curiosidades = document.getElementById('cfield_curiosity').value;
     genre = genre.replace(/comedy/g, "commedy");
     genre = genre.replace(/mystery/g, "mistery");
     genre = genre.replace(/horror/g, "terror");
+    genre = genre.replace(/music/g, "musical");
     genre = genre.replace(/\n/g, ",");
             console.log(genre);
     var genre_array = genre.split(',');
@@ -2276,6 +2380,7 @@ var divwait = `<div class="loader loader-bouncing is-active"></div>`;
     if(document.getElementsByClassName('ipc-inline-list__item')[0].innerText.includes("Série") || document.getElementsByClassName('ipc-inline-list__item')[0].innerText.includes("Series")){
     movieOrSeries = 'serie';
     }else{movieOrSeries = 'movie';}
+    console.log(movieOrSeries);
 if(document.getElementById('titleYear') || movieOrSeries == 'movie' && document.getElementsByClassName('ipc-inline-list__item')[0].innerText != ''){
     var img = new Image();
     img.src = 'https://i.imgur.com/jqqCux6.png';
@@ -2353,6 +2458,7 @@ var id = doc1[1].split('/');
             GM_setValue('titulo', doc.getElementById("titulo").innerText);
             var genero_imdb = doc.getElementById("genero").innerText;
             genero_imdb = genero_imdb.replace(/\n/g, " ");
+            console.log(genero_imdb);
             GM_setValue('genero', genero_imdb);
             GM_setValue('minutos', doc.getElementById("minutos").innerText);
             GM_setValue('ano', doc.getElementById("ano").innerText);
@@ -2365,9 +2471,33 @@ var id = doc1[1].split('/');
             GM_setValue('exinfo', doc.getElementById("exinfo").innerText);
             console.log(doc.getElementById("award").innerText);
             GM_setValue('award', doc.getElementById("award").innerText);
-
             GM_setValue('img', doc.getElementById("img").innerText);
+            if(genero_imdb.includes('music')){
+
+                var a = $.confirm({
+               theme: 'dark',
+               title: 'Escolha para continuar...',
+               content: 'Um musical foi detectado. Escolha a área adequada a qual deseja criar o título:',
+               columnClass: 'small',
+               closeIcon: true,
+               type: 'orange',
+               backgroundDismiss: true,
+               icon: 'fa fa-spinner fa-spin',
+               draggable: false,
+               animation: 'scaleY',
+               animationBounce: 2.5,
+               animationSpeed: 1000,
+               closeAnimation: 'scale',
+                    useBootstrap: false,
+                    boxWidth: '20%',
+               buttons: {
+                "Shows": {btnClass: 'btn-orange text-dark',action: function() {window.open("https://filewarez.tv/postador.php?do=addtitle&step=2&type=show");}},
+                "Filmes":  {btnClass: 'btn-orange text-dark',action: function() {window.open("https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie");}}
+               }
+        });
+        }else{
             window.open("https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie");
+        }
 
 })
         .fail(function(jqXHR, textStatus, msg){
@@ -2376,7 +2506,7 @@ alert('Falhou!');
 
 })
 
-    var local=document.getElementsByClassName('TitleHeader__TitleText-sc-1wu6n3d-0 ')[0];
+    var local=document.getElementsByClassName('sc-b73cd867-0 ')[0];
     if(local){
       local.appendChild(criar);
       local.appendChild(img);
@@ -2512,7 +2642,7 @@ var id = doc1[1].split('/');
 })
 
 
-    var local=document.getElementsByClassName('TitleHeader__TitleText-sc-1wu6n3d-0 ')[0];
+    var local=document.getElementsByClassName('sc-b73cd867-0 ')[0];
     if(local){
         local.appendChild(criar);
         local.appendChild(img);
