@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.71
+// @version      1.72
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -491,7 +491,7 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
     genre_show = genre_show.replace(/comedy/g, "commedy");
     genre_show = genre_show.replace(/mystery/g, "mistery");
     genre_show = genre_show.replace(/horror/g, "terror");
-    genre_show = genre_show.replace(/music/g, "musical");
+    //genre_show = genre_show.replace(/music/g, "musical");
     genre_show = genre_show.replace(/ /g, ",");
 
     var genre_array_show = genre_show.split(',');
