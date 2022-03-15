@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.69
+// @version      1.70
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -1540,6 +1540,138 @@ function parse_mediainfo(content){
                 language_array = ('french');
             $('#cfield_language').val(language_array);
             document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+            			if (linguagem[0].indexOf('italian') > -1){
+                language_array = ('italian');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem[0].indexOf('german') > -1){
+                language_array = ('german');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem[0].indexOf('chinese') > -1){
+                language_array = ('chinese');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem[0].indexOf('korean') > -1){
+                language_array = ('korean');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem[0].indexOf('danish') > -1){
+                language_array = ('danish');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem[0].indexOf('hindi') > -1){
+                language_array = ('hindi');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem[0].indexOf('polish') > -1){
+                language_array = ('polish');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem[0].indexOf('russian') > -1){
+                language_array = ('russian');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem[0].indexOf('arabic') > -1){
+                language_array = ('arabic');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem[0].indexOf('bulgarian') > -1){
+                language_array = ('bulgarian');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem[0].indexOf('croatian') > -1){
+                language_array = ('croatian');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem[0].indexOf('slovak') > -1){
+                language_array = ('slovak');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem[0].indexOf('slovenian') > -1){
+                language_array = ('slovenian');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem[0].indexOf('estonian') > -1){
+                language_array = ('estonian');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem[0].indexOf('finnish') > -1){
+                language_array = ('finnish');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem[0].indexOf('greek') > -1){
+                language_array = ('greek');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem[0].indexOf('hebrew') > -1){
+                language_array = ('hebrew');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem[0].indexOf('dutch') > -1){
+                language_array = ('dutch');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem[0].indexOf('hungarian') > -1){
+                language_array = ('hungarian');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem[0].indexOf('indonesian') > -1){
+                language_array = ('indonesian');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem[0].indexOf('icelandic') > -1){
+                language_array = ('icelandic');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem[0].indexOf('latvian') > -1){
+                language_array = ('latvian');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem[0].indexOf('lithuanian') > -1){
+                language_array = ('lithuanian');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem[0].indexOf('norwegian') > -1){
+                language_array = ('norwegian');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem[0].indexOf('persian') > -1){
+                language_array = ('persian');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem[0].indexOf('romanian') > -1){
+                language_array = ('romanian');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem[0].indexOf('serbian') > -1){
+                language_array = ('serbian');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem[0].indexOf('swedish') > -1){
+                language_array = ('swedish');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem[0].indexOf('thai') > -1){
+                language_array = ('thai');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem[0].indexOf('czech') > -1){
+                language_array = ('czech');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem[0].indexOf('turkish') > -1){
+                language_array = ('turkish');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem[0].indexOf('ukrainian') > -1){
+                language_array = ('ukrainian');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem[0].indexOf('vietnamese') > -1){
+                language_array = ('vietnamese');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
             console.log(linguagem);
             }
 
@@ -1578,6 +1710,171 @@ function parse_mediainfo(content){
                 language_array = language_array.split(',');
                 $('#cfield_language').val(language_array);
                 document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+                if (linguagem2[0].indexOf('italian') > -1){
+                language_array += (',italian');
+				language_array = language_array.split(',');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem2[0].indexOf('german') > -1){
+                language_array += (',german');
+				language_array = language_array.split(',');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem2[0].indexOf('chinese') > -1){
+                language_array += (',chinese');
+				language_array = language_array.split(',');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem2[0].indexOf('korean') > -1){
+                language_array += (',korean');
+				language_array = language_array.split(',');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem2[0].indexOf('danish') > -1){
+                language_array += (',danish');
+				language_array = language_array.split(',');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem2[0].indexOf('hindi') > -1){
+                language_array += (',hindi');
+				language_array = language_array.split(',');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem2[0].indexOf('polish') > -1){
+                language_array += (',polish');
+				language_array = language_array.split(',');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem2[0].indexOf('russian') > -1){
+                language_array += (',russian');
+				language_array = language_array.split(',');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem2[0].indexOf('arabic') > -1){
+                language_array += (',arabic');
+				language_array = language_array.split(',');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem2[0].indexOf('bulgarian') > -1){
+                language_array += (',bulgarian');
+				language_array = language_array.split(',');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem2[0].indexOf('croatian') > -1){
+                language_array += (',croatian');
+				language_array = language_array.split(',');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem2[0].indexOf('slovak') > -1){
+                language_array += (',slovak');
+				language_array = language_array.split(',');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem2[0].indexOf('slovenian') > -1){
+                language_array += (',slovenian');
+				language_array = language_array.split(',');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem2[0].indexOf('estonian') > -1){
+                language_array += (',estonian');
+				language_array = language_array.split(',');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem2[0].indexOf('finnish') > -1){
+                language_array += (',finnish');
+				language_array = language_array.split(',');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem2[0].indexOf('greek') > -1){
+                language_array += (',greek');
+				language_array = language_array.split(',');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem2[0].indexOf('hebrew') > -1){
+                language_array += (',hebrew');
+				language_array = language_array.split(',');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem2[0].indexOf('dutch') > -1){
+                language_array += (',dutch');
+				language_array = language_array.split(',');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem2[0].indexOf('hungarian') > -1){
+                language_array += (',hungarian');
+				language_array = language_array.split(',');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem2[0].indexOf('indonesian') > -1){
+                language_array += (',indonesian');
+				language_array = language_array.split(',');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem2[0].indexOf('icelandic') > -1){
+                language_array += (',icelandic');
+				language_array = language_array.split(',');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem2[0].indexOf('latvian') > -1){
+                language_array += (',latvian');
+				language_array = language_array.split(',');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem2[0].indexOf('lithuanian') > -1){
+                language_array += (',lithuanian');
+				language_array = language_array.split(',');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem2[0].indexOf('norwegian') > -1){
+                language_array += (',norwegian');
+				language_array = language_array.split(',');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem2[0].indexOf('persian') > -1){
+                language_array += (',persian');
+				language_array = language_array.split(',');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem2[0].indexOf('romanian') > -1){
+                language_array += (',romanian');
+				language_array = language_array.split(',');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem2[0].indexOf('serbian') > -1){
+                language_array += (',serbian');
+				language_array = language_array.split(',');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem2[0].indexOf('swedish') > -1){
+                language_array += (',swedish');
+				language_array = language_array.split(',');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem2[0].indexOf('thai') > -1){
+                language_array += (',thai');
+				language_array = language_array.split(',');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem2[0].indexOf('czech') > -1){
+                language_array += (',czech');
+				language_array = language_array.split(',');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem2[0].indexOf('turkish') > -1){
+                language_array += (',turkish');
+				language_array = language_array.split(',');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem2[0].indexOf('ukrainian') > -1){
+                language_array += (',ukrainian');
+				language_array = language_array.split(',');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
+			if (linguagem2[0].indexOf('vietnamese') > -1){
+                language_array += (',vietnamese');
+				language_array = language_array.split(',');
+            $('#cfield_language').val(language_array);
+            document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////PRIMEIRO AUDIO/////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
