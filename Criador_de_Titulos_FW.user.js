@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.73
+// @version      1.74
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -1257,9 +1257,11 @@ var myWindow = window.open ("https://filewarez.tv/newthread.php?do=newthread&f=1
     //document.getElementsByClassName("cke_source cke_enable_context_menu")[0].value = envia;
     document.getElementById('vB_Editor_001_editor').value = envia;
     $('#subject').val(envia);
+    window.addEventListener("unload", function() {
+      window.close();
+    });
     if(envia){
     document.getElementById("vB_Editor_001_save").click();
-
     }
     }
 
@@ -1776,7 +1778,7 @@ function parse_mediainfo(content){
                 language_array = ('vietnamese');
             $('#cfield_language').val(language_array);
             document.getElementById('cfield_language').dispatchEvent(new Event('change'));}
-            console.log(linguagem);
+            //console.log(linguagem);
             }
 
             if (canais2){
@@ -1786,7 +1788,7 @@ function parse_mediainfo(content){
                 var audio2 = audio3[1].split('Duration');
                 audio2[0] = audio2[0].toLowerCase();
                 var linguagem02 = canais2[1].split('Language:');
-                console.log(canais2[1]);
+                //console.log(canais2[1]);
                 var linguagem2 = linguagem02[1].split(/\n/);
                 linguagem2[0] = linguagem2[0].toLowerCase();
                 if (linguagem2[0].indexOf('english') > -1){
@@ -2167,7 +2169,7 @@ function parse_mediainfo(content){
             release[0] = release[0].replace(/7 1 /g, "7.1 ");
             release[0] = release[0].replace(/7 1-/g, "7.1-");
             release[0] = release[0].replace(/ H 264/g, " H264");
-	    release[0] = release[0].replace(/ H 265/g, " H265");	    
+	        release[0] = release[0].replace(/ H 265/g, " H265");
             release[0] = release[0].replace(/ X264/g, " x264");
             release[0] = release[0].replace(/Bdrip/g, "BDRip");
             release[0] = release[0].replace(/Brrip/g, "BRRip");
@@ -2205,7 +2207,17 @@ function parse_mediainfo(content){
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             var sub00 = content.split('\nText');
-            if(sub00[1] && sub00[1].includes("Portuguese")){
+                console.log("Legendas: "+(sub00.length-1));
+                var ptbr = false;
+                var count_legendas = 0;
+                if(sub00[1]){
+            for(var i=1;i<sub00.length;i++){
+            if(sub00[i].includes("Portuguese")){
+            //console.log(ptbr);
+            ptbr = true;
+            if(ptbr == true){
+            count_legendas++;
+            }
             document.getElementById('cfield_subtitles_included').value = 'yes';
             document.getElementById('cfield_subtitles_included').dispatchEvent(new Event('change'));
 
@@ -2285,10 +2297,15 @@ function parse_mediainfo(content){
                     default:
                         $('#cfield_subtitles_author').val('Subpack');
                 }
+            }}console.log("Legenda(s) PT-BR: "+count_legendas);
+            if(ptbr == false){
+            document.getElementById('cfield_subtitles_included').value = 'no';
+            document.getElementById('cfield_subtitles_included').dispatchEvent(new Event('change'));
+            }
             }else{
             document.getElementById('cfield_subtitles_included').value = 'no';
             document.getElementById('cfield_subtitles_included').dispatchEvent(new Event('change'));
-                }
+            }
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
