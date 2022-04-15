@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.75
+// @version      1.76
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -1336,12 +1336,10 @@ if (window.location.href.indexOf("https://filewarez.tv/postador.php") != -1 ) {
     dominios = dominios.split('\n');
         console.log(dominios.length);
     for(var i=0;i<dominios.length;i++){
-       //var url_final;
        console.log(GM_getValue('nomedoarquivo'));
-       dominios[i] = (dominios[i]+GM_getValue('nomedoarquivo'));//.join('\n');
-        console.log(dominios[i]);
-         console.log(dominios);
-        //dominios=dominios.join('\n');
+       if(dominios[i].includes("https")){
+       dominios[i] = (dominios[i]+GM_getValue('nomedoarquivo'));
+    }
     }
 
 
