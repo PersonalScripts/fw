@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.74
+// @version      1.75
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -34,8 +34,147 @@
 // @require     https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js
 // @require     https://code.jquery.com/ui/1.12.1/jquery-ui.js
 // @require     https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js
+// @require            https://openuserjs.org/src/libs/sizzle/GM_config.js
 // ==/UserScript==
 
+//##############################################################################################//
+//CONFIGURAÇÕES PADRÃO
+var content_mediainfo;
+var frame = document.createElement('div');
+document.body.appendChild(frame);
+GM_config.init(
+{
+  'id': 'MyConfig', // The id used for this instance of GM_config
+  'title': `<br><h1 style="background-color:white;"><img src="https://i.imgur.com/enqV0yc.png"><br><img src="https://i.imgur.com/RsLynzw.png?1"></h1>`,
+  'css': '.config_var, #MyConfig_buttons_holder { margin-top: 20px !important;text-align: center !important;display: block !important; } #MyConfig_field_ComentariosUploader { margin-top: 10px !important; margin-left: auto !important; margin-right: auto !important;display: block !important; } #MyConfig_field_BtPath { margin-left: auto !important; margin-right: auto !important;} #MyConfig{width: 700px !important;}#MyConfig_field_enviando{margin-top:5px !important;}',
+  'events':
+  {
+    'open': function() {
+      $("#MyConfig_saveBtn").html("Salvar");
+      $("#MyConfig_closeBtn").html("Fechar");
+      $("#MyConfig_resetLink").html("Restaurar Padrões");
+      $("input[name=Senha]").css({"margin-left":"5px","margin-top":"5px" });
+      $("input[name=enviando]").css({"margin-left":"5px","margin-top":"5px" });
+      $("input[name=Add_bts]").css({"margin-left":"5px","margin-top":"5px" });
+
+      if(GM_config.get('Senha') == 'Sim'){
+      $('#MyConfig_field_SenhaSim').attr("type", 'text');
+      }
+      else{
+      $('#MyConfig_field_SenhaSim').attr("type", 'hidden');
+      }
+
+      $("#MyConfig_field_Senha").on('change', "input[name=Senha]", function() {
+      //alert($("input[name='Senha']:checked").val());
+      console.log(GM_config.get('Senha'));
+      if($("input[name='Senha']:checked").val() == 'Sim'){
+      $('#MyConfig_field_SenhaSim').attr("type", 'text');
+      }
+      else if($("input[name='Senha']:checked").val() == 'Não'){
+      $('#MyConfig_field_SenhaSim').val('');
+      $('#MyConfig_field_SenhaSim').attr("type", 'hidden');
+      }
+});
+
+      if(GM_config.get('Add_bts') == 'Sim'){
+      $('#MyConfig_field_BtPath').show();
+      }
+      else{
+      $('#MyConfig_field_BtPath').hide();
+      }
+
+      $("#MyConfig_field_Add_bts").on('change', "input[name=Add_bts]", function() {
+      //alert($("input[name='Senha']:checked").val());
+      console.log(GM_config.get('Add_bts'));
+      if($("input[name='Add_bts']:checked").val() == 'Sim'){
+      $('#MyConfig_field_BtPath').val('https://');
+      $('#MyConfig_field_BtPath').show();
+      }
+      else if($("input[name='Add_bts']:checked").val() == 'Não'){
+      $('#MyConfig_field_BtPath').val('');
+      $('#MyConfig_field_BtPath').hide();
+      }
+});
+    }
+  },
+    'fields': // Fields object
+  {
+      'separador': // This is the id of the field
+    {
+      'section': ['Leitor de MediaInfo', 'Selecione suas preferências e clique em Salvar!'],
+      'type': 'hidden', // Makes this setting a text field
+      'default': '' // Default value if user doesn't change it
+    },
+    'Senha': // This is the id of the field
+    {
+      'options': ['Sim', 'Não'],
+      'label': 'Senha: ', // Appears next to field
+      'type': 'radio', // Makes this setting a text field
+      'title': 'Senha Opcional',
+      'default': '' // Default value if user doesn't change it
+    },
+    'SenhaSim': // This is the id of the field
+    {
+      //'label': 'Senha: ', // Appears next to field
+      'type': 'hidden', // Makes this setting a text field
+      'title': 'Preencha apenas se utilizar o campo!',
+      'default': '' // Default value if user doesn't change it
+    },
+    'Compressao':
+    {
+      'label': 'Compressão: ', // Appears next to field
+      'type': 'select', // Makes this setting a dropdown
+      'options': ['Nenhuma', 'RAR', 'ZIP'], // Possible choices
+      'default': 'Nenhuma' // Default value if user doesn't change it
+    },
+    'ComentariosUploader': // This is the id of the field
+    {
+      'label': 'Comentários do Uploader: ', // Appears next to field
+      'type': 'textarea', // Makes this setting a text field
+      'cols':'80',
+      'rows':'10',
+      'title': 'Não apagar a linha com o BBCode mediainfo!',
+      'default': '[mediainfo]MEDIAINFO[/mediainfo]' // Default value if user doesn't change it
+    },
+    'separador2': // This is the id of the field
+    {
+      'section': ['Facilidades em Geral'],
+      'type': 'hidden', // Makes this setting a text field
+      'default': '' // Default value if user doesn't change it
+    },
+    'enviando': // This is the id of the field
+    {
+      'options': ['Sim', 'Não'],
+        'label': 'Após carregar o mediainfo, autorizar o script a postar no "Enviando Agora" quando clicar em Prosseguir:',
+        'title': 'Abre a janela pra postar no mediainfo e fecha sozinho em seguida.',
+        'type': 'radio',
+        'default': 'Não'
+    },
+    'Add_bts': // This is the id of the field
+    {
+      'options': ['Sim', 'Não'],
+        'label': `Permitir que o script adicione botões para formar o link direto com o nome do arquivo:<br>Se 'Sim', adicione o domínio do link direto:`,
+        'type': 'radio',
+        'default': 'Não'
+    },
+    'BtPath': // This is the id of the field
+    {
+      'type': 'textarea', // Makes this setting a text field
+      'cols':'35',
+      'rows':'3',
+      'title': 'Se utilizar mais de um domínio, insira um por linha. Útil apenas para link direto e carregados pelo leitor de mediainfo.',
+      'default': '' // Default value if user doesn't change it
+    }
+
+  },
+     'frame': frame // Element used for the panel
+});
+//GM_config.open();
+
+
+
+
+//##############################################################################################//
 if (window.location.href.indexOf("https://www.fw.artvetro.com.br/") != -1 || window.location.href.indexOf("http://www.fw.artvetro.com.br/") != -1) {
 
     document.addEventListener('keydown', function(e) {
@@ -1136,6 +1275,95 @@ elencosemfoto.addEventListener('click', function () {
 
 ///////////////////////////////////////////////////////////////////////////////// ADD IMAGENS NO POSTADOR COM ALT + P
 if (window.location.href.indexOf("https://filewarez.tv/postador.php") != -1 ) {
+//###############################################################################################################################
+    $(".isuser").prepend('<li style=margin-left:1em; id="config_script"><a href="javascript:void(0);">Script Config</a></li>');
+    $("#config_script").on('click', function() {
+    GM_config.open();
+    })
+    if(GM_config.get('Add_bts') == "Sim"){
+    if (document.getElementById("postador_importlinks_process")){
+    var finalizar_upload= document.createElement('span');
+        finalizar_upload.style = `background: none;
+	color: inherit;
+	border: none;
+	padding-top: 20px;
+    padding-right: 10px;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+    float:right;font-size: 120%;font-weight: bold;`;
+    finalizar_upload.innerHTML = `
+    <img id="finalizar" src="https://i.imgur.com/e4NzCPn.png" style=" vertical-align: bottom; margin-right: 5px;width:17px;">Finalizar
+    <span class="seperator">&nbsp;</span>
+`;
+
+    $('#postador_importlinks').css("height", "120px");
+        var addlinks_geral = document.createElement('span');
+        addlinks_geral.style = `background: none;
+	color: inherit;
+	border: none;
+	padding-top: 20px;
+    padding-right: 10px;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+    float:left;font-size: 120%;font-weight: bold;`;
+    addlinks_geral.innerHTML = `
+    <img id="addlinks_geral" src="https://i.imgur.com/CdhJ4EW.png" style=" vertical-align: bottom; margin-right: 5px;width:17px;">Link Geral
+    <span class="seperator">&nbsp;</span>
+`;
+   var get_mkv = document.createElement('span');
+        get_mkv.style = `background: none;
+	color: inherit;
+	border: none;
+	padding-top: 20px;
+    padding-right: 10px;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+    float:left;font-size: 120%;font-weight: bold;`;
+    get_mkv.innerHTML = `
+    <img id="get_mkv" src="https://i.imgur.com/Zz7io6W.png" style=" vertical-align: bottom; margin-right: 5px;width:17px;">Get MKV
+    <span class="seperator">&nbsp;</span>
+`;
+
+
+    var local_finalizador = document.getElementsByClassName('blockrow postador_field')[0];
+    local_finalizador.appendChild(finalizar_upload);
+    local_finalizador.appendChild(addlinks_geral);
+    local_finalizador.appendChild(get_mkv);
+    var dominios = GM_config.get('BtPath');
+    dominios = dominios.split('\n');
+        console.log(dominios.length);
+    for(var i=0;i<dominios.length;i++){
+       //var url_final;
+       console.log(GM_getValue('nomedoarquivo'));
+       dominios[i] = (dominios[i]+GM_getValue('nomedoarquivo'));//.join('\n');
+        console.log(dominios[i]);
+         console.log(dominios);
+        //dominios=dominios.join('\n');
+    }
+
+
+    addlinks_geral.addEventListener('click', function(e){
+        document.getElementsByClassName('primary textbox tinymce')[0].value = GM_config.get('BtPath');
+        //document.getElementsByClassName('primary textbox tinymce')[0].value = '-480P - \n\n-720P - \n\n-1080P - \n\n';
+        })
+    get_mkv.addEventListener('click', function(e){
+        document.getElementsByClassName('primary textbox tinymce')[0].value = dominios.join('\n');
+        //document.getElementsByClassName('primary textbox tinymce')[0].value = '-480P - \n\n-720P - \n\n-1080P - \n\n';
+        })
+    finalizar_upload.addEventListener('click', function(e){
+        var testando = document.getElementsByClassName('primary textbox tinymce')[0].value;
+        testando = testando.replace(/\/a\/cloudfileguard.com/g,'');
+        document.getElementsByClassName('primary textbox tinymce')[0].value = testando;
+        document.getElementById('postador_importlinks_process').click();
+        console.log('finalizado');
+        document.getElementsByName("next")[0].click();
+        })
+}
+    }
+//###############################################################################################################################
     var up_img = new Image();
     up_img.src = 'https://i.imgur.com/jqqCux6.png';
     up_img.title ='Carregar Imagens!';
@@ -1306,11 +1534,14 @@ function capitalize(s){//FUNÇÃO PRIMEIRA LETRA DE CADA PALAVRA EM MAIUSCULO
     return s.toLowerCase().replace( /\b./g, function(a){ return a.toUpperCase(); } );
 };
 function parse_mediainfo(content){
-    var content_mediainfo = content;
+        content_mediainfo = content;
 	    var release_espaco0 = content.split('Complete name');
             var release_espaco = release_espaco0[1].split(/\n/);
             release_espaco[0] = release_espaco[0].trim();
-	    release_espaco[0] = release_espaco[0].replace(/: /, "");
+            release_espaco[0] = release_espaco[0].replace(/: /, "");
+            //console.log(release_espaco[0]);
+            var nomedoarquivo = release_espaco[0];
+            GM_setValue('nomedoarquivo',nomedoarquivo);
             release_espaco[0] = release_espaco[0].substring(0, release_espaco[0].lastIndexOf('\\')) + "\\";
             content = content.replace(/ /g, "");
             //content = content.replace(/:/g, ": ");
@@ -2193,14 +2424,23 @@ function parse_mediainfo(content){
             }
 
             $('#cfield_title').val(release[0]);
-	    document.getElementById('cfield_title').dispatchEvent(new Event('change'));
+            document.getElementById('cfield_title').dispatchEvent(new Event('change'));
             $('#cfield_size').val(tam[0]);
+            $('#cfield_password').val(GM_config.get('SenhaSim'));
+	        document.getElementById('cfield_password').dispatchEvent(new Event('change'));
             $('#cfield_resolution').val(width[0]+'x'+height[0]);
             $('#cfield_framerate').val(fps_final+" fps");
-            $('#cfield_compression').next().remove();
-            $('#cfield_compression').select2({width: "100%"});
-            $('#cfield_compression').val('rar').trigger("change");
-            $('#cfield_description').val('[mediainfo]'+content_mediainfo+'[/mediainfo]');
+            $('#cfield_compression').val(GM_config.get('Compressao').toLowerCase());
+            document.getElementById('cfield_compression').dispatchEvent(new Event('change'));
+            console.log(GM_config.get('Compressao').toLowerCase());
+            var comentariosUploader = GM_config.get('ComentariosUploader').replace(/MEDIAINFO/g, content_mediainfo);
+            $('#cfield_description').val(comentariosUploader);
+            if(GM_config.get('enviando') == "Sim"){
+                document.getElementsByName("next")[0].addEventListener('click', function(e) {
+                img_title.click();
+            })
+            }
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////LEGENDA/////////////////////////////////////////////////////////
