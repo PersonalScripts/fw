@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.76
+// @version      1.77
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -124,7 +124,7 @@ GM_config.init(
     {
       'label': 'Compressão: ', // Appears next to field
       'type': 'select', // Makes this setting a dropdown
-      'options': ['Nenhuma', 'RAR', 'ZIP'], // Possible choices
+      'options': ['Nenhuma', 'RAR', 'ZIP', '7ZIP'], // Possible choices
       'default': 'Nenhuma' // Default value if user doesn't change it
     },
     'ComentariosUploader': // This is the id of the field
@@ -1339,6 +1339,9 @@ if (window.location.href.indexOf("https://filewarez.tv/postador.php") != -1 ) {
        console.log(GM_getValue('nomedoarquivo'));
        if(dominios[i].includes("https")){
        dominios[i] = (dominios[i]+GM_getValue('nomedoarquivo'));
+    }
+        if(dominios[i].includes("url=vlc")){
+       dominios[i] = (dominios[i]+'][IMG]https://i.imgur.com/csNzErQ.png?4[/IMG][/url][/center]');
     }
     }
 
