@@ -8,6 +8,8 @@
 // @grant        unsafeWindow
 // @run-at       document-idle
 // @include      https://filewarez.tv/postador.php
+// @updateURL   https://github.com/PersonalScripts/fw/raw/master/Verificador_PvP_FW_Integrado.user.js
+// @downloadURL https://github.com/PersonalScripts/fw/raw/master/Verificador_PvP_FW_Integrado.user.js
 // @require      http://code.jquery.com/jquery-3.4.1.min.js
 // @require      https://code.jquery.com/ui/1.12.1/jquery-ui.js
 // @require      https://cdnjs.cloudflare.com/ajax/libs/jquery.countdown/2.2.0/jquery.countdown.min.js
