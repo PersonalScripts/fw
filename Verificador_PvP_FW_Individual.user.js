@@ -2,12 +2,14 @@
 // @name         Verificador de Uploads Individual[FW]
 // @namespace    http://tampermonkey.net/
 // @version      1.0
-// @description  Automatiza a verificação de uploads da Filewarez.
+// @description  Realiza a verificação de uploads da Filewarez.
 // @author       PvP
 // @grant        GM_xmlhttpRequest
 // @grant        unsafeWindow
 // @run-at       document-idle
 // @include      https://filewarez.tv/showthread.php*
+// @updateURL    https://github.com/PersonalScripts/fw/raw/master/Verificador_PvP_FW_Individual.user.js
+// @downloadURL  https://github.com/PersonalScripts/fw/raw/master/Verificador_PvP_FW_Individual.user.js
 // @require      http://code.jquery.com/jquery-3.4.1.min.js
 // @require      https://code.jquery.com/ui/1.12.1/jquery-ui.js
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=filewarez.tv
