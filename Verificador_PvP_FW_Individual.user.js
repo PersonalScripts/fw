@@ -293,6 +293,7 @@ else if(url.includes('terabox.com') || url.includes('transferfile.io') || url.in
 
 else if(dominios.some(v => url.includes(v))){
      updatestatus(e);
+     $('div.blockrow.upload_link').eq(e).css('background-color', 'rgb(203 235 217)');	
 }
 
 else if(freeservers.some(v => url.includes(v))){
