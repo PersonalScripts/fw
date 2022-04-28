@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Verificador de Uploads Integrado[FW]
-// @namespace    http://tampermonkey.net/
+// @namespace    PvP
 // @version      1.0
 // @description  Automatiza a verificação de uploads da Filewarez.
 // @author       PvP
