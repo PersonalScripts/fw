@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Verificador de Uploads Integrado[FW]
 // @namespace    PvP
-// @version      1.0
+// @version      1.01
 // @description  Automatiza a verificação de uploads da Filewarez.
 // @author       PvP
 // @grant        GM_xmlhttpRequest
@@ -17,7 +17,7 @@
 
 // ==/UserScript==
 var dominios = ['https://gokigenyou','https://pinkm4n','https://pinkmanmirror','https://rkreleasesfw','https://rkzicadosreleases','https://rkzicamirror','https://rkcloud','https://xaulin','https://kenoshy','https://link-direto','https://locao.website','https://linkkdireto','https://crazylouco'];
-var freeservers = ['zippyshare.com','1fichier','mediafire.com','pixeldrain.com','uploaded.net','http://ul.to','uptobox.com','wetransfer.com','dowsfile.com','drive.google.com','anonfiles.com','mega.nz','mega.co.nz','turbobit.net','turb.cc','filetransfer.io','krakenfiles.com','rapidgator.net','multiup.org','disk.yandex.com','filecrypt.co','down.fast-down.com','depositfiles.com','depositfiles.org','brfiles.com','uloz.to','megaup.net','4sync.com','onedrive.com','onedrive.live.com','sharepoint.com','siasky.net','userscloud.com','brupload.net','4shared.com','1cloudfile.com','streamtape.com'];
+var freeservers = ['zippyshare.com','1fichier','mediafire.com','pixeldrain.com','uploaded.net','http://ul.to','uptobox.com','wetransfer.com','dowsfile.com','drive.google.com','anonfiles.com','mega.nz','mega.co.nz','turbobit.net','turb.cc','filetransfer.io','krakenfiles.com','rapidgator.net','multiup.org','disk.yandex.com','filecrypt.co','down.fast-down.com','depositfiles.com','depositfiles.org','brfiles.com','uloz.to','megaup.net','4sync.com','onedrive.com','onedrive.live.com','sharepoint.com','siasky.net','userscloud.com','brupload.net','4shared.com','1cloudfile.com','streamtape.com','katfile.com'];
 var depositfiles = 'Este arquivo não existir, o acesso ao seguinte arquivo é limitada ou foi removido devido a violação de direitos autorais';
 var filecrypt = 'Unfortunately we could not find what you are searching for, we are sorry!';
 var filetransferIO = 'The data package cannot be downloaded anymore, it was deleted from the server.';
