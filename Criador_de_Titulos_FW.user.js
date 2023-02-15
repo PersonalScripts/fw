@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.81
+// @version      1.82
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -11,6 +11,7 @@
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=game
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=xxx
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=show
+// @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=tv
 // @include     https://filewarez.tv/postador.php
 // @include     https://filewarez.tv/postador.php?do=addupload*
 // @include     https://filewarez.tv/newthread.php?do=newthread&f=14
@@ -682,21 +683,25 @@ if(document.getElementById('cfield_imdb')){
     local.after(img);
     var elencoimdb = new Image();
     var elencotmdb = new Image();
+    var elencotvdb = new Image();
     var elencosemfoto = new Image();
     var preview_actors = new Image();
     var preview_trailer = new Image();
     elencoimdb.src = 'https://www.fw.artvetro.com.br/img/imdblogo.png';
     elencotmdb.src = 'https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_1-5bdc75aaebeb75dc7ae79426ddd9be3b2be1e342510f8202baf6bffa71d7f5c4.svg';
+    elencotvdb.src = 'https://thetvdb.com/images/attribution/logo2.png';
     elencosemfoto.src = 'https://i.imgur.com/pcTy5ku.png';
     preview_actors.src = 'https://i.imgur.com/hV9FqXR.png';
     preview_trailer.src = 'https://i.imgur.com/hV9FqXR.png';
     elencoimdb.style ="float:left;margin-bottom:5px;margin-right:5px;height:20px;";
     elencotmdb.style ="float:left;margin-bottom:5px;margin-right:5px;height:20px;width:31px;";
+    elencotvdb.style ="float:left;margin-bottom:5px;margin-right:5px;height:20px;width:31px;";
     elencosemfoto.style ="float:left;margin-bottom:5px;height:20px;width:23px;";
     preview_actors.style ="float:left;margin-top:5px;margin-left:5px;height:17px;width:27px;";
     preview_trailer.style ="float:left;margin-top:5px;margin-left:5px;height:17px;width:27px;";
     elencoimdb.title ='Atualizar Elenco com IMDB (Com Fotos)';
     elencotmdb.title ='Atualizar Elenco com TMDB (Com Fotos)';
+    elencotvdb.title ='Atualizar Elenco com TVDB (Cada clique faz upload das fotos no IMGUR, use com cautela!)';
     elencosemfoto.title ='Atualizar Elenco IMDB (Apenas Texto)';
     preview_actors.title ='Preview do Elenco';
     preview_trailer.title ='Preview do Trailer';
@@ -705,6 +710,9 @@ if(document.getElementById('cfield_imdb')){
     var localtrailer = document.getElementById("cfield_trailer");
     localelenco.before(elencoimdb);
     localelenco.before(elencotmdb);
+    if(document.getElementById("cfield_season")){
+                localelenco.before(elencotvdb);
+            }
     localelenco.before(elencosemfoto);
     localelenco.after(preview_actors);
     localtrailer.after(preview_trailer);
@@ -713,6 +721,17 @@ if(document.getElementById('cfield_imdb')){
     var localtrailer = document.getElementById("cfield_trailer");
     localelenco.before(elencoimdb);
     localelenco.before(elencotmdb);
+    if(document.getElementById("cfield_season")){
+        $("head").append (
+    '<link href="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css" '
+  + 'rel="stylesheet" type="text/css">'
+);
+    $("head").append (
+    '<link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" '
+  + 'rel="stylesheet" type="text/css">'
+);
+                localelenco.before(elencotvdb);
+            }
     localelenco.before(elencosemfoto);
     localelenco.after(preview_actors);
     localtrailer.after(preview_trailer);}
@@ -1229,6 +1248,60 @@ elencotmdb.addEventListener('click', function () {
         .fail(function(jqXHR, textStatus, msg){
  alert('Falhou!');
    });
+    })
+
+elencotvdb.addEventListener('click', function () {
+
+    var a = $.confirm({
+    icon: 'fa fa-warning',
+    title: '   Atenção',
+    content: `As imagens do TVDB serão hospedadas remotamente no "imgur.com", evite clicar repetida ou desnecessariamente para não sobrecarregar a API.
+               <br><br>Prossiga apenas se tiver certeza: `,
+    type: 'orange',
+    typeAnimated: true,
+    closeAnimation: 'scale',
+                    useBootstrap: false,
+                    boxWidth: '15%',
+    buttons: {
+        tryAgain: {
+            text: 'Continuar',
+            btnClass: 'btn-black',
+            action: function(){get_tvdb();
+            }
+        },
+        'Não': function () {
+        }
+    }
+});
+    function get_tvdb () {
+    var site = $('#cfield_imdb').val();
+    site = site.replace(/imdb/g, "www.imdb");
+        $.ajax({
+          url : "https://www.fw.artvetro.com.br/filmes2-tvdb.php",
+          type : 'post',
+
+          data : {
+               copia:site
+          },
+          beforeSend : function(){
+               GM_notification ( {
+                title: 'PvP diz:', timeout: '1700', text: 'Buscando Informações!'
+            } );
+          }
+     })
+     .done(function(msg){
+ GM_notification ( {
+                title: 'PvP diz:', timeout: '1700', text: 'Informações Atualizadas!'
+            } );
+            console.log(msg);
+    var doc = new DOMParser().parseFromString(msg, 'text/html');
+    var actor = doc.getElementById("actor").innerText;
+    document.getElementById('cfield_cast').value = actor;
+    GM_setValue('img', doc.getElementById("img").innerText);
+})
+        .fail(function(jqXHR, textStatus, msg){
+ alert('Falhou!');
+   });}
     })
 
 elencosemfoto.addEventListener('click', function () {
