@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.82
+// @version      1.83
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -2708,7 +2708,7 @@ $("head").append (
 );
 var divwait = `<div class="loader loader-bouncing is-active"></div>`;
     var movieOrSeries = 'movie';
-    if(document.getElementsByClassName('sc-89e7233a-1 kYAXOp episode-guide-text').length > 0){
+    if(document.getElementsByClassName('sc-219085a0-1 kKXHBD episode-guide-text').length > 0){
     movieOrSeries = 'serie';
     }else{movieOrSeries = 'movie';}
     console.log(movieOrSeries);
@@ -2837,7 +2837,7 @@ alert('Falhou!');
 
 })
 
-    var local=document.getElementsByClassName('sc-b73cd867-0 ')[0];
+    var local=document.getElementsByClassName('sc-afe43def-1 fDTGTb ')[0];
     if(local){
       local.appendChild(criar);
       local.appendChild(img);
@@ -2973,7 +2973,7 @@ var id = doc1[1].split('/');
 })
 
 
-    var local=document.getElementsByClassName('sc-b73cd867-0 ')[0];
+    var local=document.getElementsByClassName('sc-afe43def-1 fDTGTb ')[0];
     if(local){
         local.appendChild(criar);
         local.appendChild(img);
