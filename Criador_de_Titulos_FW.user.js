@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.84
+// @version      1.85
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -12,6 +12,7 @@
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=xxx
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=show
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=tv
+// @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=dorama
 // @include     https://filewarez.tv/postador.php
 // @include     https://filewarez.tv/postador.php?do=addupload*
 // @include     https://filewarez.tv/newthread.php?do=newthread&f=14
@@ -453,6 +454,7 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
     genre_series = genre_series.replace(/mystery/g, "mistery");
     genre_series = genre_series.replace(/horror/g, "terror");
     genre_series = genre_series.replace(/music/g, "musical");
+    genre_series = genre_series.replace(/realitytv/g, "realityshows");
     genre_series = genre_series.replace(/ /g, ",");
     var genre_array_series = genre_series.split(',');
     console.log(genre_array_series);
@@ -1134,6 +1136,7 @@ var curiosidades = document.getElementById('cfield_curiosity').value;
     genre = genre.replace(/mystery/g, "mistery");
     genre = genre.replace(/horror/g, "terror");
     genre = genre.replace(/music/g, "musical");
+    genre = genre.replace(/realitytv/g, "realityshows");
     genre = genre.replace(/\n/g, ",");
             console.log(genre);
     var genre_array = genre.split(',');
