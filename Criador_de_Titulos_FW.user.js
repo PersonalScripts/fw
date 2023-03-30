@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.85
+// @version      1.86
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -2840,7 +2840,7 @@ alert('Falhou!');
 
 })
 
-    var local=document.getElementsByClassName('sc-b73cd867-0 ')[0];
+    var local=document.getElementsByClassName('sc-afe43def-0 ')[0];
     if(local){
       local.appendChild(criar);
       local.appendChild(img);
@@ -2976,7 +2976,7 @@ var id = doc1[1].split('/');
 })
 
 
-    var local=document.getElementsByClassName('sc-b73cd867-0 ')[0];
+    var local=document.getElementsByClassName('sc-afe43def-0 ')[0];
     if(local){
         local.appendChild(criar);
         local.appendChild(img);
