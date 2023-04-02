@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.86
+// @version      1.87
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -2711,7 +2711,7 @@ $("head").append (
 );
 var divwait = `<div class="loader loader-bouncing is-active"></div>`;
     var movieOrSeries = 'movie';
-    if(document.getElementsByClassName('sc-89e7233a-1 kYAXOp episode-guide-text').length > 0){
+    if(document.querySelectorAll('span[class*="episode-guide-text"]')){
     movieOrSeries = 'serie';
     }else{movieOrSeries = 'movie';}
     console.log(movieOrSeries);
