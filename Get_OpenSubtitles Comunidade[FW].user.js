@@ -1,12 +1,14 @@
 // ==UserScript==
 // @name         Get_OpenSubtitles Comunidade[FW]
 // @namespace    PvP
-// @version      0.1
+// @version      1.0
 // @description  Exibe as opções de legendas do OpenSubtitles e permite baixá-las diretamente do tópico da FW.
 // @author       PvP
 // @include     https://filewarez.tv/showthread.php*
 // @grant       GM_setValue
 // @grant       GM_getValue
+// @updateURL   https://github.com/PersonalScripts/fw/raw/master/Get_OpenSubtitles%20Comunidade%5BFW%5D.user.js
+// @downloadURL https://github.com/PersonalScripts/fw/raw/master/Get_OpenSubtitles%20Comunidade%5BFW%5D.user.js
 // ==/UserScript==
 
 var select_sub = document.createElement( 'select' );
