@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Get_OpenSubtitles [FW]
 // @namespace    PvP
-// @version      0.1
+// @version      1.0
 // @description  Exibe as opções de legendas do OpenSubtitles e adiciona o link ao upload
 // @author       PvP
 // @include     https://filewarez.tv/showthread.php*
@@ -9,6 +9,8 @@
 // @include     https://filewarez.tv/postador.php*
 // @grant       GM_setValue
 // @grant       GM_getValue
+// @updateURL   https://github.com/PersonalScripts/fw/raw/master/Get_OpenSubtitles%20%5BFW%5D.user.js
+// @downloadURL https://github.com/PersonalScripts/fw/raw/master/Get_OpenSubtitles%20%5BFW%5D.user.js
 // ==/UserScript==
 
 var select_sub = document.createElement( 'select' );
