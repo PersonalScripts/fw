@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Get_OpenSubtitles [FW]
 // @namespace    PvP
-// @version      1.1
+// @version      1.2
 // @description  Exibe as opções de legendas do OpenSubtitles e adiciona o link ao upload
 // @author       PvP
 // @include     https://filewarez.tv/showthread.php*
@@ -80,8 +80,11 @@ if (window.location.href.indexOf("https://filewarez.tv/showthread.php") != -1 ) 
                         if(doc.querySelectorAll("div:not(.logo)[itemscope][itemtype^='http://schema.org/']")[0]){
                             if(doc.querySelectorAll("div:not(.logo)[itemscope][itemtype^='http://schema.org/']")[0].getAttribute('itemtype').includes('Movie')){
                                 for (var i = 0; i < (doc.querySelectorAll('td[id^=main]').length); i ++) {
-                                    rls_array.push(doc.querySelectorAll('td[id^=main]')[i].textContent.split(')')[1].split('Assiste')[0]);
-                                    console.log(doc.querySelectorAll('td[id^=main]')[i].textContent.split(')')[1].split('Assiste')[0]);
+                                    if(doc.querySelectorAll('td[id^=main]')[i].getElementsByTagName('span')[0]){
+                                        rls_array.push(doc.querySelectorAll('td[id^=main]')[i].getElementsByTagName('span')[0].getAttribute('title'));
+                                    }else{
+                                        rls_array.push(doc.querySelectorAll('td[id^=main]')[i].textContent.split(')')[1].split('Assiste')[0]);
+                                    }
                                     links_array.push('https://www.opensubtitles.org'+doc.querySelectorAll('td[id^=main]')[i].getElementsByTagName('a')[0].getAttribute('href'));
                                     console.log('https://www.opensubtitles.org'+doc.querySelectorAll('td[id^=main]')[i].getElementsByTagName('a')[0].getAttribute('href'));
                                     console.log(doc.querySelectorAll('tr[id^=name')[i].getElementsByTagName('td')[8].innerText);
