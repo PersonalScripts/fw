@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Get_OpenSubtitles [FW]
 // @namespace    PvP
-// @version      1.0
+// @version      1.1
 // @description  Exibe as opções de legendas do OpenSubtitles e adiciona o link ao upload
 // @author       PvP
 // @include     https://filewarez.tv/showthread.php*
@@ -153,7 +153,7 @@ if (window.location.href.indexOf("https://filewarez.tv/showthread.php") != -1 ) 
 if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=editupload") != -1 ) {
     var url_legenda = GM_getValue('url_legenda');
     var autor_legenda = GM_getValue('autor_legenda');
-    if(GM_getValue('autor_legenda') != ''){
+    if(GM_getValue('autor_legenda') == ''){}else{
         document.getElementById('cfield_subtitles_included').value = 'yes';
         document.getElementById('cfield_subtitles_included').dispatchEvent(new Event('change'));
         document.getElementById('cfield_subtitles_author').value = autor_legenda;
@@ -170,13 +170,13 @@ if (window.location.href.indexOf("https://filewarez.tv/postador.php") != -1 ) {
     }
     referer = document.referrer;
     if(referer.includes('https://filewarez.tv/postador.php?do=editupload')){
-        if(GM_getValue('url_legenda') != ''){
+        if(GM_getValue('url_legenda') == ''){}else{
             document.getElementsByName("next")[0].click();
         }
     }
     if(referer.includes('https://filewarez.tv/postador.php')){
         var url_legenda = GM_getValue('url_legenda');
-        if(GM_getValue('url_legenda') != ''){
+        if(GM_getValue('url_legenda') == ''){}else{
             document.getElementById('postador_importlinks').value = '-Legenda\n'+url_legenda;
             document.getElementById("postador_importlinks_process").click();
             GM_setValue('url_legenda', '');
