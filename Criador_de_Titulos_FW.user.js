@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.88
+// @version      1.89
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -16,6 +16,7 @@
 // @include     https://filewarez.tv/postador.php
 // @include     https://filewarez.tv/postador.php?do=addupload*
 // @include     https://filewarez.tv/newthread.php?do=newthread&f=14
+// @include     https://filewarez.tv/newthread.php?do=newthread&f=123
 // @include     https://filewarez.tv/postador.php?do=edittitle*
 // @include     https://filewarez.tv/postador.php?do=editupload*
 // @include     https://filewarez.tv/postador.php?do=moderatetitle*
@@ -48,7 +49,7 @@ GM_config.init(
 {
   'id': 'MyConfig', // The id used for this instance of GM_config
   'title': `<br><h1 style="background-color:white;"><img src="https://i.imgur.com/enqV0yc.png"><br><img src="https://i.imgur.com/RsLynzw.png?1"></h1>`,
-  'css': '.config_var, #MyConfig_buttons_holder { margin-top: 20px !important;text-align: center !important;display: block !important; } #MyConfig_field_ComentariosUploader { margin-top: 10px !important; margin-left: auto !important; margin-right: auto !important;display: block !important; } #MyConfig_field_BtPath { margin-left: auto !important; margin-right: auto !important;} #MyConfig{width: 700px !important;}#MyConfig_field_enviando{margin-top:5px !important;}',
+  'css': '.config_var, #MyConfig_buttons_holder { margin-top: 20px !important;text-align: center !important;display: block !important; } #MyConfig_field_ComentariosUploader { margin-top: 10px !important; margin-left: auto !important; margin-right: auto !important;display: block !important; } #MyConfig_field_BtPath { margin-left: auto !important; margin-right: auto !important;} #MyConfig{width: 700px !important;}#MyConfig_field_enviando{margin-top:5px !important;}#MyConfig_field_ripando{margin-top:5px !important;}',
   'events':
   {
     'open': function() {
@@ -57,6 +58,7 @@ GM_config.init(
       $("#MyConfig_resetLink").html("Restaurar Padrões");
       $("input[name=Senha]").css({"margin-left":"5px","margin-top":"5px" });
       $("input[name=enviando]").css({"margin-left":"5px","margin-top":"5px" });
+      $("input[name=ripando]").css({"margin-left":"5px","margin-top":"5px" });
       $("input[name=Add_bts]").css({"margin-left":"5px","margin-top":"5px" });
 
       if(GM_config.get('Senha') == 'Sim'){
@@ -148,7 +150,15 @@ GM_config.init(
     {
       'options': ['Sim', 'Não'],
         'label': 'Após carregar o mediainfo, autorizar o script a postar no "Enviando Agora" quando clicar em Prosseguir:',
-        'title': 'Abre a janela pra postar no mediainfo e fecha sozinho em seguida.',
+        'title': 'Abre a janela pra postar no "Enviando Agora" e fecha sozinho em seguida.',
+        'type': 'radio',
+        'default': 'Não'
+    },
+    'ripando': // This is the id of the field
+    {
+      'options': ['Sim', 'Não'],
+        'label': 'Após carregar o mediainfo, substituir o botão do "Enviando Agora" pelo "Ripando Agora"<br>e postar ao clicar Prosseguir:',
+        'title': 'Adiciona o botão Ripando Agora e remove o Enviando Agora. Abre a janela pra postar no "Ripando Agora" e fecha sozinho em seguida.',
         'type': 'radio',
         'default': 'Não'
     },
@@ -1586,9 +1596,17 @@ var enviando_titulo = document.getElementById("cfield_title");
     $("#img_title").show();
     var local = document.getElementById('cfield_title');
     local.after(img_title);
+       /// exibe o botão do ripando agora
+       if(GM_config.get('ripando') == "Sim"){
+           $("#ripando_img_title").show();
+    var local = document.getElementById('img_title');
+    local.after(ripando_img_title);
+            $("#img_title").hide();
+       }
    }
    else {
     $("#img_title").hide();
+    $("#ripando_img_title").hide();
    }
    });
 
@@ -1600,6 +1618,38 @@ var enviando_titulo = document.getElementById("cfield_title");
     });
         document.dispatchEvent(event);
    });
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////// RIPANDO AGORA /////////////////////////////////////////
+
+    var ripando_img_title = new Image();
+    ripando_img_title.src = 'https://i.imgur.com/jqqCux6.png';
+    ripando_img_title.title ='Postar Upload no Ripando Agora!';
+    ripando_img_title.style ="margin-top:5px;";
+    ripando_img_title.id = "ripando_img_title";
+    ripando_img_title.addEventListener("mouseover", function(){ripando_img_title.src = 'https://i.imgur.com/See2uvt.png';});
+    ripando_img_title.addEventListener("mouseout", function(){ripando_img_title.src = 'https://i.imgur.com/jqqCux6.png';});
+
+    ripando_img_title.addEventListener('click', function () {
+        GM_setValue('ripando_agora', $('#cfield_title').val());
+        console.log($('#cfield_title').val());
+    var myWindow = window.open ("https://filewarez.tv/newthread.php?do=newthread&f=123");
+    setTimeout(function(){ myWindow.close() }, 7000);
+    })
+
+    if (window.location.href.indexOf("https://filewarez.tv/newthread.php?do=newthread&f=123") != -1){
+    var ripa = GM_getValue('ripando_agora');
+    ripa = ripa.replace(/\./g, " ");
+    GM_setValue('ripando_agora', "");
+    document.getElementById('vB_Editor_001_editor').value = ripa;
+    $('#subject').val(ripa);
+    window.addEventListener("unload", function() {
+      window.close();
+    });
+    if(ripa){
+    document.getElementById("vB_Editor_001_save").click();
+    }
+    }
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -2512,9 +2562,13 @@ function parse_mediainfo(content){
             console.log(GM_config.get('Compressao').toLowerCase());
             var comentariosUploader = GM_config.get('ComentariosUploader').replace(/MEDIAINFO/g, content_mediainfo);
             $('#cfield_description').val(comentariosUploader);
-            if(GM_config.get('enviando') == "Sim"){
+            if(GM_config.get('enviando') == "Sim" && GM_config.get('ripando') == "Não"){
                 document.getElementsByName("next")[0].addEventListener('click', function(e) {
                 img_title.click();
+            })
+            }else if (GM_config.get('ripando') == "Sim"){
+                document.getElementsByName("next")[0].addEventListener('click', function(e) {
+                ripando_img_title.click();
             })
             }
 
