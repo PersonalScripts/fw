@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.89
+// @version      1.90
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -1423,11 +1423,21 @@ if (window.location.href.indexOf("https://filewarez.tv/postador.php") != -1 ) {
         console.log(dominios.length);
     for(var i=0;i<dominios.length;i++){
        console.log(GM_getValue('nomedoarquivo'));
-       if(dominios[i].includes("https")){
+        if(dominios[i].includes(";")){
+
+            if(dominios[i].includes("https")){
+       //dominios[i] = (dominios[i]+GM_getValue('nomedoarquivo'));
+                 dominios[i] = (dominios[i].split(';')[0]+GM_getValue('nomedoarquivo')+';'+dominios[i].split(';')[1]);
+    }
+    }else if(dominios[i].includes("https")){
        dominios[i] = (dominios[i]+GM_getValue('nomedoarquivo'));
     }
+
         if(dominios[i].includes("url=vlc")){
-       dominios[i] = (dominios[i]+'][IMG]https://i.imgur.com/csNzErQ.png?4[/IMG][/url][/center]');
+       dominios[i] = (dominios[i]+'][IMG]https://i.imgur.com/JSLRgvC.png[/IMG][/url][/center]');
+    }
+        if(dominios[i].includes("play.link-direto.cf")){
+       dominios[i] = (dominios[i]+'][IMG]https://i.imgur.com/uffzkAj.png[/IMG][/url][/center]');
     }
     }
 
