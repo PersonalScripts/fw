@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.92
+// @version      1.93
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -2722,7 +2722,9 @@ terminar.addEventListener('click', function(e) {
     document.getElementsByName("next")[0].click();
 });
 
+if(!document.getElementById('postador_add_spacer')){
 $(":reset").after(terminar);
+}
 var input = document.createElement('input');
 var ler_mediainfo = document.createElement('span');
 ler_mediainfo.innerHTML = "<img src='https://i.imgur.com/Iga9vd2.png?1' width='20'/>";
@@ -2734,7 +2736,9 @@ input.id = "carregador";
 input.accept=".txt";
 input.style = "top:0;right:0;position:fixed;z-index:99999;padding:17.5px;background:rgba(0,0,0,0.5) none;cursor:pointer;";
 document.body.appendChild(input);
+if(!document.getElementById('postador_add_spacer')){
 document.getElementById('cfield_description').before(ler_mediainfo);
+}
 
 var carregador = document.getElementById('carregador');
 
