@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.90
+// @version      1.91
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -1489,6 +1489,19 @@ if (window.location.href.indexOf("https://filewarez.tv/postador.php") != -1 ) {
       postador_upload_image(img_array[i], 'url');
 }
 }})
+	if(referer.includes('https://filewarez.tv/postador.php?do=editupload')){
+       var terminate = GM_getValue('terminate');
+        if(terminate==true){
+            document.getElementsByName("next")[0].click();
+       }
+    }
+    if(referer.includes('https://filewarez.tv/postador.php') && document.getElementById('postador_add_spacer')){
+        terminate = GM_getValue('terminate');
+        if(terminate==true){
+            document.getElementsByName("next")[0].click();
+            GM_setValue('terminate', "");
+       }
+    }
 }
 
 function postador_upload_image(data, type){
@@ -1601,7 +1614,7 @@ var enviando_titulo = document.getElementById("cfield_title");
     img_title.addEventListener("mouseover", function(){img_title.src = 'https://i.imgur.com/SVEClsJ.png';});
     img_title.addEventListener("mouseout", function(){img_title.src = 'https://i.imgur.com/jqqCux6.png';});
 
-   $("#cfield_title").change(function () {
+   $("#cfield_title").on('input paste', function () {
    if ($(this).val()) {
     $("#img_title").show();
     var local = document.getElementById('cfield_title');
@@ -2697,7 +2710,18 @@ function parse_mediainfo(content){
 
 }
 }
+var terminar = document.createElement('span');
+    //terminar.style = `cursor:pointer;float:right;width:20%`;
+    terminar.innerHTML = `
+    <input type="submit" class="button" style="margin-left:3px;cursor:pointer;float:right;" name="next" value="Terminar">
+`;
 
+terminar.addEventListener('click', function(e) {
+    GM_setValue('terminate', true);
+    document.getElementsByName("next")[0].click();
+});
+
+$(":reset").after(terminar);
 var input = document.createElement('input');
 var ler_mediainfo = document.createElement('span');
 ler_mediainfo.innerHTML = "<img src='https://i.imgur.com/Iga9vd2.png?1' width='20'/>";
