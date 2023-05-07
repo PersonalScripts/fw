@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.91
+// @version      1.92
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -1361,6 +1361,7 @@ elencosemfoto.addEventListener('click', function () {
 
 ///////////////////////////////////////////////////////////////////////////////// ADD IMAGENS NO POSTADOR COM ALT + P
 if (window.location.href.indexOf("https://filewarez.tv/postador.php") != -1 ) {
+var referer = document.referrer;
 //###############################################################################################################################
     $(".isuser").prepend('<li style=margin-left:1em; id="config_script"><a href="javascript:void(0);">Script Config</a></li>');
     $("#config_script").on('click', function() {
