@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.93
+// @version      1.94
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -213,6 +213,7 @@ if (window.location.href.indexOf("https://www.fw.artvetro.com.br/") != -1 || win
             GM_setValue('ano', document.getElementById("ano").innerText);
             GM_setValue('direcao', document.getElementById("direcao").innerText);
             GM_setValue('imdb', document.getElementById("imdb").innerText);
+            GM_setValue('tmdb', document.getElementById("tmdb").innerText);
             GM_setValue('site', document.getElementById("site").innerText);
             GM_setValue('actor', document.getElementById("actor").innerText);
             GM_setValue('sinopse', document.getElementById("sinopse").innerText);
@@ -276,6 +277,7 @@ if (window.location.href.indexOf("https://www.fw.artvetro.com.br/") != -1 || win
             GM_setValue('temp', document.getElementById("temp").innerText);
             GM_setValue('episodios', document.getElementById("episodios").innerText);
             GM_setValue('imdb', document.getElementById("imdb").innerText);
+            GM_setValue('tmdb', document.getElementById("tmdb").innerText);
             GM_setValue('site', document.getElementById("site").innerText);
             GM_setValue('actor', document.getElementById("actor").innerText);
             GM_setValue('sinopse', document.getElementById("sinopse").innerText);
@@ -297,6 +299,7 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
     var year = GM_getValue('ano');
     var director = GM_getValue('direcao');
     var imdb = GM_getValue('imdb');
+    var tmdb = GM_getValue('tmdb');
     var site = GM_getValue('site');
     var actor = GM_getValue('actor');
     var sumario = GM_getValue('sinopse');
@@ -340,6 +343,7 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
     document.getElementById('cfield_year').value = year;
     document.getElementById('cfield_direction').value = director;
     document.getElementById('cfield_imdb').value = imdb;
+    document.getElementById('cfield_tmdb').value = tmdb;
     document.getElementById('cfield_site').value = site;
     document.getElementById('cfield_cast').value = actor;
     document.getElementById('cfield_summary').value = sumario;
@@ -352,6 +356,7 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
         GM_setValue('ano', "");
         GM_setValue('direcao', "");
         GM_setValue('imdb', "");
+        GM_setValue('tmdb', "");
         GM_setValue('site', "");
         GM_setValue('actor', "");
         GM_setValue('sinopse', "");
@@ -451,6 +456,7 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
     var year_series = GM_getValue('ano');
     var criador_series = GM_getValue('criador');
     var imdb_series = GM_getValue('imdb');
+    var tmdb_series = GM_getValue('tmdb');
     var site_series = GM_getValue('site');
     var actor_series = GM_getValue('actor');
     var sumario_series = GM_getValue('sinopse');
@@ -475,6 +481,7 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
     document.getElementById('cfield_year').value = year_series;
     document.getElementById('cfield_creator').value = criador_series;
     document.getElementById('cfield_imdb').value = imdb_series;
+    document.getElementById('cfield_tmdb').value = tmdb_series;
     document.getElementById('cfield_site').value = site_series;
     document.getElementById('cfield_cast').value = actor_series;
     document.getElementById('cfield_summary').value = sumario_series;
@@ -490,6 +497,7 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
             GM_setValue('temp', "");
             GM_setValue('episodios', "");
             GM_setValue('imdb', "");
+            GM_setValue('tmdb', "");
             GM_setValue('site', "");
             GM_setValue('actor', "");
             GM_setValue('sinopse', "");
@@ -506,6 +514,7 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
     var year_cartoon = GM_getValue('ano');
     var criador_cartoon = GM_getValue('criador');
     var imdb_cartoon = GM_getValue('imdb');
+    var tmdb_cartoon = GM_getValue('tmdb');
     var site_cartoon = GM_getValue('site');
     var actor_cartoon = GM_getValue('actor');
     var sumario_cartoon = GM_getValue('sinopse');
@@ -529,6 +538,7 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
     document.getElementById('cfield_year').value = year_cartoon;
     document.getElementById('cfield_creator').value = criador_cartoon;
     document.getElementById('cfield_imdb').value = imdb_cartoon;
+    document.getElementById('cfield_tmdb').value = tmdb_cartoon;
     document.getElementById('cfield_site').value = site_cartoon;
     document.getElementById('cfield_cast').value = actor_cartoon;
     document.getElementById('cfield_summary').value = sumario_cartoon;
@@ -544,6 +554,7 @@ else if (window.location.href.indexOf("https://filewarez.tv/postador.php?do=addt
             GM_setValue('temp', "");
             GM_setValue('episodios', "");
             GM_setValue('imdb', "");
+            GM_setValue('tmdb', "");
             GM_setValue('site', "");
             GM_setValue('actor', "");
             GM_setValue('sinopse', "");
@@ -1128,6 +1139,7 @@ div.modal-body {
 
     var director = doc.getElementById("direcao").innerText;
     var imdb = doc.getElementById("imdb").innerText;
+    var tmdb = doc.getElementById("tmdb").innerText;
     var site = doc.getElementById("site").innerText;
     var actor = doc.getElementById("actor").innerText;
     
@@ -1160,6 +1172,9 @@ var curiosidades = document.getElementById('cfield_curiosity').value;
     if (document.getElementById('cfield_direction') && director != ""){
     document.getElementById('cfield_direction').value = director;}
     document.getElementById('cfield_imdb').value = imdb;
+    if(document.getElementById('cfield_tmdb')){
+    document.getElementById('cfield_tmdb').value = tmdb;
+    }
 	if(document.getElementById('cfield_site')){
     document.getElementById('cfield_site').value = site;
 	}
@@ -2891,6 +2906,7 @@ var id = doc1[1].split('/');
             GM_setValue('ano', doc.getElementById("ano").innerText);
             GM_setValue('direcao', doc.getElementById("direcao").innerText);
             GM_setValue('imdb', doc.getElementById("imdb").innerText);
+            GM_setValue('tmdb', doc.getElementById("tmdb").innerText);
             GM_setValue('site', doc.getElementById("site").innerText);
             GM_setValue('actor', doc.getElementById("actor").innerText);
             GM_setValue('sinopse', doc.getElementById("sinopse").innerText);
@@ -3022,6 +3038,7 @@ var id = doc1[1].split('/');
             GM_setValue('ano', doc.getElementById("ano").innerText);
             GM_setValue('direcao', doc.getElementById("direcao").innerText);
             GM_setValue('imdb', doc.getElementById("imdb").innerText);
+            GM_setValue('tmdb', doc.getElementById("tmdb").innerText);
             GM_setValue('site', doc.getElementById("site").innerText);
             GM_setValue('actor', doc.getElementById("actor").innerText);
             GM_setValue('sinopse', doc.getElementById("sinopse").innerText);
