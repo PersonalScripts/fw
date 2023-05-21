@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.95
+// @version      1.96
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -1382,8 +1382,8 @@ var referer = document.referrer;
     $("#config_script").on('click', function() {
     GM_config.open();
     })
-    if(GM_config.get('Add_bts') == "Sim"){
     if (document.getElementById("postador_importlinks_process")){
+    if(GM_config.get('Add_bts') == "Sim"){
     var finalizar_upload= document.createElement('span');
         finalizar_upload.style = `background: none;
 	color: inherit;
