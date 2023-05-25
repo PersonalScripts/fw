@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.97
+// @version      1.98
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -37,7 +37,7 @@
 // @require     https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js
 // @require     https://code.jquery.com/ui/1.12.1/jquery-ui.js
 // @require     https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js
-// @require            https://openuserjs.org/src/libs/sizzle/GM_config.js
+// @require https://raw.githubusercontent.com/sizzlemctwizzle/GM_config/2207c5c1322ebb56e401f03c2e581719f909762a/gm_config.js
 // ==/UserScript==
 
 //##############################################################################################//
