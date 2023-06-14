@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.98
+// @version      1.99
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -1452,7 +1452,7 @@ var referer = document.referrer;
         if(dominios[i].includes("url=vlc")){
        dominios[i] = (dominios[i]+'][IMG]https://i.imgur.com/JSLRgvC.png[/IMG][/url][/center]');
     }
-        if(dominios[i].includes("play.link-direto.cf")){
+        if(dominios[i].includes("play.link-direto.ml")){
        dominios[i] = (dominios[i]+'][IMG]https://i.imgur.com/uffzkAj.png[/IMG][/url][/center]');
     }
     }
@@ -2566,8 +2566,9 @@ function parse_mediainfo(content){
             release[0] = release[0].replace(/7 1 /g, "7.1 ");
             release[0] = release[0].replace(/7 1-/g, "7.1-");
             release[0] = release[0].replace(/ H 264/g, " H264");
-	        release[0] = release[0].replace(/ H 265/g, " H265");
+	    release[0] = release[0].replace(/ H 265/g, " H265");
             release[0] = release[0].replace(/ X264/g, " x264");
+	    release[0] = release[0].replace(/ X265/g, " x265");
             release[0] = release[0].replace(/Bdrip/g, "BDRip");
             release[0] = release[0].replace(/Brrip/g, "BRRip");
             release[0] = release[0].replace(/Bluray/g, "BluRay");
