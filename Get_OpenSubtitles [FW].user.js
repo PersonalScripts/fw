@@ -104,6 +104,9 @@ if (window.location.href.indexOf("https://filewarez.tv/showthread.php") != -1 ) 
                                     }else{
                                         legender = doc.querySelectorAll("[href^='/pt/profile/']")[0].innerText;
                                     }
+                                    if (legender == ''){
+                                        legender = 'UNK';    
+                                    }
                                     option.value = id_leg+','+legender;
                                     option.text = rls_array[i].charAt(0).toUpperCase() + rls_array[i].slice(1) + ' (' + legender + ')';
                                     option.title = rls_array[i].charAt(0).toUpperCase() + rls_array[i].slice(1) + ' (' + legender + ')';
