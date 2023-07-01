@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Get_OpenSubtitles [FW]
 // @namespace    PvP
-// @version      1.2
+// @version      1.3
 // @description  Exibe as opções de legendas do OpenSubtitles e adiciona o link ao upload
 // @author       PvP
 // @include     https://filewarez.tv/showthread.php*
