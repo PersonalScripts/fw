@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Criador de Títulos [FW]
 // @namespace   PvP
-// @version      1.99
+// @version      2.00
 // @description  Busca as informações e preenche o postador.
 // @author      PvP
 // @include     https://filewarez.tv/postador.php?do=addtitle&step=2&type=movie
@@ -1452,7 +1452,7 @@ var referer = document.referrer;
         if(dominios[i].includes("url=vlc")){
        dominios[i] = (dominios[i]+'][IMG]https://i.imgur.com/JSLRgvC.png[/IMG][/url][/center]');
     }
-        if(dominios[i].includes("play.link-direto.ml")){
+        if(dominios[i].includes("play.link-direto.gq")){
        dominios[i] = (dominios[i]+'][IMG]https://i.imgur.com/uffzkAj.png[/IMG][/url][/center]');
     }
     }
@@ -2644,7 +2644,7 @@ function parse_mediainfo(content){
             }
 
                 var name_release = release[0].split(' ');
-                var streamings = ["GLBO", "TC", "TPLY", "DSCP", "PLAY", "FUNI", "CLRO", "DTV", "KNPY", "CRIT", "PMTP", "TNT", "VIX", "DSNP", "ATVP", "AMZN", "NF", "PLTO", "HMAX"];
+                var streamings = ["GLBO", "TC", "TPLY", "DSCP", "PLAY", "FUNI", "CLRO", "DTV", "KNPY", "CRIT", "PMTP", "TNT", "VIX", "DSNP", "ATVP", "AMZN", "NF", "PLTO", "HMAX", "STRP", "CR"];
                 var result = getMatch(name_release, streamings);
 
                 switch(result[0]){
@@ -2698,6 +2698,13 @@ function parse_mediainfo(content){
                         break;
                     case 'HMAX':
                         $('#cfield_subtitles_author').val('HBOMAX');
+                        break;
+                    case 'STRP':
+                        $('#cfield_subtitles_author').val('Star+');
+                        break;
+                    case 'CR':
+                        $('#cfield_subtitles_author').val('Crunchyroll');
+                        $('#cfield_fansubs').val('Crunchyroll');
                         break;
                     case 'AMZN':
                         $('#cfield_subtitles_author').val('Amazon Prime Video');
